@@ -5,6 +5,7 @@ function ProductPage () {
     return (
         <div>
             <MainHeader/>
+            <h1> Product Page</h1>
         </div>
     )
 }

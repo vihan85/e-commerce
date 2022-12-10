@@ -1,14 +1,8 @@
-// import axios from 'axios';
-// import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-// function getData() {
-//     const [data, setData] = useState();
-//     useEffect(() => {
-//         axios
-//             .get('https://tiktok.fullstack.edu.vn/api/users/suggested?page=1&per_page=15')
-//             .then((data) => setData(data));
-//     }, []);
+export const getCatelogy = async () => {
+    const res = await axios.get('http://localhost:5000/categories?levels=3');
+    return res.data.categories
+}
 
-//     return data.data;
-// }
-// export default getData;
+

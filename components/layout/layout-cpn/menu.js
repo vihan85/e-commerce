@@ -1,46 +1,55 @@
 import classNames from 'classnames/bind';
 import styles from './main-header.module.scss';
-import Link from 'next/link';
-import TippyHeadLess from '@tippyjs/react/headless';
+import TippyHeadless from '@tippyjs/react/headless';
+
 import React from 'react';
+import Link from 'next/link';
+import SubMenu from './submenu';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { faSortDown } from '@fortawesome/free-solid-svg-icons';
+
 const cx = classNames.bind(styles);
 
 function Menu({ data }) {
+    const subMenu = (item) => {
+        return (attrs) => (
+            <div
+                className='box'
+                tabIndex='-1'
+                {...attrs}>
+                <SubMenu data={item.categories !== undefined ? item.categories : null} />
+            </div>
+        );
+    };
     return (
         <ul className={cx('main-header_list')}>
-            {data.map((item, index) => (
-                <span key={index}>
-                    <TippyHeadLess
-                        interactive={true}
-                        placement={'bottom-start'}
-                        offset={[]}
-                        render={(attrs) => (
-                            <div
-                                className='box'
-                                tabIndex='-1'
-                                {...attrs}>
-                                {item.children && (
-                                    <ul className={cx('sub-menu_list')}>
-                                        {item.children.map((subItem, index) => (
-                                            <li
-                                                className={cx('sub-menu_item')}
-                                                key={index}>
-                                                <Link href={'/product'}>{subItem.title}</Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
-                            </div>
-                        )}>
-                        <li className={cx('main-header_item')}>
-                            <Link href={'/'}>
-                                {item.title}
-                                <span className={cx('main-header_icon')}>{item.icon}</span>
-                            </Link>
-                        </li>
-                    </TippyHeadLess>
-                </span>
-            ))}
+            {data.map((item) => {
+                if (item.c_showInMenu) {
+                    return (
+                        <span  key={item.id}>
+                            <TippyHeadless
+                                interactive={true}
+                                placement='bottom-start'
+                                offset={[0, 0]}
+
+                                render={subMenu(item)}>
+                                <li className={cx('main-header_item')}>
+                                    <Link href={`/${item.id}`}>
+                                        {item.name}
+                                        {item.categories && (
+                                        <span className={cx('main-header_icon')}>
+                                            <FontAwesomeIcon icon={faSortDown}/>
+                                        </span>
+                                    )}
+                                    </Link>
+
+                                </li>
+                            </TippyHeadless>
+                        </span>
+                    );
+                }
+            })}
         </ul>
     );
 }
