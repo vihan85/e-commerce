@@ -31,7 +31,7 @@
     a {
         color: var(--white-color);
         text-decoration: unset;
-        padding: 16px 8px 16px 16px;
+        padding: 8px 8px 8px 16px;
     }
     .main-header_icon {
         font-size: 1.4rem;
@@ -47,17 +47,16 @@
 }
 .sub-menu_item {
     > a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         color: black;
     }
     list-style-type: none;
-    padding-left: 8px;
-    padding-top: 8px;
-    padding-bottom: 8px;
     border-bottom: 1px solid #eee;
     &:hover {
         cursor: pointer;
         text-decoration: underline;
+        background-color: #e9ecef;
     }
-}
-.sub-menu_icon {
 }

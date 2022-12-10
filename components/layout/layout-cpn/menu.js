@@ -27,23 +27,23 @@ function Menu({ data }) {
             {data.map((item) => {
                 if (item.c_showInMenu) {
                     return (
-                        <span  key={item.id}>
+                        <span
+                            key={item.id}
+                            className={cx('main-header_item')}>
                             <TippyHeadless
                                 interactive={true}
                                 placement='bottom-start'
                                 offset={[0, 0]}
-
                                 render={subMenu(item)}>
-                                <li className={cx('main-header_item')}>
+                                <li>
                                     <Link href={`/${item.id}`}>
                                         {item.name}
                                         {item.categories && (
-                                        <span className={cx('main-header_icon')}>
-                                            <FontAwesomeIcon icon={faSortDown}/>
-                                        </span>
-                                    )}
+                                            <span className={cx('main-header_icon')}>
+                                                <FontAwesomeIcon icon={faSortDown} />
+                                            </span>
+                                        )}
                                     </Link>
-
                                 </li>
                             </TippyHeadless>
                         </span>
