@@ -33,7 +33,7 @@ function Menu({ data }) {
                             <TippyHeadless
                                 interactive={true}
                                 placement='bottom-start'
-                                offset={[0, 0]}
+                                offset={[0,18]}
                                 render={subMenu(item)}>
                                 <li>
                                     <Link href={`/${item.id}`}>

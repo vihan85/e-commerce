@@ -3,7 +3,7 @@ import styles from './main-header.module.scss';
 import { useEffect, useState } from 'react';
 
 import Menu from './menu';
-import { getCatelogy } from '../../../data/data';
+import { getDataCatelogy } from '../../../data/data';
 
 const cx = classNames.bind(styles);
 
@@ -11,7 +11,7 @@ function MainHeader() {
     const [data, setData] = useState([]);
     useEffect(() => {
         async function featch() {
-            const data = await getCatelogy();
+            const data = await getDataCatelogy();
             setData(data);
         }
         featch();
