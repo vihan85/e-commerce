@@ -1,14 +1,17 @@
 import { useRouter } from 'next/router';
 import MainHeader from '../components/layout/layout-cpn/main-header';
 import parse from 'html-react-parser';
-function ProductPage({ data }) {
+import { useContext } from 'react';
+import { Data } from './_app';
+function ProductPage() {
     const router = useRouter();
     const curentRouter = router.query.products;
-
+    const data = useContext(Data);
+    console.log(data);
     return (
         <div>
-            <MainHeader data={data} />
-            {data.map((item) => {
+            <MainHeader />
+            {data.categories.map((item) => {
                 if (item.id === curentRouter && item.c_headerMenuBanner) {
                     return (
                         <div key={item.id}>

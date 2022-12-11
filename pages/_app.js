@@ -1,10 +1,13 @@
 import { getDataCatelogy } from '../data/data';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, createContext } from 'react';
 
 import '../styles/globals.scss';
 
+export const Data = createContext();
+
 export default function MyApp({ Component, pageProps }) {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState();
+
     useEffect(() => {
         const featch = async () => {
             const data = await getDataCatelogy();
@@ -12,10 +15,12 @@ export default function MyApp({ Component, pageProps }) {
         };
         featch();
     }, []);
-    return (
-        <Component
-            data={data}
-            {...pageProps}
-        />
-    );
+    if (data) {
+        return (
+            <Data.Provider value={data}>
+                <Component {...pageProps} />
+            </Data.Provider>
+        );
+    }
+    return;
 }

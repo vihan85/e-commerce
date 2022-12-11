@@ -2,55 +2,54 @@ import classNames from 'classnames/bind';
 import styles from './main-header.module.scss';
 import TippyHeadless from '@tippyjs/react/headless';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import SubMenu from './submenu';
+import { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { faSortDown } from '@fortawesome/free-solid-svg-icons';
+
+import SubMenu from './submenu';
+import { Data } from '../../../pages/_app';
 
 const cx = classNames.bind(styles);
 
-function Menu({ data }) {
-    const subMenu = (item) => {
-        return (attrs) => (
-            <div
-                className='box'
-                tabIndex='-1'
-                {...attrs}>
-                <SubMenu data={item.categories !== undefined ? item.categories : null} />
-            </div>
-        );
-    };
-    return (
-        <ul className={cx('main-header_list')}>
-            {data.map((item) => {
-                if (item.c_showInMenu) {
-                    return (
-                        <span
-                            key={item.id}
-                            className={cx('main-header_item')}>
-                            <TippyHeadless
-                                interactive={true}
-                                placement='bottom-start'
-                                offset={[0,18]}
-                                render={subMenu(item)}>
-                                <li>
+function Menu() {
+    const data = useContext(Data);
+    console.log(data);
+    const renderMenu = (data, mainHeaderList, mainHeaderItem) => {
+        if (data.categories) {
+            const dataItems = data.categories;
+            return (
+                <ul className={cx(mainHeaderList)}>
+                    {dataItems.map((item, index, items) => {
+                        if (item.categories) {
+                            return (
+                                <li
+                                    key={item.id}
+                                    className={cx(mainHeaderItem)}>
                                     <Link href={`/${item.id}`}>
                                         {item.name}
-                                        {item.categories && (
-                                            <span className={cx('main-header_icon')}>
-                                                <FontAwesomeIcon icon={faSortDown} />
-                                            </span>
-                                        )}
+                                        <span className={cx('main-header_icon')}>
+                                            <FontAwesomeIcon icon={faSortDown} />
+                                        </span>
                                     </Link>
+                                    {renderMenu(item, `${item.id}_list`, `${item.id}_item`)}
                                 </li>
-                            </TippyHeadless>
-                        </span>
-                    );
-                }
-            })}
-        </ul>
-    );
+                            );
+                        } else {
+                            return (
+                                <li
+                                    className={cx(mainHeaderItem)}
+                                    key={item.id}>
+                                    <Link href={`/${item.id}`}>{item.name}</Link>
+                                </li>
+                            );
+                        }
+                    })}
+                </ul>
+            );
+        }
+    };
+    return renderMenu(data, 'main-header_list', 'main-header_item');
 }
 export default Menu;
