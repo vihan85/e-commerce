@@ -1,24 +1,13 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 import MainHeader from '../components/layout/layout-cpn/main-header';
-import { getDataCatelogy } from '../data/data';
 import parse from 'html-react-parser';
-function ProductPage() {
+function ProductPage({ data }) {
     const router = useRouter();
     const curentRouter = router.query.products;
-    const [data, setData] = useState([]);
-    useEffect(() => {
-        const featch = async () => {
-            const getData = await getDataCatelogy();
-            setData(getData);
-        };
-        featch();
-    }, []);
 
     return (
         <div>
-            <MainHeader />
-
+            <MainHeader data={data} />
             {data.map((item) => {
                 if (item.id === curentRouter && item.c_headerMenuBanner) {
                     return (
