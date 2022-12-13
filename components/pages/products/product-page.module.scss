@@ -1,0 +1,32 @@
+.custom-select {
+    select {
+        padding: 6px 28px 6px 12px;
+        border: 1px solid #ced4da;
+        border-radius: 0.1875rem;
+        font-size: 1.6rem;
+        width: 100%;
+        option {
+        }
+    }
+}
+.card {
+    border: 1px solid #ced4da;
+    margin: 8px 0;
+}
+.card-item {
+    padding: 6px 28px 6px 12px;
+    color: #00a1e0;
+    list-style-type: none;
+    font-size: 1.3rem;
+    input {
+        margin-right: 4px;
+    }
+}
+.card-header {
+    padding: 6px 28px 6px 12px;
+    border-bottom: 1px solid #ced4da;
+    font-size: 1.6rem;
+    p {
+        margin: 0;
+    }
+}

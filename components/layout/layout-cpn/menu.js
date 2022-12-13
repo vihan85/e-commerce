@@ -1,6 +1,5 @@
 import classNames from 'classnames/bind';
 import styles from './main-header.module.scss';
-import TippyHeadless from '@tippyjs/react/headless';
 
 import React, { useState } from 'react';
 import Link from 'next/link';
@@ -8,32 +7,34 @@ import { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortDown } from '@fortawesome/free-solid-svg-icons';
 
-import SubMenu from './submenu';
 import { Data } from '../../../pages/_app';
+import { useRouter } from 'next/router';
+
 
 const cx = classNames.bind(styles);
 
 function Menu() {
     const data = useContext(Data);
-    console.log(data);
-    const renderMenu = (data, mainHeaderList, mainHeaderItem) => {
+    const routerAcctive = useRouter()
+
+    const renderMenu = (data, mainHeaderList, mainHeaderItem, router=false) => {
         if (data.categories) {
             const dataItems = data.categories;
             return (
                 <ul className={cx(mainHeaderList)}>
-                    {dataItems.map((item, index, items) => {
+                    {dataItems.map((item) => {
                         if (item.categories) {
                             return (
                                 <li
                                     key={item.id}
                                     className={cx(mainHeaderItem)}>
-                                    <Link href={`/${item.id}`}>
+                                    <Link href={ `/${item.parent_category_tree[0].id}/${item.id}/`}>
                                         {item.name}
                                         <span className={cx('main-header_icon')}>
                                             <FontAwesomeIcon icon={faSortDown} />
                                         </span>
                                     </Link>
-                                    {renderMenu(item, `${item.id}_list`, `${item.id}_item`)}
+                                    {renderMenu(item, `${item.id}_list`, `${item.id}_item`, router=true)}
                                 </li>
                             );
                         } else {
@@ -41,7 +42,7 @@ function Menu() {
                                 <li
                                     className={cx(mainHeaderItem)}
                                     key={item.id}>
-                                    <Link href={`/${item.id}`}>{item.name}</Link>
+                                    <Link href={`/${item.parent_category_tree[0].id}/${item.id}/`}>{item.name}</Link>
                                 </li>
                             );
                         }
