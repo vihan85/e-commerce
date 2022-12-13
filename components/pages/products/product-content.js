@@ -27,6 +27,19 @@ function ProductContent() {
         }
         return;
     };
+    const getImg= (id) => {
+        if(dataImg !== undefined && dataImg.hits) {
+            const imgs = dataImg.hits.find((img) => img.product_id === id)
+            if(imgs !== undefined && imgs.image) {
+                return imgs.image.dis_base_link
+            } else {
+                return 'null'
+            }
+        }
+
+        return
+
+    }
     const handleMoreresults = () => {
         setMoreResuls(moreResuls*2)
     }
@@ -36,7 +49,7 @@ function ProductContent() {
             setDataProduct(resProduct);
             const resPrice = await getDataProducts(`productList/prices?count=${moreResuls}&refine_1=cgid=${parent}`);
             setDataPrice(resPrice);
-            const resImg = await getDataProducts(`productList/images?count=${moreResuls}&refine_1=cgid=${parent}`)
+            const resImg = await getDataProducts(`productList/images?count=12&refine_1=cgid=${parent}`)
             setDateImg(resImg)
         };
         featch();
@@ -60,7 +73,7 @@ function ProductContent() {
                                     <div className={cx('product-item_img')}>
                                         <Link href={'img-item'}>
                                             <img
-                                                src='https://images.summitmedia-digital.com/preview/images/2019/11/11/443497_HVKEG_9772_002_062_0000_Light-GG-Marmont-small-shoulder-bag.jpg'
+                                                src={getImg(product.product_id)}
                                                 alt={''}></img>
                                         </Link>
                                     </div>
