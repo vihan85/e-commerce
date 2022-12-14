@@ -1,6 +1,5 @@
-import axios from 'axios';
 import { useRouter } from 'next/router';
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext } from 'react';
 
 import MainLayout from '../components/layout/main-layout';
 import ProductDetailPage from '../components/pages/products';

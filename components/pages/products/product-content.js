@@ -14,7 +14,6 @@ const cx = classNames.bind(styles);
 function ProductContent() {
     const value = useContext(DataProducts);
     const parent = value.router.query.slug[1];
-    const router = useRouter();
     const [dataProduct, setDataProduct] = useState();
     const [dataPrice, setDataPrice] = useState();
     const [dataImg, setDateImg] = useState();
