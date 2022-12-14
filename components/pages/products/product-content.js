@@ -4,15 +4,17 @@ import classNames from 'classnames/bind';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
-import { getDataProducts } from '../../../data/data';
+
+import * as services from '../../../api-services/services';
 import { DataProducts } from '../../../pages/[...slug]';
 import styles from './product-content.module.scss';
+
 const cx = classNames.bind(styles);
+
 function ProductContent() {
     const value = useContext(DataProducts);
     const parent = value.router.query.slug[1];
     const router = useRouter();
-    const filterData = router.query.slug;
     const [dataProduct, setDataProduct] = useState();
     const [dataPrice, setDataPrice] = useState();
     const [dataImg, setDateImg] = useState();
@@ -24,7 +26,7 @@ function ProductContent() {
                 return price[key] === productId;
             });
             if (objectValue !== undefined && objectValue[keyValue]) {
-                return `$${objectValue[key]}`;
+                return `$${objectValue[keyValue]}`;
             } else {
                 return 'null';
             }
@@ -48,9 +50,9 @@ function ProductContent() {
     };
     useEffect(() => {
         const featch = async () => {
-            const resProduct = getDataProducts(`productList?count=${moreResuls}&refine_1=cgid=${parent}`);
-            const resPrice = getDataProducts(`productList/prices?count=${moreResuls}&refine_1=cgid=${parent}`);
-            const resImg = getDataProducts(`productList/images?count=${moreResuls}&refine_1=cgid=${parent}`);
+            const resProduct = services.products('productList', moreResuls, `cgid=${parent}`);
+            const resPrice = services.products('productList/prices', moreResuls, `cgid=${parent}`);
+            const resImg = services.products('productList/images', moreResuls, `cgid=${parent}`);
 
             Promise.all([resProduct, resPrice, resImg]).then((res) => {
                 if (res) {
@@ -63,8 +65,8 @@ function ProductContent() {
         };
         featch();
     }, [parent, moreResuls]);
-    if(!dataProduct) {
-        return <p> Loading...</p>
+    if (!dataProduct) {
+        return <p> Loading...</p>;
     }
     return (
         <div className='grib'>

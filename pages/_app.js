@@ -1,6 +1,6 @@
-import { getDataCatelogy } from '../data/data';
+import * as httpRequest from '../until/http-request';
 import { useState, useEffect, createContext } from 'react';
-
+import * as sevices from '../api-services/services';
 import '../styles/globals.scss';
 
 export const Data = createContext();
@@ -10,10 +10,8 @@ export default function MyApp({ Component, pageProps }) {
 
     useEffect(() => {
         const featch = async () => {
-            getDataCatelogy().then((res) => {
-                if (res.status === 200 && res.statusText === 'OK') {
-                    setData(res.data);
-                }
+            sevices.catelogy('categories', '3').then((res) => {
+                setData(res.data);
             });
         };
         featch();
