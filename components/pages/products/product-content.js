@@ -2,7 +2,7 @@ import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
-import { use, useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { getDataProducts } from '../../../data/data';
 import { DataProducts } from '../../../pages/[...product-detail]';
 import styles from './product-content.module.scss';
@@ -13,7 +13,8 @@ function ProductContent() {
     const [dataProduct, setDataProduct] = useState();
     const [dataPrice, setDataPrice] = useState();
     const [moreResuls, setMoreResuls] = useState('12');
-    const [dataImg, setDateImg] = useState()
+    const [dataImg, setDateImg] = useState();
+
     const getData = (productId, key) => {
         if (dataPrice !== undefined && dataPrice.hits) {
             const price = dataPrice.hits.find((price) => {
@@ -27,30 +28,35 @@ function ProductContent() {
         }
         return;
     };
-    const getImg= (id) => {
-        if(dataImg !== undefined && dataImg.hits) {
-            const imgs = dataImg.hits.find((img) => img.product_id === id)
-            if(imgs !== undefined && imgs.image) {
-                return imgs.image.dis_base_link
+    const getImg = (id) => {
+        if (dataImg !== undefined && dataImg.hits) {
+            const imgs = dataImg.hits.find((img) => img.product_id === id);
+            if (imgs !== undefined && imgs.image) {
+                return imgs.image.dis_base_link;
             } else {
-                return 'null'
+                return 'null';
             }
         }
 
-        return
-
-    }
+        return;
+    };
     const handleMoreresults = () => {
-        setMoreResuls(moreResuls*2)
-    }
+        setMoreResuls(moreResuls * 2);
+    };
     useEffect(() => {
         const featch = async () => {
-            const resProduct = await getDataProducts(`productList?count=${moreResuls}&refine_1=cgid=${parent}`);
-            setDataProduct(resProduct);
-            const resPrice = await getDataProducts(`productList/prices?count=${moreResuls}&refine_1=cgid=${parent}`);
-            setDataPrice(resPrice);
-            const resImg = await getDataProducts(`productList/images?count=12&refine_1=cgid=${parent}`)
-            setDateImg(resImg)
+            const resProduct = getDataProducts(`productList?count=${moreResuls}&refine_1=cgid=${parent}`);
+            const resPrice = getDataProducts(`productList/prices?count=${moreResuls}&refine_1=cgid=${parent}`);
+            const resImg = getDataProducts(`productList/images?count=${moreResuls}&refine_1=cgid=${parent}`);
+
+            Promise.all([resProduct, resPrice, resImg]).then((res) => {
+                if (res) {
+                    const [resProduct, resPrice, resImg] = res;
+                    setDataProduct(resProduct.data);
+                    setDataPrice(resPrice.data);
+                    setDateImg(resImg.data);
+                }
+            });
         };
         featch();
     }, [parent, moreResuls]);
@@ -102,7 +108,9 @@ function ProductContent() {
                     })}
             </div>
             <div className='row'>
-                <div className='col c-12'><button onClick={handleMoreresults}>More Results</button></div>
+                <div className='col c-12'>
+                    <button onClick={handleMoreresults}>More Results</button>
+                </div>
             </div>
         </div>
     );

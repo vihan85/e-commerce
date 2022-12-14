@@ -10,8 +10,11 @@ export default function MyApp({ Component, pageProps }) {
 
     useEffect(() => {
         const featch = async () => {
-            const data = await getDataCatelogy();
-            setData(data);
+            getDataCatelogy().then((res) => {
+                if (res.status === 200 && res.statusText === 'OK') {
+                    setData(res.data);
+                }
+            });
         };
         featch();
     }, []);
