@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import { useRouter } from 'next/router';
 import { useContext, useState } from 'react';
-import { DataProducts } from '../../../pages/[...product-detail]';
+import { DataProducts } from '../../../pages/[...slug]';
 import { Data } from '../../../pages/_app';
 import styles from './product-page.module.scss';
 const cx = classNames.bind(styles);
@@ -10,10 +10,9 @@ function ProductSidbar() {
     const router = useRouter();
     const value = useContext(DataProducts);
     const dataCatelogy = useContext(Data);
-    const parent = value.router.query['product-detail'][0];
+    const parent = value.router.query.slug[0];
     const [valueChecked, setvalueChecked] = useState(parent);
     const handleChange = (id) => {
-
         router.push({
             pathname: `${parent}/${id}`,
         });

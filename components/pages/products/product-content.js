@@ -2,26 +2,29 @@ import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 import { getDataProducts } from '../../../data/data';
-import { DataProducts } from '../../../pages/[...product-detail]';
+import { DataProducts } from '../../../pages/[...slug]';
 import styles from './product-content.module.scss';
 const cx = classNames.bind(styles);
 function ProductContent() {
     const value = useContext(DataProducts);
-    const parent = value.router.query['product-detail'][1];
+    const parent = value.router.query.slug[1];
+    const router = useRouter();
+    const filterData = router.query.slug;
     const [dataProduct, setDataProduct] = useState();
     const [dataPrice, setDataPrice] = useState();
-    const [moreResuls, setMoreResuls] = useState('12');
     const [dataImg, setDateImg] = useState();
+    const [moreResuls, setMoreResuls] = useState('12');
 
-    const getData = (productId, key) => {
+    const getData = (productId, keyValue, key) => {
         if (dataPrice !== undefined && dataPrice.hits) {
-            const price = dataPrice.hits.find((price) => {
-                return price.product_id === productId;
+            const objectValue = dataPrice.hits.find((price) => {
+                return price[key] === productId;
             });
-            if (price !== undefined && price[key]) {
-                return `$${price[key]}`;
+            if (objectValue !== undefined && objectValue[keyValue]) {
+                return `$${objectValue[key]}`;
             } else {
                 return 'null';
             }
@@ -60,6 +63,9 @@ function ProductContent() {
         };
         featch();
     }, [parent, moreResuls]);
+    if(!dataProduct) {
+        return <p> Loading...</p>
+    }
     return (
         <div className='grib'>
             <div className={`${cx('header')} row`}>
@@ -84,7 +90,7 @@ function ProductContent() {
                                         </Link>
                                     </div>
                                     <p className={cx('product-item_desc')}>{product.product_name}</p>
-                                    <p className={cx('product-item_price')}>{getData(product.product_id, 'price')}</p>
+                                    <p className={cx('product-item_price')}>{getData(product.product_id, 'price', 'product_id')}</p>
                                     <div className={cx('product-item__rating')}>
                                         <span>
                                             <FontAwesomeIcon icon={faStar} />
