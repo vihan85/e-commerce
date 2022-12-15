@@ -10,7 +10,7 @@ function MainLayout({ children }) {
         <div>
             <MainHeader />
 
-            <main >{children}</main>
+            <main>{children}</main>
 
             <Footer />
         </div>

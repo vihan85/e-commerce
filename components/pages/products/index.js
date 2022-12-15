@@ -4,15 +4,15 @@ import ProductSidbar from './product-sidebar';
 import ProductContent from '../products/product-content';
 const cx = classNames.bind(styles);
 
-function ProductDetailPage() {
+function ProductDetailPage({productsData}) {
     return (
         <div className={cx('container', 'grid ')}>
             <div className={cx('wrapper')}>
                 <div className={'col c-3'}>
-                    <ProductSidbar />
+                    <ProductSidbar productsData={productsData} />
                 </div>
                 <div className={'col c-9'}>
-                    <ProductContent />
+                    <ProductContent productsData={productsData} />
                 </div>
             </div>
         </div>

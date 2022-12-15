@@ -4,14 +4,13 @@ import classNames from 'classnames/bind';
 import Link from 'next/link';
 import { useContext, useState } from 'react';
 
-
-import { DataProducts } from '../../../pages/[...slug]';
+import { DataProducts } from '../../../pages/[...productList]';
 import { Data } from '../../../pages/_app';
 import styles from './product-content.module.scss';
 
 const cx = classNames.bind(styles);
 
-function ProductContent() {
+function ProductContent({ productsData }) {
     const data = useContext(Data);
     const getData = (productId, keyValue, key) => {
         if (data.data.dataPrice !== undefined && data.data.dataPrice.hits) {
@@ -39,9 +38,9 @@ function ProductContent() {
         return;
     };
 
-    if (!data.data.dataProduct) {
-        return <p> Loading...</p>;
-    }
+    // if (!data.data.dataProduct) {
+    //     return <p> Loading...</p>;
+    // }
     return (
         <div className='grib'>
             <div className={`${cx('header')} row`}>
@@ -50,9 +49,9 @@ function ProductContent() {
                 </div>
             </div>
             <div className='row'>
-                {data.data.dataProduct !== undefined &&
-                    data.data.dataProduct.hits &&
-                    data.data.dataProduct.hits.map((product) => {
+                {productsData.dataProduct !== undefined &&
+                    productsData.dataProduct.hits &&
+                    productsData.dataProduct.hits.map((product) => {
                         return (
                             <div
                                 key={product.product_id}
