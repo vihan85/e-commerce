@@ -14,9 +14,9 @@ function SidbarColor({ dataColors }) {
                 {dataColors !== undefined &&
                     dataColors.map((color) => {
                         return (
-                            <li>
+                            <li key={color.c_id}>
                                 <button className={cx('btn-circle-color')}>
-                                    <span className={cx('circle', { [`circle-${color.presentation_id}`]: true })}></span>
+                                    <span className={cx('circle', { [`circle-${color.c_id}`]: true })}></span>
                                 </button>
                             </li>
                         );

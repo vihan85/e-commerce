@@ -17,11 +17,20 @@ function ProductSidbar() {
     const [dataColors, setDataColors] = useState();
     useEffect(() => {
         const fetch = () => {
-            services.filterColor('productList/represented_products', 'c_refinementColor=black').then((res) => {
-                const obJectColors = res.data.refinements.find((obJectColor) => obJectColor.label === "Color")
-                
-                return setDataColors(obJectColors.values)}
-                );
+            services.filterColor('productList/represented_products', `cgid=${parent}`, 'c_refinementColor').then((res) => {
+                const obJectColors = res.data.refinements.find((obJectColor) => obJectColor.label === 'Color');
+                console.log(res);
+                const arrayColor = obJectColors.values;
+                // handle data
+                let data = [];
+                arrayColor.forEach((item) => {
+                    console.log(item.presentation_id);
+                    const colorId = { c_id: item.presentation_id };
+                    data.push(colorId);
+                });
+
+                return setDataColors(data);
+            });
         };
         fetch();
     }, []);
@@ -91,7 +100,7 @@ function ProductSidbar() {
                         );
                     }
                 })}
-                <SidbarColor dataColors={dataColors}/>
+            <SidbarColor dataColors={dataColors} />
         </aside>
     );
 }

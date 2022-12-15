@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './product-detail-page.module.scss';
 import ProductSidbar from './product-sidebar';
-import ProductContent from '../products/product-content'
+import ProductContent from '../products/product-content';
 const cx = classNames.bind(styles);
 
 function ProductDetailPage() {

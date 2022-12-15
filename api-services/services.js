@@ -1,4 +1,3 @@
-
 import * as httpRequest from '../until/http-request';
 const catelogy = async (path, levels) => {
     const respon = httpRequest.get(path, {
@@ -17,12 +16,13 @@ const products = async (path, count, refine_1) => {
     });
     return respon;
 };
-const filterColor = async (path,refine_2) => {
+const filterColor = async (path, refine_1, refine_2) => {
     const respon = httpRequest.get(path, {
         params: {
-            refine_2
-        }
-    })
-    return respon
-}
-export { catelogy, products,filterColor };
+            refine_1,
+            refine_2,
+        },
+    });
+    return respon;
+};
+export { catelogy, products, filterColor };
