@@ -22,6 +22,9 @@
     input {
         margin-right: 4px;
     }
+    li {
+        margin: 4px;
+    }
 }
 .card-header {
     padding: 6px 28px 6px 12px;
@@ -30,4 +33,59 @@
     p {
         margin: 0;
     }
+}
+//sidebar color
+.color {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 16px;
+}
+.btn-circle-color {
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    .circle {
+        border-radius: 50%;
+        padding: 6px;
+        width: 4rem;
+        height: 4rem;
+        display: inline-block;
+    }
+}
+.circle-beige {
+    background-color: beige;
+}
+.circle-black {
+    background-color: black;
+}
+.circle-blue {
+    background-color: blue;
+}
+.circle-navy {
+    background-color: navy;
+}
+.circle-brown {
+    background-color: brown;
+}
+.circle-green {
+    background-color: green;
+}
+.circle-grey {
+    background-color: grey;
+}
+.circle-pink {
+    background-color: pink;
+}
+.circle-purple {
+    background-color: purple;
+}
+.circle-red {
+    background-color: red;
+}
+.circle-yellow {
+    background-color: yellow;
+}
+.circle-miscellaneous {
+    background-color: miscellaneous;
 }

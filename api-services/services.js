@@ -17,4 +17,12 @@ const products = async (path, count, refine_1) => {
     });
     return respon;
 };
-export { catelogy, products };
+const filterColor = async (path,refine_2) => {
+    const respon = httpRequest.get(path, {
+        params: {
+            refine_2
+        }
+    })
+    return respon
+}
+export { catelogy, products,filterColor };

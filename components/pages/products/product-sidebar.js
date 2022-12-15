@@ -1,17 +1,30 @@
 import classNames from 'classnames/bind';
 import { useRouter } from 'next/router';
-import { useContext, useState } from 'react';
-import { DataProducts } from '../../../pages/[...slug]';
+import { useContext, useState, useEffect } from 'react';
+
+import * as services from '../../../api-services/services';
+
 import { Data } from '../../../pages/_app';
 import styles from './product-page.module.scss';
+import SidbarColor from './sidebar/sidebar-color';
 const cx = classNames.bind(styles);
 classNames;
 function ProductSidbar() {
     const router = useRouter();
-    const value = useContext(DataProducts);
     const data = useContext(Data);
     let parent = router.query.slug;
     const [valueChecked, setvalueChecked] = useState(parent);
+    const [dataColors, setDataColors] = useState();
+    useEffect(() => {
+        const fetch = () => {
+            services.filterColor('productList/represented_products', 'c_refinementColor=black').then((res) => {
+                const obJectColors = res.data.refinements.find((obJectColor) => obJectColor.label === "Color")
+                
+                return setDataColors(obJectColors.values)}
+                );
+        };
+        fetch();
+    }, []);
     if (parent) {
         parent = router.query.slug[0];
     }
@@ -78,6 +91,7 @@ function ProductSidbar() {
                         );
                     }
                 })}
+                <SidbarColor dataColors={dataColors}/>
         </aside>
     );
 }
