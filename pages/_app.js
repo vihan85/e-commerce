@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect, createContext } from 'react';
-import * as services from '../api-services/services';
-import '../styles/globals.scss';
+import * as services from '~/api-services/services';
+import '~/styles/globals.scss';
 
 export const Data = createContext();
 

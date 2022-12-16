@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import { createContext } from 'react';
 
-import MainLayout from '../components/layout/main-layout';
-import ProductDetailPage from '../components/pages/products';
+import { MainLayout } from '~/components/layout/main-layout';
+import ProductDetailPage from '~/components/pages/products';
 
 export const DataProducts = createContext();
 function ProductDetail() {

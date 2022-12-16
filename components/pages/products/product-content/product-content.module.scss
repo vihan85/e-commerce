@@ -1,14 +1,13 @@
-.header{
+.header {
     justify-content: center;
     align-items: center;
     font-size: 1.4rem;
 }
-.product-item{
+.product-item {
     padding: 8px 0 32px 0;
-
 }
-.product-item_img{
-   overflow: hidden;
+.product-item_img {
+    overflow: hidden;
     img {
         width: 227px;
         height: 227px;
@@ -16,7 +15,7 @@
     }
 }
 .product-item_desc {
-    font-size:  1.4rem;
+    font-size: 1.4rem;
 }
 
 .product-item_price {
@@ -25,5 +24,4 @@
 }
 
 .product-item__rating {
-
 }

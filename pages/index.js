@@ -1,12 +1,9 @@
-import MainLayout from '../components/layout/main-layout';
-import HomePage from '../components/pages/home-page';
+import { MainLayout } from '~/components/layout/main-layout';
 
 export default function Home({ data }) {
     return (
         <div>
-            <MainLayout>
-                <HomePage />
-            </MainLayout>
+            <MainLayout></MainLayout>
         </div>
     );
 }

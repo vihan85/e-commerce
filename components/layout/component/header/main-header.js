@@ -2,8 +2,8 @@ import classNames from 'classnames/bind';
 import { useContext } from 'react';
 
 import styles from './main-header.module.scss';
-import Menu from './menu';
-import { Data } from '../../../pages/_app';
+import { Menu } from '~/components/layout/component/header';
+import { Data } from '~/pages/_app';
 const cx = classNames.bind(styles);
 
 function MainHeader() {

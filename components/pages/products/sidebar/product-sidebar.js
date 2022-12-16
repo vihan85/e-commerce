@@ -2,38 +2,38 @@ import classNames from 'classnames/bind';
 import { useRouter } from 'next/router';
 import { useContext, useState, useEffect } from 'react';
 
-import * as services from '../../../api-services/services';
+import * as services from '~/api-services/services';
 
-import { Data } from '../../../pages/_app';
-import styles from './product-page.module.scss';
-import SidbarColor from './sidebar/sidebar-color';
+import { Data } from '~/pages/_app';
+import styles from './product-sidebar.module.scss';
+import SidbarColor from './sidebar-color';
 const cx = classNames.bind(styles);
 classNames;
-function ProductSidbar() {
+function ProductSidebar() {
     const router = useRouter();
     const data = useContext(Data);
     let parent = router.query.slug;
     const [valueChecked, setvalueChecked] = useState(parent);
     const [dataColors, setDataColors] = useState();
-    useEffect(() => {
-        const fetch = () => {
-            services.filterColor('productList/represented_products', `cgid=${parent}`, 'c_refinementColor').then((res) => {
-                const obJectColors = res.data.refinements.find((obJectColor) => obJectColor.label === 'Color');
-                console.log(res);
-                const arrayColor = obJectColors.values;
-                // handle data
-                let data = [];
-                arrayColor.forEach((item) => {
-                    console.log(item.presentation_id);
-                    const colorId = { c_id: item.presentation_id };
-                    data.push(colorId);
-                });
+    // useEffect(() => {
+    //     const fetch = () => {
+    //         services.filterColor('productList/represented_products', `cgid=${parent}`, 'c_refinementColor').then((res) => {
+    //             const obJectColors = res.data.refinements.find((obJectColor) => obJectColor.label === 'Color');
+    //             console.log(res);
+    //             const arrayColor = obJectColors.values;
+    //             // handle data
+    //             let data = [];
+    //             arrayColor.forEach((item) => {
+    //                 console.log(item.presentation_id);
+    //                 const colorId = { c_id: item.presentation_id };
+    //                 data.push(colorId);
+    //             });
 
-                return setDataColors(data);
-            });
-        };
-        fetch();
-    }, []);
+    //             return setDataColors(data);
+    //         });
+    //     };
+    //     fetch();
+    // }, []);
     if (parent) {
         parent = router.query.slug[0];
     }
@@ -100,8 +100,8 @@ function ProductSidbar() {
                         );
                     }
                 })}
-            <SidbarColor dataColors={dataColors} />
+            {/* <SidbarColor dataColors={dataColors} /> */}
         </aside>
     );
 }
-export default ProductSidbar;
+export default ProductSidebar;

@@ -3,6 +3,6 @@ function Footer() {
         <footer>
             <h1> footer</h1>
         </footer>
-    )
+    );
 }
-export default Footer
+export default Footer;

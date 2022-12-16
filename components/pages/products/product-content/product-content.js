@@ -2,11 +2,9 @@ import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 
-
-import { DataProducts } from '../../../pages/[...slug]';
-import { Data } from '../../../pages/_app';
+import { Data } from '~/pages/_app';
 import styles from './product-content.module.scss';
 
 const cx = classNames.bind(styles);

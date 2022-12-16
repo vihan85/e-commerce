@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import MainLayOut from '../components/layout/main-layout';
+import { MainLayOut } from '~/components/layout/main-layout';
 
 function ProductPage() {
     const router = useRouter();

@@ -1,5 +1,5 @@
-import Footer from './layout-cpn/footer';
-import MainHeader from './layout-cpn/main-header';
+import { Footer } from '~/components/layout/component/footer';
+import { MainHeader } from '~/components/layout/component/header';
 import classNames from 'classnames/bind';
 import styles from './main-layout.module.scss';
 
@@ -10,7 +10,7 @@ function MainLayout({ children }) {
         <div>
             <MainHeader />
 
-            <main >{children}</main>
+            <main>{children}</main>
 
             <Footer />
         </div>
