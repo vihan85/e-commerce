@@ -1,17 +1,14 @@
 import classNames from 'classnames/bind';
-import styles from './main-header.module.scss';
 import Link from 'next/link';
-import { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortDown } from '@fortawesome/free-solid-svg-icons';
 
-import { Data } from '~/pages/_app';
+import styles from './main-header.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Menu() {
-    const data = useContext(Data);
-    if (data.data.dataCatelory !== undefined) {
+function Menu({ data }) {
+    if (data !== undefined) {
         const renderMenu = (data, mainHeaderList, mainHeaderItem, router = false) => {
             if (data.categories) {
                 const dataItems = data.categories;
@@ -46,7 +43,7 @@ function Menu() {
                 );
             }
         };
-        return renderMenu(data.data.dataCatelory, 'main-header_list', 'main-header_item');
+        return renderMenu(data, 'main-header_list', 'main-header_item');
     }
 }
 export default Menu;

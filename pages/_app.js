@@ -6,7 +6,6 @@ import '~/styles/globals.scss';
 export const Data = createContext();
 
 export default function MyApp({ Component, pageProps }) {
-    const [dataCatelory, setDataCatelory] = useState();
     const [dataProduct, setDataProduct] = useState();
     const [dataPrice, setDataPrice] = useState();
     const [dataImg, setDateImg] = useState();
@@ -25,8 +24,8 @@ export default function MyApp({ Component, pageProps }) {
 
             Promise.all([resCatelogy, resProduct, resPrice, resImg]).then((res) => {
                 if (res) {
-                    const [resCatelogy, resProduct, resPrice, resImg] = res;
-                    setDataCatelory(resCatelogy.data);
+                    const [resProduct, resPrice, resImg] = res;
+
                     setDataProduct(resProduct.data);
                     setDataPrice(resPrice.data);
                     setDateImg(resImg.data);
@@ -35,7 +34,7 @@ export default function MyApp({ Component, pageProps }) {
         };
         fetch();
     }, [parent]);
-    const data = { dataCatelory, dataProduct, dataPrice, dataImg };
+    const data = { dataProduct, dataPrice, dataImg };
 
     if (data) {
         return (
