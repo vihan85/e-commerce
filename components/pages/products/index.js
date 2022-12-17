@@ -9,12 +9,19 @@ import { ProductContent } from './product-content';
 const cx = classNames.bind(styles);
 
 function ProductDetailPage() {
-    const [dataProduct, setDataProduct] = useState();
-    const [dataPrice, setDataPrice] = useState();
-    const [dataImg, setDateImg] = useState();
-    const data = { dataProduct, dataPrice, dataImg };
-    const routerAcctive = useContext(RouterAcctive);
+    const [data, setData] = useState();
+    // const routerAcctive = useContext(RouterAcctive);
     let routerId = routerAcctive.router.query.slug;
+    const handleData = (baseData, type, mainData) => {
+        if (Array.isArray(baseData.hits)) {
+            baseData.hits.forEach((element) => {
+                mainData.push({
+                    p_id: element.product_id,
+                    [type.key]: element[type.value],
+                });
+            });
+        }
+    };
     if (routerId !== undefined) {
         routerId = routerAcctive.router.query.slug[1];
     }
@@ -26,10 +33,15 @@ function ProductDetailPage() {
             Promise.all([resProduct, resPrice, resImg]).then((res) => {
                 if (res) {
                     const [resProduct, resPrice, resImg] = res;
-                    const dataProduct = {}
-                    setDataProduct(resProduct.data);
-                    setDataPrice(resPrice.data);
-                    setDateImg(resImg.data);
+                    const dataProduct = {
+                        dataProduct: [],
+                        dataPrice: [],
+                        dataImg: [],
+                    };
+                    handleData(resProduct.data, { key: 'p_name', value: 'product_name' }, dataProduct.dataProduct);
+                    handleData(resPrice.data, { key: 'p_price', value: 'price' }, dataProduct.dataPrice);
+                    handleData(resImg.data, { key: 'p_image', value: 'image' }, dataProduct.dataImg);
+                    setData(dataProduct);
                 }
             });
         };
@@ -38,11 +50,16 @@ function ProductDetailPage() {
     return (
         <div className={cx('container', 'grid ')}>
             <div className={cx('wrapper')}>
-                <div className={'col c-3'}>
-                    <ProductSidebar data={dataProduct} />
-                </div>
+                <div className={'col c-3'}>{/* <ProductSidebar data={dataProduct} /> */}</div>
                 <div className={'col c-9'}>
-                    <ProductContent data={data} />
+                    <ProductContent
+                        data={
+                            Array.isArray(data !== undefined && data.dataProduct) &&
+                            Array.isArray(data.dataPrice) &&
+                            Array.isArray(data.dataImg) &&
+                            data
+                        }
+                    />
                 </div>
             </div>
         </div>

@@ -3,16 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
 
-
 import styles from './product-content.module.scss';
 
 const cx = classNames.bind(styles);
 
 function ProductContent({ data }) {
-
     const getData = (productId, keyValue, key) => {
-        if (data.dataPrice !== undefined && data.dataPrice.hits) {
-            const objectValue = data.dataPrice.hits.find((price) => {
+        if (data.dataPrice !== undefined && data.dataPrice) {
+            const objectValue = data.dataPrice.find((price) => {
                 return price[key] === productId;
             });
             if (objectValue !== undefined && objectValue[keyValue]) {
@@ -23,11 +21,14 @@ function ProductContent({ data }) {
         }
         return;
     };
-    const getImg = (id) => {
-        if (data.dataImg !== undefined && data.dataImg.hits) {
-            const imgs = data.dataImg.hits.find((img) => img.product_id === id);
-            if (imgs !== undefined && imgs.image) {
-                return imgs.image.dis_base_link;
+    const handleGetImg = (id) => {
+        if (data.dataImg !== undefined && data.dataImg) {
+            const imgs = data.dataImg.find((img) => img.p_id === id);
+            if (imgs !== undefined && imgs.p_image) {
+                return {
+                    url: imgs.p_image.dis_base_link,
+                    alt: imgs.p_image.alt,
+                };
             } else {
                 return 'null';
             }
@@ -48,22 +49,24 @@ function ProductContent({ data }) {
             </div>
             <div className='row'>
                 {data.dataProduct !== undefined &&
-                    data.dataProduct.hits &&
-                    data.dataProduct.hits.map((product) => {
+                    data.dataProduct &&
+                    data.dataProduct.map((product) => {
+                        const getImg = handleGetImg(product.p_id);
                         return (
                             <div
-                                key={product.product_id}
-                                className={`col c-3 ${product.product_id}`}>
+                                key={product.p_id}
+                                className={`col c-3 ${product.p_id}`}>
                                 <div className={cx('product-item')}>
                                     <div className={cx('product-item_img')}>
                                         <Link href={'img-item'}>
                                             <img
-                                                src={getImg(product.product_id)}
-                                                alt={'h'}/>
+                                                src={getImg.url}
+                                                alt={getImg.alt}
+                                            />
                                         </Link>
                                     </div>
-                                    <p className={cx('product-item_desc')}>{product.product_name}</p>
-                                    <p className={cx('product-item_price')}>{getData(product.product_id, 'price', 'product_id')}</p>
+                                    <p className={cx('product-item_desc')}>{product.p_name}</p>
+                                    <p className={cx('product-item_price')}>{getData(product.p_id, 'p_price', 'p_id')}</p>
                                     <div className={cx('product-item__rating')}>
                                         <span>
                                             <FontAwesomeIcon icon={faStar} />
