@@ -18,6 +18,7 @@ function ProductListPage() {
                 mainData.push({
                     p_id: element.product_id,
                     [type.key]: element[type.value],
+
                 });
             });
         }
@@ -31,6 +32,7 @@ function ProductListPage() {
         const resImg = services.products('productList/images', '12', `cgid=${routerId}`);
         const fetch = async () => {
             Promise.all([resProduct, resPrice, resImg]).then((res) => {
+
                 if (res) {
                     const [resProduct, resPrice, resImg] = res;
                     const dataProduct = {
@@ -50,11 +52,11 @@ function ProductListPage() {
     return (
         <div className={cx('container', 'grid ')}>
             <div className={cx('wrapper')}>
-                <div className={'col c-3'}>{/* <ProductSidebar data={dataProduct} /> */}</div>
+                <div className={'col c-3'}><ProductSidebar data={data !== undefined && data.dataProduct} /></div>
                 <div className={'col c-9'}>
                     <ProductContent
                         data={
-                            Array.isArray(data !== undefined && data.dataProduct) &&
+                           data !== undefined && data.dataProduct &&
                             Array.isArray(data.dataPrice) &&
                             Array.isArray(data.dataImg) &&
                             data

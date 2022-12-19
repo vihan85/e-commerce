@@ -8,8 +8,8 @@ import SidebarCatelogy from './sidebar-catelogy';
 import SidbarColor from './sidebar-color';
 const cx = classNames.bind(styles);
 classNames;
-function ProductSidebar() {
-    const data = {}
+function ProductSidebar({data}) {
+    // console.log(data)
     return (
         <aside className={cx('custom-select')}>
             {/* <select aria-label='ads'>

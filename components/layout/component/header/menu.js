@@ -10,31 +10,32 @@ const cx = classNames.bind(styles);
 function Menu({ data }) {
     if (data !== undefined) {
         const renderMenu = (data, mainHeaderList, mainHeaderItem, router = false) => {
-            if (data.categories) {
-                const dataItems = data.categories;
+            if (Array.isArray(data)) {
+                const dataItems = data;
                 return (
                     <ul className={cx(mainHeaderList)}>
                         {dataItems.map((item) => {
-                            if (item.categories) {
+                            if (item.c_catelories) {
+                                console.log(item);
                                 return (
                                     <li
-                                        key={item.id}
+                                        key={item.c_id}
                                         className={cx(mainHeaderItem)}>
-                                        <Link href={`/${item.parent_category_tree[0].id}/${item.id}/`}>
-                                            {item.name}
+                                        <Link href={`/`}>
+                                            {item.c_name}
                                             <span className={cx('main-header_icon')}>
                                                 <FontAwesomeIcon icon={faSortDown} />
                                             </span>
                                         </Link>
-                                        {renderMenu(item, `${item.id}_list`, `${item.id}_item`, (router = true))}
+                                        {renderMenu(item.c_catelories, `${item.c_id}_list`, `${item.c_id}_item`, (router = true))}
                                     </li>
                                 );
                             } else {
                                 return (
                                     <li
                                         className={cx(mainHeaderItem)}
-                                        key={item.id}>
-                                        <Link href={`/${item.parent_category_tree[0].id}/${item.id}/`}>{item.name}</Link>
+                                        key={item.c_id}>
+                                        <Link href={`/`}>{item.c_name}</Link>
                                     </li>
                                 );
                             }
