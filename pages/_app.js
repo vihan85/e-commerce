@@ -5,7 +5,6 @@ import '~/styles/globals.scss';
 export const RouterAcctive = createContext();
 
 export default function MyApp({ Component, pageProps }) {
-
     const router = useRouter();
         return (
             <RouterAcctive.Provider value={{ router }}>

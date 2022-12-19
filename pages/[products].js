@@ -1,9 +1,6 @@
-import { useRouter } from 'next/router';
-import { MainLayOut } from '~/components/layout/main-layout';
+import { MainLayout } from '~/components/layout/main-layout';
 
 function ProductPage() {
-    const router = useRouter();
-
-    return <MainLayOut></MainLayOut>;
+    return <MainLayout/>;
 }
 export default ProductPage;

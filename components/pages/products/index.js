@@ -8,9 +8,9 @@ import { ProductSidebar } from '~/components/pages/products/sidebar';
 import { ProductContent } from './product-content';
 const cx = classNames.bind(styles);
 
-function ProductDetailPage() {
+function ProductListPage() {
     const [data, setData] = useState();
-    // const routerAcctive = useContext(RouterAcctive);
+    const routerAcctive = useContext(RouterAcctive);
     let routerId = routerAcctive.router.query.slug;
     const handleData = (baseData, type, mainData) => {
         if (Array.isArray(baseData.hits)) {
@@ -65,4 +65,4 @@ function ProductDetailPage() {
         </div>
     );
 }
-export default ProductDetailPage;
+export default ProductListPage;

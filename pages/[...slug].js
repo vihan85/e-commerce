@@ -1,18 +1,11 @@
-import { useRouter } from 'next/router';
-import { createContext } from 'react';
-
 import { MainLayout } from '~/components/layout/main-layout';
-import ProductDetailPage from '~/components/pages/products';
+import ProductListPage from '~/components/pages/products';
 
-export const DataProducts = createContext();
-function ProductDetail() {
-    const router = useRouter();
+function ProductList() {
     return (
-        <DataProducts.Provider value={{ router: router }}>
             <MainLayout>
-                <ProductDetailPage />
+                <ProductListPage />
             </MainLayout>
-        </DataProducts.Provider>
     );
 }
-export default ProductDetail;
+export default ProductList;
