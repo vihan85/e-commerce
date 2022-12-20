@@ -11,20 +11,20 @@ const cx = classNames.bind(styles);
 function ProductListPage() {
     const [data, setData] = useState();
     const routerAcctive = useContext(RouterAcctive);
-    let routerId = routerAcctive.router.query.slug;
+
+    let routerId = routerAcctive.router.query.pid;
     const handleData = (baseData, type, mainData) => {
         if (Array.isArray(baseData.hits)) {
             baseData.hits.forEach((element) => {
                 mainData.push({
                     p_id: element.product_id,
                     [type.key]: element[type.value],
-
                 });
             });
         }
     };
     if (routerId !== undefined) {
-        routerId = routerAcctive.router.query.slug[1];
+        routerId = routerAcctive.router.query.pid;
     }
     useEffect(() => {
         const resProduct = services.products('productList/represented_products', '12', `cgid=${routerId}`);
@@ -32,7 +32,6 @@ function ProductListPage() {
         const resImg = services.products('productList/images', '12', `cgid=${routerId}`);
         const fetch = async () => {
             Promise.all([resProduct, resPrice, resImg]).then((res) => {
-
                 if (res) {
                     const [resProduct, resPrice, resImg] = res;
                     const dataProduct = {
@@ -52,14 +51,13 @@ function ProductListPage() {
     return (
         <div className={cx('container', 'grid ')}>
             <div className={cx('wrapper')}>
-                <div className={'col c-3'}><ProductSidebar data={data !== undefined && data.dataProduct} /></div>
+                <div className={'col c-3'}>
+                    <ProductSidebar data={data !== undefined && data.dataProduct} />
+                </div>
                 <div className={'col c-9'}>
                     <ProductContent
                         data={
-                           data !== undefined && data.dataProduct &&
-                            Array.isArray(data.dataPrice) &&
-                            Array.isArray(data.dataImg) &&
-                            data
+                            data !== undefined && data.dataProduct && Array.isArray(data.dataPrice) && Array.isArray(data.dataImg) && data
                         }
                     />
                 </div>

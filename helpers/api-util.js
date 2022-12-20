@@ -1,7 +1,8 @@
 import * as services from '~/api-services/services';
 
 export const getFeatureCatelory = async () => {
-    const handleDataCatelory = (data, catelogy, array) => {
+    console.log('header');
+    const handleDataCatelory = (data, catelogy) => {
         const categories = [];
         if (data[catelogy]) {
             data[catelogy].forEach((element) => {
@@ -21,10 +22,6 @@ export const getFeatureCatelory = async () => {
         }
         return categories;
     };
-
-    const result = await services.catelogy('categories', '3').then((resCatelogy) => {
-        return handleDataCatelory(resCatelogy.data, 'categories');
-    });
-
+    const result = services.catelogy('categories', '3').then((resCatelogy) => handleDataCatelory(resCatelogy.data, 'categories'));
     return result;
 };

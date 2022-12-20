@@ -1,6 +1,4 @@
-import { MainLayout } from '~/components/layout/main-layout';
-
 function ProductPage() {
-    return <MainLayout/>;
+    return <></>;
 }
 export default ProductPage;

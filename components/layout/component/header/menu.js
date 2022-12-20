@@ -16,12 +16,11 @@ function Menu({ data }) {
                     <ul className={cx(mainHeaderList)}>
                         {dataItems.map((item) => {
                             if (item.c_catelories) {
-                                console.log(item);
                                 return (
                                     <li
                                         key={item.c_id}
                                         className={cx(mainHeaderItem)}>
-                                        <Link href={`/`}>
+                                        <Link href={`/products/${item.c_id}`}>
                                             {item.c_name}
                                             <span className={cx('main-header_icon')}>
                                                 <FontAwesomeIcon icon={faSortDown} />
@@ -35,7 +34,7 @@ function Menu({ data }) {
                                     <li
                                         className={cx(mainHeaderItem)}
                                         key={item.c_id}>
-                                        <Link href={`/`}>{item.c_name}</Link>
+                                        <Link href={`/products/${item.c_id}`}>{item.c_name}</Link>
                                     </li>
                                 );
                             }

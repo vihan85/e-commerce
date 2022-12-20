@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react';
 
 import styles from './main-header.module.scss';
 import { Menu } from '~/components/layout/component/header';
-import * as services from '~/api-services/services';
-import { getFeatureCatelory } from '../../../../helpers/api-util';
+import { getFeatureCatelory } from '~/helpers/api-util';
 const cx = classNames.bind(styles);
 
 function MainHeader() {

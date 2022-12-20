@@ -41,7 +41,7 @@ function ProductContent({ data }) {
         return <p> Loading...</p>;
     }
     return (
-        <div className='grib'>
+        <div className='grid'>
             <div className={`${cx('header')} row`}>
                 <div className='col'>
                     <p>result</p>
