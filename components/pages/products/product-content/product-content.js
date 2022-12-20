@@ -7,7 +7,7 @@ import styles from './product-content.module.scss';
 
 const cx = classNames.bind(styles);
 
-function ProductContent({ data }) {
+function ProductContent({ data, routerId }) {
     const getData = (productId, keyValue, key) => {
         if (data.dataPrice !== undefined && data.dataPrice) {
             const objectValue = data.dataPrice.find((price) => {
@@ -37,7 +37,7 @@ function ProductContent({ data }) {
         return;
     };
 
-    if (!data.dataProduct) {
+    if (!routerId) {
         return <p> Loading...</p>;
     }
     return (
