@@ -1,10 +1,21 @@
 import styles from './product-sidebar.module.scss';
 import classNames from 'classnames/bind';
+import { useRouter } from 'next/router';
 
 const cx = classNames.bind(styles);
 
-function SidbarColor({ data, routerId }) {
+function SidebarColor({ data, routerId }) {
+    console.log(data);
     const dataColors = data;
+    const router = useRouter();
+    const handleRefineColor = (id) => {
+        router.push({
+            pathname: `${routerId}`,
+            query: {
+                refine: id,
+            },
+        });
+    };
     return (
         <div className={cx('card')}>
             <div className={cx('card-header')}>
@@ -16,8 +27,12 @@ function SidbarColor({ data, routerId }) {
                     dataColors.re_values.map((color) => {
                         return (
                             <li key={color.re_idpresentation}>
-                                <button className={cx('btn-circle-color')}>
-                                    <span className={cx('circle', { [`circle-${color.re_idpresentation}`]: true })}></span>
+                                <button
+                                    onClick={() => {
+                                        handleRefineColor(color.re_value);
+                                    }}
+                                    className={cx('btn-circle-color')}>
+                                    <span className={cx('circle', { [`circle-${color.re_value}`]: true })}></span>
                                 </button>
                             </li>
                         );
@@ -26,4 +41,4 @@ function SidbarColor({ data, routerId }) {
         </div>
     );
 }
-export default SidbarColor;
+export default SidebarColor;

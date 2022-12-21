@@ -7,7 +7,7 @@ const catelogy = async (path, levels) => {
     });
     return respon;
 };
-const products = async (path, count, refine_1) => {
+const products = async (path, count, refine_1, refine_2) => {
     const respon = httpRequest.get(path, {
         params: {
             count,

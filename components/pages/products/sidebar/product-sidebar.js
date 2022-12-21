@@ -5,13 +5,16 @@ import { useContext, useEffect, useState } from 'react';
 
 import styles from './product-sidebar.module.scss';
 import SidebarCatelogy from './sidebar-catelogy';
-import SidbarColor from './sidebar-color';
+import SidebarColor from './sidebar-color';
 import { getRefinements } from '~/helpers/api-util';
+import { useRouter } from 'next/router';
 
 const cx = classNames.bind(styles);
 
 function ProductSidebar({ routerId }) {
     const [refinements, setRefinements] = useState([]);
+    const router = useRouter();
+    const { pid, refine } = router.query;
 
     useEffect(() => {
         getRefinements(routerId).then((res) => {
@@ -37,7 +40,7 @@ function ProductSidebar({ routerId }) {
                 }
                 if (refinement.re_id === 'c_refinementColor') {
                     return (
-                        <SidbarColor
+                        <SidebarColor
                             key={refinement.re_id}
                             data={refinement}
                             routerId={routerId}

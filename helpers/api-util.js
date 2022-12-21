@@ -35,11 +35,9 @@ export const getFeatureProductshow = async (routerId) => {
             });
         }
     };
-
     const resProduct = services.products('productList', '12', `cgid=${routerId}`);
     const resPrice = services.products('productList/prices', '12', `cgid=${routerId}`);
     const resImg = services.products('productList/images', '12', `cgid=${routerId}`);
-
     return Promise.all([resProduct, resPrice, resImg]).then((res) => {
         if (res) {
             const [resProduct, resPrice, resImg] = res;
@@ -60,13 +58,7 @@ export const getRefinements = async (routerId) => {
         const refinements = [];
         if (data[refinement]) {
             data[refinement].forEach((element) => {
-                if (element.values && element.attribute_id === 'cgid') {
-                    refinements.push({
-                        re_id: element.attribute_id,
-                        re_label: element.label,
-                        re_values: handleDataRefinements(element, 'values'),
-                    });
-                } else if (element.values && element.attribute_id === 'c_refinementColor') {
+                if (element.values) {
                     refinements.push({
                         re_id: element.attribute_id,
                         re_label: element.label,
@@ -74,7 +66,6 @@ export const getRefinements = async (routerId) => {
                     });
                 } else {
                     refinements.push({
-                        re_idpresentation: element.presentation_id,
                         re_label: element.label,
                         re_value: element.value,
                     });
