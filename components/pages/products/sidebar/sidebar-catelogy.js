@@ -28,7 +28,7 @@ function SidebarCatelogy({ data, routerId }) {
                                 <ul className={cx('card-item')}>
                                     <li>
                                         <input
-                                            value={item.re_id}
+                                            value={item.re_value ? item.re_value : item.re_id}
                                             onChange={(e) => {
                                                 handleChange(e.target.value);
                                                 setvalueChecked(e.target.value);
@@ -51,7 +51,7 @@ function SidebarCatelogy({ data, routerId }) {
                                                             id={subItem.re_value}
                                                             name='card-select'
                                                             type={'radio'}
-                                                            value={subItem.re_value}
+                                                            value={subItem.re_value ? subItem.re_value : subItem.re_id}
                                                         />
                                                         <label htmlFor={subItem.re_value}>{subItem.re_label}</label>
                                                         <ul>
@@ -66,7 +66,7 @@ function SidebarCatelogy({ data, routerId }) {
                                                                             id={item.re_value}
                                                                             name='card-select'
                                                                             type={'radio'}
-                                                                            value={item.re_value}
+                                                                            value={item.re_value ? item.re_value : item.re_id}
                                                                         />
                                                                         <label htmlFor={item.re_value}>{item.re_label}</label>
                                                                     </li>

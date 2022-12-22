@@ -40,56 +40,60 @@ function ProductContent({ data, routerId }) {
     if (!routerId) {
         return <p> Loading...</p>;
     }
-    return (
-        <div className='grid'>
-            <div className={`${cx('header')} row`}>
-                <div className='col'>
-                    <p>result</p>
+    if (data) {
+        return (
+            <div className='grid'>
+                <div className={`${cx('header')} row`}>
+                    <div className='col'>
+                        <p>result</p>
+                    </div>
                 </div>
-            </div>
-            <div className='row'>
-                {data.dataProduct !== undefined &&
-                    data.dataProduct &&
-                    data.dataProduct.map((product) => {
-                        const getImg = handleGetImg(product.p_id);
-                        return (
-                            <div
-                                key={product.p_id}
-                                className={`col c-3 ${product.p_id}`}>
-                                <div className={cx('product-item')}>
-                                    <div className={cx('product-item_img')}>
-                                        <Link href={'img-item'}>
-                                            <img
-                                                src={getImg.url}
-                                                alt={getImg.alt}
-                                            />
-                                        </Link>
-                                    </div>
-                                    <p className={cx('product-item_desc')}>{product.p_name}</p>
-                                    <p className={cx('product-item_price')}>{getData(product.p_id, 'p_price', 'p_id')}</p>
-                                    <div className={cx('product-item__rating')}>
-                                        <span>
-                                            <FontAwesomeIcon icon={faStar} />
-                                        </span>
-                                        <span>
-                                            <FontAwesomeIcon icon={faStar} />
-                                        </span>
-                                        <span>
-                                            <FontAwesomeIcon icon={faStar} />
-                                        </span>
-                                        <span>
-                                            <FontAwesomeIcon icon={faStar} />
-                                        </span>
-                                        <span>
-                                            <FontAwesomeIcon icon={faStar} />
-                                        </span>
+                <div className='row'>
+                    {data.dataProduct !== undefined &&
+                        data.dataProduct &&
+                        data.dataProduct.map((product) => {
+                            const getImg = handleGetImg(product.p_id);
+                            return (
+                                <div
+                                    key={product.p_id}
+                                    className={`col c-3 ${product.p_id}`}>
+                                    <div className={cx('product-item')}>
+                                        <div className={cx('product-item_img')}>
+                                            <Link href={'img-item'}>
+                                                <img
+                                                    src={getImg.url}
+                                                    alt={getImg.alt}
+                                                />
+                                            </Link>
+                                        </div>
+                                        <p className={cx('product-item_desc')}>{product.p_name}</p>
+                                        <p className={cx('product-item_price')}>{getData(product.p_id, 'p_price', 'p_id')}</p>
+                                        <div className={cx('product-item__rating')}>
+                                            <span>
+                                                <FontAwesomeIcon icon={faStar} />
+                                            </span>
+                                            <span>
+                                                <FontAwesomeIcon icon={faStar} />
+                                            </span>
+                                            <span>
+                                                <FontAwesomeIcon icon={faStar} />
+                                            </span>
+                                            <span>
+                                                <FontAwesomeIcon icon={faStar} />
+                                            </span>
+                                            <span>
+                                                <FontAwesomeIcon icon={faStar} />
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        );
-                    })}
+                            );
+                        })}
+                </div>
             </div>
-        </div>
-    );
+        );
+    } else {
+        return <p> Loading...</p>;
+    }
 }
 export default ProductContent;

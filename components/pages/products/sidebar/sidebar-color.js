@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 const cx = classNames.bind(styles);
 
 function SidebarColor({ data, routerId }) {
-    console.log(data);
     const dataColors = data;
     const router = useRouter();
     const handleRefineColor = (id) => {

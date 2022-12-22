@@ -10,18 +10,21 @@ const cx = classNames.bind(styles);
 
 function ProductListPage() {
     const [data, setData] = useState();
+
     const routerAcctive = useContext(RouterAcctive);
     let routerId = routerAcctive.router.query.pid;
-
+    const routerColor = routerAcctive.router.query.refine;
     if (routerId !== undefined) {
         routerId = routerAcctive.router.query.pid;
     }
 
     useEffect(() => {
-        getFeatureProductshow(routerId).then((producListtId) => {
+        console.log('test');
+        getFeatureProductshow(routerAcctive).then((producListtId) => {
+            console.log(producListtId);
             setData(producListtId);
         });
-    }, [routerId]);
+    }, [routerId, routerColor]);
 
     return (
         <div className={cx('container', 'grid ')}>

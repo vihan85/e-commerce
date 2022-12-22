@@ -12,6 +12,7 @@ const products = async (path, count, refine_1, refine_2) => {
         params: {
             count,
             refine_1,
+            refine_2,
         },
     });
     return respon;
