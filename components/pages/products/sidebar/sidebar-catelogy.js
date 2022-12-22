@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 function SidebarCatelogy({ data, routerId }) {
     parent = routerId;
     const router = useRouter();
-    const [valueChecked, setvalueChecked] = useState(parent);
+
     const handleChange = (id) => {
         router.push({
             pathname: `${id}`,
@@ -28,10 +28,9 @@ function SidebarCatelogy({ data, routerId }) {
                                 <ul className={cx('card-item')}>
                                     <li>
                                         <input
-                                            value={item.re_value ? item.re_value : item.re_id}
+                                            value={item.re_id ? item.re_id : item.re_value}
                                             onChange={(e) => {
                                                 handleChange(e.target.value);
-                                                setvalueChecked(e.target.value);
                                             }}
                                             id={item.re_id}
                                             name='card-select'
@@ -46,12 +45,11 @@ function SidebarCatelogy({ data, routerId }) {
                                                         <input
                                                             onChange={(e) => {
                                                                 handleChange(e.target.value);
-                                                                setvalueChecked(e.target.value);
                                                             }}
                                                             id={subItem.re_value}
                                                             name='card-select'
                                                             type={'radio'}
-                                                            value={subItem.re_value ? subItem.re_value : subItem.re_id}
+                                                            value={subItem.re_id ? subItem.re_id : subItem.re_value}
                                                         />
                                                         <label htmlFor={subItem.re_value}>{subItem.re_label}</label>
                                                         <ul>
@@ -61,12 +59,11 @@ function SidebarCatelogy({ data, routerId }) {
                                                                         <input
                                                                             onChange={(e) => {
                                                                                 handleChange(e.target.value);
-                                                                                setvalueChecked(e.target.value);
                                                                             }}
                                                                             id={item.re_value}
                                                                             name='card-select'
                                                                             type={'radio'}
-                                                                            value={item.re_value ? item.re_value : item.re_id}
+                                                                            value={item.re_id ? item.re_id : item.re_value}
                                                                         />
                                                                         <label htmlFor={item.re_value}>{item.re_label}</label>
                                                                     </li>

@@ -38,13 +38,24 @@ function ProductContent({ data, routerId }) {
     };
 
     if (!routerId) {
-        return <p> Loading...</p>;
+        return (
+            <div className='grid spinner-center'>
+                <div className='row'>
+                    <div class='lds-ellipsis c-12'>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        );
     }
     if (data) {
         return (
             <div className='grid'>
-                <div className={`${cx('header')} row`}>
-                    <div className='col'>
+                <div className={`${cx('header')}`}>
+                    <div className='col l-9 l-o-6'>
                         <p>result</p>
                     </div>
                 </div>
@@ -56,7 +67,7 @@ function ProductContent({ data, routerId }) {
                             return (
                                 <div
                                     key={product.p_id}
-                                    className={`col c-3 ${product.p_id}`}>
+                                    className={`col l-3 ${product.p_id}`}>
                                     <div className={cx('product-item')}>
                                         <div className={cx('product-item_img')}>
                                             <Link href={'img-item'}>
@@ -92,8 +103,24 @@ function ProductContent({ data, routerId }) {
                 </div>
             </div>
         );
-    } else {
-        return <p> Loading...</p>;
+    }
+    if ('') {
+        return (
+            <div className='grid spinner-center'>
+                <div className='row'>
+                    <div class='lds-roller'>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        );
     }
 }
 export default ProductContent;

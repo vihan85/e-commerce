@@ -14,17 +14,16 @@ function ProductListPage() {
     const routerAcctive = useContext(RouterAcctive);
     let routerId = routerAcctive.router.query.pid;
     const routerColor = routerAcctive.router.query.refine;
+    const routerPrice = routerAcctive.router.query['refine-price'];
     if (routerId !== undefined) {
         routerId = routerAcctive.router.query.pid;
     }
 
     useEffect(() => {
-        console.log('test');
         getFeatureProductshow(routerAcctive).then((producListtId) => {
-            console.log(producListtId);
             setData(producListtId);
         });
-    }, [routerId, routerColor]);
+    }, [routerId, routerColor, routerPrice]);
 
     return (
         <div className={cx('container', 'grid ')}>

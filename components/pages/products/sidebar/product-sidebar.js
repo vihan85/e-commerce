@@ -7,14 +7,14 @@ import styles from './product-sidebar.module.scss';
 import SidebarCatelogy from './sidebar-catelogy';
 import SidebarColor from './sidebar-color';
 import { getRefinements } from '~/helpers/api-util';
-
+import SideBarNewArrival from './sidebar-new-arrival';
+import SidebarPrice from './sidebar-price'
 const cx = classNames.bind(styles);
 
 function ProductSidebar({ routerId }) {
     const [refinements, setRefinements] = useState([]);
     useEffect(() => {
         getRefinements(routerId).then((res) => {
-            console.log(res);
             setRefinements(res);
         });
     }, [routerId]);
@@ -43,6 +43,12 @@ function ProductSidebar({ routerId }) {
                                 routerId={routerId}
                             />
                         );
+                    }
+                    if(refinement.re_id === 'c_isNew') {
+                        return (<SideBarNewArrival key={refinement.re_id} data={refinement}/>)
+                    }
+                    if(refinement.re_id === 'price') {
+                        return (<SidebarPrice key={refinement.re_id} data={refinement} routerId={routerId}/>)
                     }
                 })}
             </aside>
