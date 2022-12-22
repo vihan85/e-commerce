@@ -26,60 +26,51 @@ export const getFeatureCatelory = async () => {
 };
 export const getFeatureProductshow = async (router) => {
     const routerId = router.router.query;
+    const rePrice = 'refine-price';
     const query = {
         color: routerId.refine,
+        price: routerId[rePrice],
     };
-    const handleData = (baseData, type, mainData) => {
-        if (Array.isArray(baseData.hits)) {
-            baseData.hits.forEach((element) => {
-                mainData.push({
-                    p_id: element.product_id,
-                    [type.key]: element[type.value],
+
+    const handleCallApi = (refine_1, refine_2, refine_3) => {
+        const handleData = (baseData, type, mainData) => {
+            if (Array.isArray(baseData.hits)) {
+                baseData.hits.forEach((element) => {
+                    mainData.push({
+                        p_id: element.product_id,
+                        [type.key]: element[type.value],
+                    });
                 });
-            });
-        }
+            }
+        };
+        const resProduct = services.products('productList/represented_products', '12', refine_1, refine_2, refine_3);
+        const resPrice = services.products('productList/prices', '12', refine_1, refine_2, refine_3);
+        const resImg = services.products('productList/images', '12', refine_1, refine_2, refine_3);
+        return Promise.all([resProduct, resPrice, resImg]).then((res) => {
+            if (res) {
+                const [resProduct, resPrice, resImg] = res;
+                const dataProduct = {
+                    dataProduct: [],
+                    dataPrice: [],
+                    dataImg: [],
+                };
+                handleData(resProduct.data, { key: 'p_name', value: 'product_name' }, dataProduct.dataProduct);
+                handleData(resPrice.data, { key: 'p_price', value: 'price' }, dataProduct.dataPrice);
+                handleData(resImg.data, { key: 'p_image', value: 'image' }, dataProduct.dataImg);
+                return dataProduct;
+            }
+        });
     };
-    if (routerId.refine) {
-        const resProduct = services.products(
-            'productList/represented_products',
-            '12',
-            `cgid=${routerId.pid}`,
-            `c_refinementColor=${query.color}`
-        );
-        const resPrice = services.products('productList/prices', '12', `cgid=${routerId.pid}`, `c_refinementColor=${query.color}`);
-        const resImg = services.products('productList/images', '12', `cgid=${routerId.pid}`, `c_refinementColor=${query.color}`);
-        return Promise.all([resProduct, resPrice, resImg]).then((res) => {
-            if (res) {
-                const [resProduct, resPrice, resImg] = res;
-                const dataProduct = {
-                    dataProduct: [],
-                    dataPrice: [],
-                    dataImg: [],
-                };
-                handleData(resProduct.data, { key: 'p_name', value: 'product_name' }, dataProduct.dataProduct);
-                handleData(resPrice.data, { key: 'p_price', value: 'price' }, dataProduct.dataPrice);
-                handleData(resImg.data, { key: 'p_image', value: 'image' }, dataProduct.dataImg);
-                return dataProduct;
-            }
-        });
+
+    if (routerId.refine && routerId[rePrice]) {
+        console.log('handleCallApi');
+        return handleCallApi(`cgid=${routerId.pid}`, `c_refinementColor=${query.color}`, `price=${query.price}`);
+    } else if (routerId.refine) {
+        return handleCallApi(`cgid=${routerId.pid}`, `c_refinementColor=${query.color}`);
+    } else if (routerId[rePrice]) {
+        return handleCallApi(`cgid=${routerId.pid}`, `price=${query.price}`);
     } else {
-        const resProduct = services.products('productList', '12', `cgid=${routerId.pid}`);
-        const resPrice = services.products('productList/prices', '12', `cgid=${routerId.pid}`);
-        const resImg = services.products('productList/images', '12', `cgid=${routerId.pid}`);
-        return Promise.all([resProduct, resPrice, resImg]).then((res) => {
-            if (res) {
-                const [resProduct, resPrice, resImg] = res;
-                const dataProduct = {
-                    dataProduct: [],
-                    dataPrice: [],
-                    dataImg: [],
-                };
-                handleData(resProduct.data, { key: 'p_name', value: 'product_name' }, dataProduct.dataProduct);
-                handleData(resPrice.data, { key: 'p_price', value: 'price' }, dataProduct.dataPrice);
-                handleData(resImg.data, { key: 'p_image', value: 'image' }, dataProduct.dataImg);
-                return dataProduct;
-            }
-        });
+        return handleCallApi(`cgid=${routerId.pid}`);
     }
 };
 export const getRefinements = async (routerId) => {
