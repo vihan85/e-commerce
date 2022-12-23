@@ -24,7 +24,24 @@ function ProductListPage() {
             setData(producListtId);
         });
     }, [routerId, routerColor, routerPrice]);
-
+    if (data === undefined) {
+        return (
+            <div className='grid spinner-center'>
+                <div className='row'>
+                    <div className='lds-roller'>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
     return (
         <div className={cx('container', 'grid ')}>
             <div className={cx('wrapper')}>

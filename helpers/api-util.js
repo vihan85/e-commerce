@@ -10,16 +10,18 @@ export const getFeatureCatelory = async () => {
                         c_id: element.id,
                         c_name: element.name,
                         c_catelories: handleDataCatelory(element, 'categories'),
-                        c_banner: element.c_slotBannerImage
+                        c_headerbanner: element.c_slotBannerImage,
                     });
                 } else {
                     categories.push({
                         c_id: element.id,
                         c_name: element.name,
+                        c_headerbanner: element.c_slotBannerImage,
                     });
                 }
             });
         }
+
         return categories;
     };
     const result = services.catelogy('categories', '3').then((resCatelogy) => handleDataCatelory(resCatelogy.data, 'categories'));
@@ -64,7 +66,6 @@ export const getFeatureProductshow = async (router) => {
     };
 
     if (routerId.refine && routerId[rePrice]) {
-        console.log('handleCallApi');
         return handleCallApi(`cgid=${routerId.pid}`, `c_refinementColor=${query.color}`, `price=${query.price}`);
     } else if (routerId.refine) {
         return handleCallApi(`cgid=${routerId.pid}`, `c_refinementColor=${query.color}`);
@@ -75,7 +76,6 @@ export const getFeatureProductshow = async (router) => {
     }
 };
 export const getRefinements = async (routerId) => {
-    console.log(routerId)
     const handleDataRefinements = (data, refinement) => {
         const refinements = [];
         if (data[refinement]) {
@@ -91,7 +91,7 @@ export const getRefinements = async (routerId) => {
                         re_label: element.label,
                         re_value: element.value,
                         re_count: element.hit_count,
-                        re_id: element.value
+                        re_id: element.value,
                     });
                 }
             });

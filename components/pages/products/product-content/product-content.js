@@ -104,23 +104,5 @@ function ProductContent({ data, routerId }) {
             </div>
         );
     }
-    if ('') {
-        return (
-            <div className='grid spinner-center'>
-                <div className='row'>
-                    <div className='lds-roller'>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                </div>
-            </div>
-        );
-    }
 }
 export default ProductContent;

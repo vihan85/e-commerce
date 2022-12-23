@@ -10,8 +10,8 @@
     --header-color: #444444;
     --menu-hover-color: #444;
 }
-*{
-    box-sizing:  border-box;
+* {
+    box-sizing: border-box;
 }
 html {
     font-size: 62.5%;
@@ -696,7 +696,7 @@ ul {
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: #fcf;
+    background: var(--primari-color);
     margin: -4px 0 0 -4px;
 }
 .lds-roller div:nth-child(1) {
