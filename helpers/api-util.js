@@ -75,6 +75,7 @@ export const getFeatureProductshow = async (router) => {
     }
 };
 export const getRefinements = async (routerId) => {
+    console.log(routerId)
     const handleDataRefinements = (data, refinement) => {
         const refinements = [];
         if (data[refinement]) {
@@ -90,6 +91,7 @@ export const getRefinements = async (routerId) => {
                         re_label: element.label,
                         re_value: element.value,
                         re_count: element.hit_count,
+                        re_id: element.value
                     });
                 }
             });

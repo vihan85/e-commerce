@@ -25,7 +25,7 @@ function SidebarColor({ data, routerId }) {
                 {dataColors !== undefined &&
                     dataColors.re_values.map((color) => {
                         return (
-                            <li key={color.re_idpresentation}>
+                            <li key={color.re_value}>
                                 <button
                                     onClick={() => {
                                         handleRefineColor(color.re_value);

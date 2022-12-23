@@ -20,7 +20,7 @@ function Menu({ data }) {
                                     <li
                                         key={item.c_id}
                                         className={cx(mainHeaderItem)}>
-                                        <Link href={`/products/${item.c_id}`}>
+                                        <Link href={`/pid/${item.c_id}`}>
                                             {item.c_name}
                                             <span className={cx('main-header_icon')}>
                                                 <FontAwesomeIcon icon={faSortDown} />
@@ -34,7 +34,7 @@ function Menu({ data }) {
                                     <li
                                         className={cx(mainHeaderItem)}
                                         key={item.c_id}>
-                                        <Link href={`/products/${item.c_id}`}>{item.c_name}</Link>
+                                        <Link href={`/pid/${item.c_id}`}>{item.c_name}</Link>
                                     </li>
                                 );
                             }

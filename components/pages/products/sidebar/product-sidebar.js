@@ -36,6 +36,7 @@ function ProductSidebar({ routerId }) {
                         );
                     }
                     if (refinement.re_id === 'c_refinementColor') {
+                       
                         return (
                             <SidebarColor
                                 key={refinement.re_id}

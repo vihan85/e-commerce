@@ -24,11 +24,11 @@ function SidebarCatelogy({ data, routerId }) {
                 <ul>
                     {data.re_values.map((item) => {
                         return (
-                            <li key={item.re_value ? item.re_value : item.re_id}>
+                            <li key={item.re_id}>
                                 <ul className={cx('card-item')}>
                                     <li>
                                         <input
-                                            value={item.re_id ? item.re_id : item.re_value}
+                                            value={item.re_id}
                                             onChange={(e) => {
                                                 handleChange(e.target.value);
                                             }}
@@ -41,7 +41,7 @@ function SidebarCatelogy({ data, routerId }) {
                                         <ul>
                                             {item.re_values &&
                                                 item.re_values.map((subItem) => (
-                                                    <li key={subItem.re_value}>
+                                                    <li key={subItem.re_id}>
                                                         <input
                                                             onChange={(e) => {
                                                                 handleChange(e.target.value);
@@ -49,7 +49,7 @@ function SidebarCatelogy({ data, routerId }) {
                                                             id={subItem.re_value}
                                                             name='card-select'
                                                             type={'radio'}
-                                                            value={subItem.re_id ? subItem.re_id : subItem.re_value}
+                                                            value={subItem.re_id}
                                                         />
                                                         <label htmlFor={subItem.re_value}>{subItem.re_label}</label>
                                                         <ul>
@@ -63,7 +63,7 @@ function SidebarCatelogy({ data, routerId }) {
                                                                             id={item.re_value}
                                                                             name='card-select'
                                                                             type={'radio'}
-                                                                            value={item.re_id ? item.re_id : item.re_value}
+                                                                            value={item.re_id}
                                                                         />
                                                                         <label htmlFor={item.re_value}>{item.re_label}</label>
                                                                     </li>

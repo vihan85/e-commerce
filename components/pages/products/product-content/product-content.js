@@ -41,7 +41,7 @@ function ProductContent({ data, routerId }) {
         return (
             <div className='grid spinner-center'>
                 <div className='row'>
-                    <div class='lds-ellipsis c-12'>
+                    <div className='lds-ellipsis c-12'>
                         <div></div>
                         <div></div>
                         <div></div>
@@ -108,7 +108,7 @@ function ProductContent({ data, routerId }) {
         return (
             <div className='grid spinner-center'>
                 <div className='row'>
-                    <div class='lds-roller'>
+                    <div className='lds-roller'>
                         <div></div>
                         <div></div>
                         <div></div>
