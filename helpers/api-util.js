@@ -10,6 +10,7 @@ export const getFeatureCatelory = async () => {
                         c_id: element.id,
                         c_name: element.name,
                         c_catelories: handleDataCatelory(element, 'categories'),
+                        c_banner: element.c_slotBannerImage
                     });
                 } else {
                     categories.push({

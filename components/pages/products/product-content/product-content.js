@@ -67,7 +67,7 @@ function ProductContent({ data, routerId }) {
                             return (
                                 <div
                                     key={product.p_id}
-                                    className={`col l-3 ${product.p_id}`}>
+                                    className={`col l-4 ${product.p_id}`}>
                                     <div className={cx('product-item')}>
                                         <div className={cx('product-item_img')}>
                                             <Link href={'img-item'}>
