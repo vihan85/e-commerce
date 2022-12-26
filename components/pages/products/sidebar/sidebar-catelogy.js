@@ -8,11 +8,11 @@ const cx = classNames.bind(styles);
 
 function SidebarCatelogy({ data, routerId }) {
     parent = routerId;
+    con
     const router = useRouter();
-
     const handleChange = (id) => {
         router.push({
-            pathname: `${id}`,
+            pathname: `${router.query.pid[0]}/${id}`,
         });
     };
     if (data) {

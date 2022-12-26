@@ -6,21 +6,22 @@ import { element } from 'prop-types';
 const cx = classNames.bind(styles);
 function CateloryPage({ dataCateleryTitle, router }) {
     const result = dataCateleryTitle.map((menu) => {
-        if (menu.c_catelories && menu.c_id === 'womens') {
-            console.log(menu);
+        if (menu.c_catelories && menu.c_id === 'electronics') {
             return (
                 <div
                     key={menu.c_id}
                     className={cx('container')}>
-                    <div className={cx('container_catelory-image')}>
-                        <Link href={'/'}>
-                            <img src={menu.c_headerbanner} />
-                        </Link>
-                        <h1 className={cx('container_catelory-title')}>
-                            <span>Womens</span>
-                        </h1>
-                    </div>
-                    <div className='grid wide'>
+                    {menu.c_headerbanner && (
+                        <div className={cx('container_catelory-image')}>
+                            <Link href={'/'}>
+                                <img src={menu.c_headerbanner} />
+                            </Link>
+                            <h1 className={cx('container_catelory-title')}>
+                                <span>{menu.c_name}</span>
+                            </h1>
+                        </div>
+                    )}
+                    <div className={cx('grid', { wide:menu.c_headerbanner})}>
                         <ul className={`${cx('container_catelory-title-list')} row`}>
                             {menu.c_catelories.map((item) => {
                                 return (

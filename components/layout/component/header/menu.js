@@ -9,32 +9,42 @@ const cx = classNames.bind(styles);
 
 function Menu({ data }) {
     if (data !== undefined) {
-        const renderMenu = (data, mainHeaderList, mainHeaderItem, router = false) => {
+        const renderMenu = (data, mainHeaderList, mainHeaderItem) => {
             if (Array.isArray(data)) {
                 const dataItems = data;
+
                 return (
                     <ul className={cx(mainHeaderList)}>
                         {dataItems.map((item) => {
+                            const linkhref = item.c_parent_tree.reduce((total, currentValue) => {
+                                return `${total}/${currentValue.id}`;
+                            }, '');
                             if (item.c_catelories) {
                                 return (
                                     <li
                                         key={item.c_id}
-                                        className={cx(mainHeaderItem)}>
-                                        <Link href={`/pid/${item.c_id}`}>
+                                        className={cx(mainHeaderItem)}
+                                        onClick={() => {
+
+                                        }}>
+                                        <Link href={linkhref}>
                                             {item.c_name}
                                             <span className={cx('main-header_icon')}>
                                                 <FontAwesomeIcon icon={faSortDown} />
                                             </span>
                                         </Link>
-                                        {renderMenu(item.c_catelories, `${item.c_id}_list`, `${item.c_id}_item`, (router = true))}
+                                        {renderMenu(item.c_catelories, `${item.c_id}_list`, `${item.c_id}_item`)}
                                     </li>
                                 );
                             } else {
                                 return (
                                     <li
+                                        onClick={() => {
+                                            
+                                        }}
                                         className={cx(mainHeaderItem)}
                                         key={item.c_id}>
-                                        <Link href={`/pid/${item.c_id}`}>{item.c_name}</Link>
+                                        <Link href={linkhref}>{item.c_name}</Link>
                                     </li>
                                 );
                             }

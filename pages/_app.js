@@ -7,6 +7,7 @@ export const RouterAcctive = createContext();
 
 export default function MyApp({ Component, pageProps }) {
     const router = useRouter();
+    if(router !== undefined) {}
     return (
         <RouterAcctive.Provider value={{ router }}>
             <MainLayout>
