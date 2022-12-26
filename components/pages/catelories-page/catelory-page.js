@@ -12,11 +12,14 @@ function CateloryPage({ dataCateleryTitle, router }) {
                 <div
                     key={menu.c_id}
                     className={cx('container')}>
-                    <Link
-                        className={cx('container_catelory-image')}
-                        href={'/'}>
-                        <img src={menu.c_headerbanner} />
-                    </Link>
+                    <div className={cx('container_catelory-image')}>
+                        <Link href={'/'}>
+                            <img src={menu.c_headerbanner} />
+                        </Link>
+                        <h1 className={cx('container_catelory-title')}>
+                            <span>Womens</span>
+                        </h1>
+                    </div>
                     <div className='grid wide'>
                         <ul className={`${cx('container_catelory-title-list')} row`}>
                             {menu.c_catelories.map((item) => {
@@ -24,10 +27,13 @@ function CateloryPage({ dataCateleryTitle, router }) {
                                     <li
                                         key={item.c_id}
                                         className='col l-4'>
-                                        <img
-                                            src={item.c_headerbanner}
-                                            alt='/'
-                                        />
+                                        <Link href={'/'}>
+                                            <img
+                                                src={item.c_headerbanner}
+                                                alt='/'
+                                            />
+                                            <h2 className={cx('container_catelory-title-item')}>{item.c_name}</h2>
+                                        </Link>
                                     </li>
                                 );
                             })}
