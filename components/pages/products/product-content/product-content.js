@@ -70,7 +70,9 @@ function ProductContent({ data, routerId }) {
                                     className={`col l-4 ${product.p_id}`}>
                                     <div className={cx('product-item')}>
                                         <div className={cx('product-item_img')}>
-                                            <Link href={'img-item'}>
+                                            <Link
+                                                href={`/product-variations`}
+                                                as={`/${product.p_name}/${product.p_id}`}>
                                                 <img
                                                     src={getImg.url}
                                                     alt={getImg.alt}
