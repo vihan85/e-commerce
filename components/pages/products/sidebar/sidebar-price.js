@@ -8,7 +8,7 @@ function SidebarPrice({ data, routerId }) {
         const refine = 'refine-price';
         if (router.query.refine) {
             router.push({
-                pathname: `${routerId}`,
+                pathname: router.query.pid.join('/'),
                 query: {
                     refine: router.query.refine,
                     [refine]: value,
@@ -16,7 +16,7 @@ function SidebarPrice({ data, routerId }) {
             });
         } else {
             router.push({
-                pathname: `${routerId}`,
+                pathname: router.query.pid.join('/'),
                 query: {
                     [refine]: value,
                 },

@@ -9,7 +9,7 @@ function SidebarColor({ data, routerId }) {
     const router = useRouter();
     const handleRefineColor = (id) => {
         router.push({
-            pathname: `${routerId}`,
+            pathname: router.query.pid.join('/'),
             query: {
                 refine: id,
             },

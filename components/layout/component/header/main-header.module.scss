@@ -33,6 +33,11 @@
                 display: block;
             }
         }
+        &:focus{
+            >ul{
+                display: none;
+            }
+        }
     }
     a {
         color: var(--white-color);

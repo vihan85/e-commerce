@@ -8,8 +8,8 @@ const cx = classNames.bind(styles);
 
 function SidebarCatelogy({ data, routerId }) {
     parent = routerId;
-    con
     const router = useRouter();
+    const [checked, setChecked] = useState(router.query.pid[1]);
     const handleChange = (id) => {
         router.push({
             pathname: `${router.query.pid[0]}/${id}`,
@@ -28,8 +28,10 @@ function SidebarCatelogy({ data, routerId }) {
                                 <ul className={cx('card-item')}>
                                     <li>
                                         <input
+                                            checked={checked === item.re_id}
                                             value={item.re_id}
                                             onChange={(e) => {
+                                                setChecked(item.re_id);
                                                 handleChange(e.target.value);
                                             }}
                                             id={item.re_id}
@@ -43,7 +45,9 @@ function SidebarCatelogy({ data, routerId }) {
                                                 item.re_values.map((subItem) => (
                                                     <li key={subItem.re_id}>
                                                         <input
+                                                            checked={checked === subItem.re_id}
                                                             onChange={(e) => {
+                                                                setChecked(subItem.re_id);
                                                                 handleChange(e.target.value);
                                                             }}
                                                             id={subItem.re_value}
@@ -57,7 +61,9 @@ function SidebarCatelogy({ data, routerId }) {
                                                                 subItem.re_values.map((item) => (
                                                                     <li key={item.re_id}>
                                                                         <input
+                                                                            checked={checked === item.re_id}
                                                                             onChange={(e) => {
+                                                                                setChecked(item.re_id);
                                                                                 handleChange(e.target.value);
                                                                             }}
                                                                             id={item.re_value}

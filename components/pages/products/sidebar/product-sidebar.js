@@ -8,7 +8,7 @@ import SidebarCatelogy from './sidebar-catelogy';
 import SidebarColor from './sidebar-color';
 import { getRefinements } from '~/helpers/api-util';
 import SideBarNewArrival from './sidebar-new-arrival';
-import SidebarPrice from './sidebar-price'
+import SidebarPrice from './sidebar-price';
 const cx = classNames.bind(styles);
 
 function ProductSidebar({ routerId }) {
@@ -26,30 +26,42 @@ function ProductSidebar({ routerId }) {
                     <option>Price Low To High</option>
                 </select>
                 {refinements.map((refinement) => {
-                    if (refinement.re_id === 'cgid') {
-                        return (
-                            <SidebarCatelogy
-                                key={refinement.re_id}
-                                data={refinement}
-                                routerId={routerId}
-                            />
-                        );
-                    }
-                    if (refinement.re_id === 'c_refinementColor') {
-                       
-                        return (
-                            <SidebarColor
-                                key={refinement.re_id}
-                                data={refinement}
-                                routerId={routerId}
-                            />
-                        );
-                    }
-                    if(refinement.re_id === 'c_isNew') {
-                        return (<SideBarNewArrival key={refinement.re_id} data={refinement}/>)
-                    }
-                    if(refinement.re_id === 'price') {
-                        return (<SidebarPrice key={refinement.re_id} data={refinement} routerId={routerId}/>)
+                    switch (refinement.re_id) {
+                        case 'cgid':
+                            return (
+                                <SidebarCatelogy
+                                    key={refinement.re_id}
+                                    data={refinement}
+                                    routerId={routerId}
+                                />
+                            );
+                        case 'c_refinementColor':
+                            return (
+                                <SidebarColor
+                                    key={refinement.re_id}
+                                    data={refinement}
+                                    routerId={routerId}
+                                />
+                            );
+
+                        case 'c_isNew':
+                            return (
+                                <SideBarNewArrival
+                                    key={refinement.re_id}
+                                    data={refinement}
+                                />
+                            );
+
+                        case 'price':
+                            return (
+                                <SidebarPrice
+                                    key={refinement.re_id}
+                                    data={refinement}
+                                    routerId={routerId}
+                                />
+                            );
+
+                        default:
                     }
                 })}
             </aside>

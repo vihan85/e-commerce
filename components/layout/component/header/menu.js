@@ -24,8 +24,8 @@ function Menu({ data }) {
                                     <li
                                         key={item.c_id}
                                         className={cx(mainHeaderItem)}
-                                        onClick={() => {
-
+                                        onClick={(e) => {
+                                            console.log(e);
                                         }}>
                                         <Link href={linkhref}>
                                             {item.c_name}
@@ -39,9 +39,7 @@ function Menu({ data }) {
                             } else {
                                 return (
                                     <li
-                                        onClick={() => {
-                                            
-                                        }}
+                                        onClick={() => {}}
                                         className={cx(mainHeaderItem)}
                                         key={item.c_id}>
                                         <Link href={linkhref}>{item.c_name}</Link>
