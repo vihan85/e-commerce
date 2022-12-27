@@ -20,6 +20,7 @@
         margin: 0;
     }
     .main-header_item {
+        z-index: 1;
         align-self: stretch;
         display: flex;
         align-items: center;
@@ -31,6 +32,16 @@
             > ul {
                 display: block;
             }
+        }
+        &:focus{
+            >ul{
+                display: none;
+            }
+        }
+    }
+    .hiden{
+        > ul {
+            display: block;
         }
     }
     a {
@@ -107,12 +118,6 @@
     box-shadow: 0 3px 5px rgb(43 36 25 / 40%);
     padding-top: 8px;
     padding-left: 0;
-    background-color: var(--white-color);
-    min-width: 200px;
-    box-shadow: 0 3px 5px rgb(43 36 25 / 40%);
-    padding-top: 8px;
-    padding-left: 0;
-    list-style-type: none;
 }
 .womens-clothing_item,
 .womens-jewelry_item,

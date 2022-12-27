@@ -1,26 +1,21 @@
-import { getDataCatelogy } from '../data/data';
-import { useState, useEffect, createContext } from 'react';
+import { useRouter } from 'next/router';
+import { createContext } from 'react';
+import '~/styles/globals.scss';
+import MainLayout from '../components/layout/main-layout/main-layout';
+import LoadingSpinner from '../components/ui/loading-spinner';
 
-import '../styles/globals.scss';
-
-export const Data = createContext();
+export const RouterAcctive = createContext();
 
 export default function MyApp({ Component, pageProps }) {
-    const [data, setData] = useState();
-
-    useEffect(() => {
-        const featch = async () => {
-            const data = await getDataCatelogy();
-            setData(data);
-        };
-        featch();
-    }, []);
-    if (data) {
-        return (
-            <Data.Provider value={data}>
-                <Component {...pageProps} />
-            </Data.Provider>
-        );
+    const router = useRouter();
+    if(!router) {
+        return <LoadingSpinner/>
     }
-    return;
+    return (
+        <RouterAcctive.Provider value={{ router }}>
+            <MainLayout>
+                <Component {...pageProps} />
+            </MainLayout>
+        </RouterAcctive.Provider>
+    );
 }
