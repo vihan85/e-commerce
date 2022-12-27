@@ -39,6 +39,11 @@
             }
         }
     }
+    .hiden{
+        > ul {
+            display: block;
+        }
+    }
     a {
         color: var(--white-color);
         text-decoration: unset;

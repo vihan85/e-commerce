@@ -6,6 +6,7 @@ import styles from './products.module.scss';
 import { ProductSidebar } from '~/components/pages/products/sidebar';
 import { ProductContent } from './product-content';
 import { getFeatureProductshow } from '~/helpers/api-util';
+import LoadingSpinner from '~/components/ui/loading-spinner';
 const cx = classNames.bind(styles);
 
 function ProductListPage() {
@@ -25,22 +26,7 @@ function ProductListPage() {
         });
     }, [routerId, routerColor, routerPrice]);
     if (data === undefined) {
-        return (
-            <div className='grid spinner-center'>
-                <div className='row'>
-                    <div className='lds-roller'>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                </div>
-            </div>
-        );
+        return <LoadingSpinner/>
     }
     return (
         <div className={cx('container', 'grid ')}>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import CateloryPage from '~/components/pages/catelories-page/catelory-page';
 import { useRouter } from 'next/router';
 import { getFeatureCatelory } from '../helpers/api-util';
+import LoadingSpinner from '../components/ui/loading-spinner';
 
 function ProductPage() {
     const [dataCateleryTitle, setDataCateleryTitle] = useState([]);
@@ -11,29 +12,16 @@ function ProductPage() {
             setDataCateleryTitle(res);
         });
     }, []);
-    if (!router.query['catelory-title']) {
-        return (
-            <div className='lds-default'>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        );
+    if (dataCateleryTitle.length === 0) {
+        return <LoadingSpinner />;
     }
     return (
-        <CateloryPage
-            router={router}
-            dataCateleryTitle={dataCateleryTitle}
-        />
+        <div className='container'>
+            <CateloryPage
+                router={router}
+                dataCateleryTitle={dataCateleryTitle}
+            />
+        </div>
     );
 }
 export default ProductPage;
