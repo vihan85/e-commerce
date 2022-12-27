@@ -32,7 +32,7 @@ export const getFeatureCatelory = async () => {
 export const getFeatureProductshow = async (router) => {
     const routerId = router.router.query;
     if (routerId.pid !== undefined) {
-        const currentId = routerId.pid[routerId.pid.length-1];
+        const currentId = routerId.pid[routerId.pid.length - 1];
 
         const rePrice = 'refine-price';
         const query = {
@@ -82,7 +82,7 @@ export const getFeatureProductshow = async (router) => {
     }
 };
 export const getRefinements = async (routerId) => {
-    const currentId = routerId[routerId.length-1];
+    const currentId = routerId[routerId.length - 1];
     const handleDataRefinements = (data, refinement) => {
         const refinements = [];
         if (data[refinement]) {
@@ -111,4 +111,26 @@ export const getRefinements = async (routerId) => {
         .products('productList', '12', `cgid=${currentId}`)
         .then((resRefine) => handleDataRefinements(resRefine.data, 'refinements'));
     return result;
+};
+export const getDataProductVariations = async (link) => {
+    const handleDataProductVariations = (data) => {
+        const dataProductVariations = {
+            promas_list: data.hits,
+            promas_selected_refinements: data.selected_refinements,
+            promas_toltal: data.total,
+        };
+        const proList = [];
+        const proMasterList = dataProductVariations.promas_list.forEach((element) => {
+            proList.push({
+                promas_hit_type: element.hit_type,
+                promas_product_id: element.product_id,
+                promas_product_name: element.product_name,
+                promas_represented_product: element.represented_product,
+                promas_variation_attributes: element.variation_attributes,
+            });
+            return proList;
+        });
+        return proList;
+    };
+    return services.productVariations('productList/variations', `cgid=${link}`).then((res) => handleDataProductVariations(res.data));
 };

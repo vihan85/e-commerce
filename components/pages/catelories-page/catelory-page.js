@@ -1,6 +1,7 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import classNames from 'classnames/bind';
-import parse from 'html-react-parser';
 import styles from './catelory-page.module.scss';
 const cx = classNames.bind(styles);
 function CateloryPage({ dataCateleryTitle, router }) {

@@ -11,7 +11,6 @@ const cx = classNames.bind(styles);
 
 function ProductListPage() {
     const [data, setData] = useState();
-
     const routerAcctive = useContext(RouterAcctive);
     let routerId = routerAcctive.router.query.pid;
     const routerColor = routerAcctive.router.query.refine;
@@ -26,7 +25,7 @@ function ProductListPage() {
         });
     }, [routerId, routerColor, routerPrice]);
     if (data === undefined) {
-        return <LoadingSpinner/>
+        return <LoadingSpinner />;
     }
     return (
         <div className={cx('container', 'grid ')}>

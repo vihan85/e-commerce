@@ -1,6 +1,9 @@
-function LoadingSpinner () {
+import classNames from 'classnames/bind';
+import styles from './loading-spinner.module.scss';
+const cx = classNames.bind(styles);
+function LoadingSpinner() {
     return (
-        <div className='grid container spinner-center'>
+        <div className={`${cx('container')} grid spinner-center`}>
             <div className='row'>
                 <div className='lds-roller'>
                     <div></div>
@@ -16,4 +19,4 @@ function LoadingSpinner () {
         </div>
     );
 }
-export default LoadingSpinner
+export default LoadingSpinner;

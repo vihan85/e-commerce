@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
@@ -70,9 +71,7 @@ function ProductContent({ data, routerId }) {
                                     className={`col l-4 ${product.p_id}`}>
                                     <div className={cx('product-item')}>
                                         <div className={cx('product-item_img')}>
-                                            <Link
-                                                href={`/product-variations`}
-                                                as={`/${product.p_name}/${product.p_id}`}>
+                                            <Link href={`/product-variations/${routerId[0]}&${product.p_id}`}>
                                                 <img
                                                     src={getImg.url}
                                                     alt={getImg.alt}
