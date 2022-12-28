@@ -17,7 +17,7 @@ function ProductContent({ data, routerId }) {
             if (objectValue !== undefined && objectValue[keyValue]) {
                 return `$${objectValue[keyValue]}`;
             } else {
-                return 'null';
+                return 'updating';
             }
         }
         return;
