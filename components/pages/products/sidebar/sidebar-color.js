@@ -7,13 +7,21 @@ const cx = classNames.bind(styles);
 function SidebarColor({ data, routerId }) {
     const dataColors = data;
     const router = useRouter();
+
     const handleRefineColor = (id) => {
-        router.push({
-            pathname: router.query.pid.join('/'),
-            query: {
-                refine: id,
-            },
-        });
+        if (router.asPath.includes(id)) {
+            console.log(router.asPath);
+            router.push({
+                pathname: router.query.pid.join('/'),
+            });
+        } else {
+            router.push({
+                pathname: router.query.pid.join('/'),
+                query: {
+                    refine: id,
+                },
+            });
+        }
     };
     return (
         <div className={cx('card')}>

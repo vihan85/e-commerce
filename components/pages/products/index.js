@@ -14,7 +14,6 @@ const cx = classNames.bind(styles);
 function ProductListPage() {
     const [data, setData] = useState();
     const [count, setCount] = useState('12');
-    console.log(count);
     const routerAcctive = useContext(RouterAcctive);
     let routerId = routerAcctive.router.query.pid;
     const routerColor = routerAcctive.router.query.refine;

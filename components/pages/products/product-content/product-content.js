@@ -57,7 +57,7 @@ function ProductContent({ data, routerId }) {
             <div className='grid'>
                 <div className={`${cx('header')}`}>
                     <div className='col l-9 l-o-6'>
-                        <p>result</p>
+                        <p>{data.pro_total} Results</p>
                     </div>
                 </div>
                 <div className='row'>

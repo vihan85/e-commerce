@@ -58,7 +58,7 @@ export const getFeatureProductshow = async (router, count) => {
             sort: routerId.sort,
         };
 
-        const handleCallApi = (refine_1, refine_2, refine_3, sort) => {
+        const handleCallApi = (path, refine_1, refine_2, refine_3, sort) => {
             const handleData = (baseData, type, mainData) => {
                 if (Array.isArray(baseData.hits)) {
                     baseData.hits.forEach((element) => {
@@ -69,14 +69,15 @@ export const getFeatureProductshow = async (router, count) => {
                     });
                 }
             };
-            const resProduct = services.products('productList/represented_products', count, refine_1, sort, refine_2, refine_3);
-            const resPrice = services.products('productList/prices', count, refine_1, sort, refine_2, refine_3);
-            const resImg = services.products('productList/images', count, refine_1, sort, refine_2, refine_3);
+            const resProduct = services.products(path.product, count, refine_1, sort, refine_2, refine_3);
+            const resPrice = services.products(path.price, count, refine_1, sort, refine_2, refine_3);
+            const resImg = services.products(path.image, count, refine_1, sort, refine_2, refine_3);
             return Promise.all([resProduct, resPrice, resImg]).then((res) => {
                 if (res) {
                     const [resProduct, resPrice, resImg] = res;
                     const dataProduct = {
                         dataProduct: [],
+                        pro_total: resProduct.data.total,
                         dataPrice: [],
                         dataImg: [],
                     };
@@ -89,15 +90,65 @@ export const getFeatureProductshow = async (router, count) => {
         };
 
         if (routerId.refine && routerId[rePrice]) {
-            return handleCallApi(`cgid=${currentId}`, `c_refinementColor=${query.color}`, `price=${query.price}`, query.sort);
+            return handleCallApi(
+                {
+                    product: 'productList/represented_products',
+                    price: 'productList/prices',
+                    image: 'productList/images',
+                },
+                `cgid=${currentId}`,
+                `c_refinementColor=${query.color}`,
+                `price=${query.price}`,
+                query.sort
+            );
         } else if (routerId.refine) {
-            return handleCallApi(`cgid=${currentId}`, `c_refinementColor=${query.color}`, undefined, query.sort);
+            return handleCallApi(
+                {
+                    product: 'productList/represented_products',
+                    price: 'productList/prices',
+                    image: 'productList/images',
+                },
+                `cgid=${currentId}`,
+                `c_refinementColor=${query.color}`,
+                undefined,
+                query.sort
+            );
         } else if (routerId[rePrice]) {
-            return handleCallApi(`cgid=${currentId}`, `price=${query.price}`, undefined, query.sort);
+            return handleCallApi(
+                {
+                    product: 'productList/represented_products',
+                    price: 'productList/prices',
+                    image: 'productList/images',
+                },
+                `cgid=${currentId}`,
+                `price=${query.price}`,
+                undefined,
+                query.sort
+            );
         } else if (routerId.sort) {
-            return handleCallApi(`cgid=${currentId}`, undefined, undefined, query.sort);
+            return handleCallApi(
+                {
+                    product: 'productList/represented_products',
+                    price: 'productList/prices',
+                    image: 'productList/images',
+                },
+                `cgid=${currentId}`,
+                undefined,
+                undefined,
+                query.sort
+            );
         } else {
-            return handleCallApi(`cgid=${currentId}`, undefined, undefined, query.sort);
+            return handleCallApi(
+                {
+                    product: 'productList/represented_products',
+                    price: 'productList/prices',
+                    image: 'productList/images',
+                },
+                `cgid=${currentId}`,
+                undefined,
+                undefined,
+                query.sort
+            );
         }
     }
 };
