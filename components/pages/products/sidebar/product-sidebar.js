@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 
-import {  useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import styles from './product-sidebar.module.scss';
 import SidebarCatelogy from './sidebar-catelogy';
@@ -11,11 +11,14 @@ import SidebarPrice from './sidebar-price';
 import SidebarSort from './sidebar-sort';
 import { getSort } from '../../../../helpers/api-util';
 import Button from '../../../ui/btn/btn';
+import { useRouter } from 'next/router';
 const cx = classNames.bind(styles);
 
 function ProductSidebar({ routerId }) {
     const [refinements, setRefinements] = useState([]);
     const [sort, setSort] = useState([]);
+    const router = useRouter();
+
     useEffect(() => {
         getRefinements(routerId).then((res) => {
             setRefinements(res);
@@ -29,7 +32,16 @@ function ProductSidebar({ routerId }) {
             <aside className={cx('custom-select')}>
                 <SidebarSort data={sort} />
 
-                <div className={cx('button-reset', {card: true})}><Button>Reset</Button></div>
+                <div className={cx('button-reset', { card: true })}>
+                    <Button
+                        onClick={() => {
+                            router.push({
+                                pathname: routerId.join('/'),
+                            });
+                        }}>
+                        Reset
+                    </Button>
+                </div>
 
                 {refinements.map((refinement) => {
                     switch (refinement.re_id) {
