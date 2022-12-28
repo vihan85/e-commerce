@@ -46,7 +46,7 @@ export const getFeatureCatelory = async () => {
     const result = services.catelogy('categories', '3').then((resCatelogy) => handleDataCatelory(resCatelogy.data, 'categories'));
     return result;
 };
-export const getFeatureProductshow = async (router) => {
+export const getFeatureProductshow = async (router, count) => {
     const routerId = router.router.query;
     if (routerId.pid !== undefined) {
         const currentId = routerId.pid[routerId.pid.length - 1];
@@ -69,9 +69,9 @@ export const getFeatureProductshow = async (router) => {
                     });
                 }
             };
-            const resProduct = services.products('productList/represented_products', '12', refine_1, sort, refine_2, refine_3);
-            const resPrice = services.products('productList/prices', '12', refine_1, sort, refine_2, refine_3);
-            const resImg = services.products('productList/images', '12', refine_1, sort, refine_2, refine_3);
+            const resProduct = services.products('productList/represented_products', count, refine_1, sort, refine_2, refine_3);
+            const resPrice = services.products('productList/prices', count, refine_1, sort, refine_2, refine_3);
+            const resImg = services.products('productList/images', count, refine_1, sort, refine_2, refine_3);
             return Promise.all([resProduct, resPrice, resImg]).then((res) => {
                 if (res) {
                     const [resProduct, resPrice, resImg] = res;

@@ -7,10 +7,14 @@ import { ProductSidebar } from '~/components/pages/products/sidebar';
 import { ProductContent } from './product-content';
 import { getFeatureProductshow } from '~/helpers/api-util';
 import LoadingSpinner from '~/components/ui/loading-spinner';
+import Button from '~/components/ui//btn/btn';
+
 const cx = classNames.bind(styles);
 
 function ProductListPage() {
     const [data, setData] = useState();
+    const [count, setCount] = useState('12');
+    console.log(count);
     const routerAcctive = useContext(RouterAcctive);
     let routerId = routerAcctive.router.query.pid;
     const routerColor = routerAcctive.router.query.refine;
@@ -20,10 +24,10 @@ function ProductListPage() {
     }
 
     useEffect(() => {
-        getFeatureProductshow(routerAcctive).then((producListtId) => {
+        getFeatureProductshow(routerAcctive, count).then((producListtId) => {
             setData(producListtId);
         });
-    }, [routerId, routerColor, routerPrice]);
+    }, [routerId, routerColor, routerPrice, count]);
     if (data === undefined) {
         return <LoadingSpinner />;
     }
@@ -43,6 +47,14 @@ function ProductListPage() {
                             data !== undefined && data.dataProduct && Array.isArray(data.dataPrice) && Array.isArray(data.dataImg) && data
                         }
                     />
+                    <div className={`col l-12 ${cx('center')}`}>
+                        <Button
+                            onClick={() => {
+                                setCount((prev) => +prev + 12);
+                            }}>
+                            More Results
+                        </Button>
+                    </div>
                 </div>
             </div>
         </div>
