@@ -23,13 +23,13 @@
     input {
         margin-right: 4px;
     }
-    ul{
-        padding: 0 8px
+    ul {
+        padding: 0 8px;
     }
     li {
         margin: 4px;
     }
-    label{
+    label {
         cursor: pointer;
     }
 }
@@ -39,6 +39,18 @@
     font-size: 1.6rem;
     p {
         margin: 0;
+    }
+}
+// button-reset
+.button-reset {
+    color: var(--primari-color);
+    border-color: currentColor;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button {
+        width: 100%;
     }
 }
 

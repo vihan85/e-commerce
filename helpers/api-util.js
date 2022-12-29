@@ -1,5 +1,22 @@
 import * as services from '~/api-services/services';
 
+export const getSort = async () => {
+    const handleData = (data) => {
+        const re_sorting_options = [];
+        data.sorting_options.forEach((element) => {
+            re_sorting_options.push({
+                re_id: element.id,
+                re_label: element.label,
+            });
+        });
+        return re_sorting_options;
+    };
+    const result = services
+        .sort(`productList/represented_products`, `sort=product-name-ascending`, `refine_1=cgid=womens`)
+        .then((res) => handleData(res.data));
+    return result;
+};
+
 export const getFeatureCatelory = async () => {
     const handleDataCatelory = (data, catelogy) => {
         const categories = [];
@@ -29,7 +46,7 @@ export const getFeatureCatelory = async () => {
     const result = services.catelogy('categories', '3').then((resCatelogy) => handleDataCatelory(resCatelogy.data, 'categories'));
     return result;
 };
-export const getFeatureProductshow = async (router) => {
+export const getFeatureProductshow = async (router, count) => {
     const routerId = router.router.query;
     if (routerId.pid !== undefined) {
         const currentId = routerId.pid[routerId.pid.length - 1];
@@ -38,9 +55,10 @@ export const getFeatureProductshow = async (router) => {
         const query = {
             color: routerId.refine,
             price: routerId[rePrice],
+            sort: routerId.sort,
         };
 
-        const handleCallApi = (refine_1, refine_2, refine_3) => {
+        const handleCallApi = (path, refine_1, refine_2, refine_3, sort) => {
             const handleData = (baseData, type, mainData) => {
                 if (Array.isArray(baseData.hits)) {
                     baseData.hits.forEach((element) => {
@@ -51,14 +69,15 @@ export const getFeatureProductshow = async (router) => {
                     });
                 }
             };
-            const resProduct = services.products('productList/represented_products', '12', refine_1, refine_2, refine_3);
-            const resPrice = services.products('productList/prices', '12', refine_1, refine_2, refine_3);
-            const resImg = services.products('productList/images', '12', refine_1, refine_2, refine_3);
+            const resProduct = services.products(path.product, count, refine_1, sort, refine_2, refine_3);
+            const resPrice = services.products(path.price, count, refine_1, sort, refine_2, refine_3);
+            const resImg = services.products(path.image, count, refine_1, sort, refine_2, refine_3);
             return Promise.all([resProduct, resPrice, resImg]).then((res) => {
                 if (res) {
                     const [resProduct, resPrice, resImg] = res;
                     const dataProduct = {
                         dataProduct: [],
+                        pro_total: resProduct.data.total,
                         dataPrice: [],
                         dataImg: [],
                     };
@@ -71,13 +90,65 @@ export const getFeatureProductshow = async (router) => {
         };
 
         if (routerId.refine && routerId[rePrice]) {
-            return handleCallApi(`cgid=${currentId}`, `c_refinementColor=${query.color}`, `price=${query.price}`);
+            return handleCallApi(
+                {
+                    product: 'productList/represented_products',
+                    price: 'productList/prices',
+                    image: 'productList/images',
+                },
+                `cgid=${currentId}`,
+                `c_refinementColor=${query.color}`,
+                `price=${query.price}`,
+                query.sort
+            );
         } else if (routerId.refine) {
-            return handleCallApi(`cgid=${currentId}`, `c_refinementColor=${query.color}`);
+            return handleCallApi(
+                {
+                    product: 'productList/represented_products',
+                    price: 'productList/prices',
+                    image: 'productList/images',
+                },
+                `cgid=${currentId}`,
+                `c_refinementColor=${query.color}`,
+                undefined,
+                query.sort
+            );
         } else if (routerId[rePrice]) {
-            return handleCallApi(`cgid=${currentId}`, `price=${query.price}`);
+            return handleCallApi(
+                {
+                    product: 'productList/represented_products',
+                    price: 'productList/prices',
+                    image: 'productList/images',
+                },
+                `cgid=${currentId}`,
+                `price=${query.price}`,
+                undefined,
+                query.sort
+            );
+        } else if (routerId.sort) {
+            return handleCallApi(
+                {
+                    product: 'productList/represented_products',
+                    price: 'productList/prices',
+                    image: 'productList/images',
+                },
+                `cgid=${currentId}`,
+                undefined,
+                undefined,
+                query.sort
+            );
         } else {
-            return handleCallApi(`cgid=${currentId}`);
+            return handleCallApi(
+                {
+                    product: 'productList/represented_products',
+                    price: 'productList/prices',
+                    image: 'productList/images',
+                },
+                `cgid=${currentId}`,
+                undefined,
+                undefined,
+                query.sort
+            );
         }
     }
 };
