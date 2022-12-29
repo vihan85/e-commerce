@@ -1,3 +1,90 @@
+// header-top
+.navbar-header {
+    padding: 8px;
+}
+.navbar-header_login {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-left: 32px;
+    button {
+        border: none;
+        background-color: transparent;
+        font-size: 1.6rem;
+        color: #444;
+        a {
+            padding-left: 8px;
+            text-decoration: none;
+        }
+        &:hover {
+            a {
+                text-decoration: underline;
+                color: #444;
+            }
+        }
+    }
+}
+.navbar-header_nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar-header_nav-logo {
+    cursor: pointer;
+    img {
+        width: 226px;
+    }
+}
+.navbar-header_nav-search-container {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    margin-left: 64px;
+}
+.navbar-header_nav-search {
+    position: relative;
+    display: flex;
+    width: 320px;
+    input {
+        flex: 1 1;
+        height: 100%;
+        font-size: 1.6rem;
+        outline: none;
+        padding-left: 8px;
+        line-height: 1.6rem;
+        padding: 8px 42px 8px 8px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        &:focus {
+            color: #495057;
+            background-color: #fff;
+            border-color: #61d2ff;
+            outline: 0;
+            -webkit-box-shadow: 0 0 0 0.2rem rgb(0 161 224 / 25%);
+            box-shadow: 0 0 0 0.2rem rgb(0 161 224 / 25%);
+        }
+    }
+}
+.navbar-header_nav-search-icon {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    font-size: 1.6rem;
+    padding: 0 16px;
+    cursor: pointer;
+    border: navajowhite;
+    background-color: transparent;
+}
+
+.navbar-header_nav-card {
+    font-size: 2.5rem;
+    color: #444;
+    padding: 8px 32px;
+    cursor: pointer;
+}
+
 .main-header {
     position: relative;
     height: var(--header-height);
@@ -8,7 +95,7 @@
     font-size: 1.6rem;
     font-weight: 200;
 
-    .main-header_comtainer {
+    .main-header_container {
         width: var(--width-contain);
         height: inherit;
     }
@@ -33,13 +120,13 @@
                 display: block;
             }
         }
-        &:focus{
-            >ul{
+        &:focus {
+            > ul {
                 display: none;
             }
         }
     }
-    .hiden{
+    .hiden {
         > ul {
             display: block;
         }
