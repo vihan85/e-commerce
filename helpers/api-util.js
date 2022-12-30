@@ -1,4 +1,5 @@
 import * as services from '~/api-services/services';
+import serviceProductList from '../api-services/service-product-list';
 
 export const getSort = async () => {
     const handleData = (data) => {
@@ -191,7 +192,7 @@ export const getDataProductVariations = async (link) => {
             promas_toltal: data.total,
         };
         const proList = [];
-        const proMasterList = dataProductVariations.promas_list.forEach((element) => {
+        dataProductVariations.promas_list.forEach((element) => {
             proList.push({
                 promas_hit_type: element.hit_type,
                 promas_product_id: element.product_id,

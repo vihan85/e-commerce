@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useReducer } from 'react';
 import { RouterAcctive } from '~/pages/_app';
 
 import styles from './products.module.scss';
@@ -8,6 +8,9 @@ import { ProductContent } from './product-content';
 import { getFeatureProductshow } from '~/helpers/api-util';
 import LoadingSpinner from '~/components/ui/loading-spinner';
 import Button from '~/components/ui//btn/btn';
+import getDataProductList from '../../../data/data-product-list';
+import serviceProductList from '../../../api-services/service-product-list';
+import { useRouter } from 'next/router';
 
 const cx = classNames.bind(styles);
 
@@ -15,6 +18,7 @@ function ProductListPage() {
     const [data, setData] = useState();
     const [count, setCount] = useState('12');
     const routerAcctive = useContext(RouterAcctive);
+    const router = useRouter();
     let routerId = routerAcctive.router.query.pid;
     const routerColor = routerAcctive.router.query.refine;
     const routerPrice = routerAcctive.router.query['refine-price'];
@@ -23,7 +27,7 @@ function ProductListPage() {
     }
 
     useEffect(() => {
-        getFeatureProductshow(routerAcctive, count).then((producListtId) => {
+        serviceProductList(router, count).then((producListtId) => {
             setData(producListtId);
         });
     }, [routerId, routerColor, routerPrice, count]);

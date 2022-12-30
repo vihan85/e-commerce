@@ -18,7 +18,7 @@ function SidebarColor({ data, routerId }) {
             router.push({
                 pathname: router.query.pid.join('/'),
                 query: {
-                    refine: id,
+                    refine_1: id,
                 },
             });
         }
