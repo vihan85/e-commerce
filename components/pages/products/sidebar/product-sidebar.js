@@ -12,6 +12,7 @@ import SidebarSort from './sidebar-sort';
 import { getSort } from '../../../../helpers/api-util';
 import Button from '../../../ui/btn/btn';
 import { useRouter } from 'next/router';
+import serviceRefinement from '../../../../api-services/service-refinment';
 const cx = classNames.bind(styles);
 
 function ProductSidebar({ routerId }) {
@@ -20,9 +21,7 @@ function ProductSidebar({ routerId }) {
     const router = useRouter();
 
     useEffect(() => {
-        getRefinements(routerId).then((res) => {
-            setRefinements(res);
-        });
+        serviceRefinement(router.query).then(res=>setRefinements(res))
         getSort().then((res) => {
             setSort(res);
         });

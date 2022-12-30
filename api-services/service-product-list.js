@@ -1,5 +1,5 @@
 import servicesLoop from '../helpers/services-helper';
-import handleDataProductList from '../helpers/product-list-helper/handle-data';
+import handleDataProductList from '../model/product-list/handle-data';
 /**
  * serviceProductList get product list
  * @param {Object} router get from useRouter().query
@@ -22,9 +22,10 @@ const serviceProductList = async (router) => {
                 const [resProduct, resPrice, resImg] = res;
                 const dataProduct = {
                     dataProduct: [],
-                    pro_total: resProduct.data.total,
                     dataPrice: [],
                     dataImg: [],
+                    pro_total: resProduct.data.total,
+
                 };
                 handleDataProductList(resProduct.data, { key: 'p_name', value: 'product_name' }, dataProduct.dataProduct);
                 handleDataProductList(resPrice.data, { key: 'p_price', value: 'price' }, dataProduct.dataPrice);

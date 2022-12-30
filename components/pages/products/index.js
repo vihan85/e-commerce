@@ -8,9 +8,9 @@ import { ProductContent } from './product-content';
 import { getFeatureProductshow } from '~/helpers/api-util';
 import LoadingSpinner from '~/components/ui/loading-spinner';
 import Button from '~/components/ui//btn/btn';
-import getDataProductList from '../../../data/data-product-list';
 import serviceProductList from '../../../api-services/service-product-list';
 import { useRouter } from 'next/router';
+import serviceRefinement from '../../../api-services/service-refinment';
 
 const cx = classNames.bind(styles);
 
