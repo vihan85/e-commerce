@@ -1,4 +1,6 @@
 .product-img {
+    display: flex;
+    overflow: auto;
     img {
         max-width: 100%;
     }

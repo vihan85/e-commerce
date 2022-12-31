@@ -8,6 +8,12 @@ const publishRouter = {
     catelory: 'categories',
     refinements: 'productList',
     sort: `productList/represented_products`,
-    variations: 'productList/variations'
+    product_detail: {
+        product: 'productDetail',
+        price: 'productDetail/prices',
+        image: 'productDetail/images',
+        variant: 'productDetail/variations',
+
+    }
 };
 export {publishRouter}
