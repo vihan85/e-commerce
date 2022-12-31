@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 import ProductVariationsPage from '~/components/pages/product-variations-page';
-import serviceVariations from '../../api-services/service-variation';
+import serviceVariations from '~/services/service-variation';
 
 function ProductVariations() {
     const router = useRouter();

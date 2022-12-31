@@ -4,24 +4,15 @@ import styles from './product-sidebar.module.scss';
 const cx = classNames.bind(styles);
 function SidebarPrice({ data, routerId }) {
     const router = useRouter();
+    const { pid, ...params } = router.query;
     const handelPrice = (value) => {
-        const refine = 'refine-price';
-        if (router.query.refine) {
-            router.push({
-                pathname: router.query.pid.join('/'),
-                query: {
-                    refine: router.query.refine,
-                    [refine]: value,
-                },
-            });
-        } else {
-            router.push({
-                pathname: router.query.pid.join('/'),
-                query: {
-                    [refine]: value,
-                },
-            });
-        }
+        router.push({
+            pathname: pid.join('/'),
+            query: {
+                ...params,
+                refine_2: `price=${value}`,
+            },
+        });
     };
     return (
         <div className={cx('card')}>
