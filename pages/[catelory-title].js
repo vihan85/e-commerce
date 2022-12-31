@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react';
 import CateloryPage from '~/components/pages/catelories-page/catelory-page';
 import { useRouter } from 'next/router';
 import LoadingSpinner from '~/components/ui/loading-spinner';
+import serviceCatelory from '~/services/service-catelory';
 
 function ProductPage() {
     const [dataCateleryTitle, setDataCateleryTitle] = useState([]);
     const router = useRouter();
     useEffect(() => {
-        getFeatureCatelory().then((res) => {
+        serviceCatelory().then((res) => {
             setDataCateleryTitle(res);
         });
     }, []);

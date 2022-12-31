@@ -1,7 +1,8 @@
 import { httpRequest } from '~/until/http-request';
 import handleDataCatelory from '~/model/catelory/handle-data-catelory';
+import { publishRouter } from '~/routers';
 function serviceCatelory() {
-    const path = 'categories';
+    const path = publishRouter.catelory;
     const params = {
         levels: 3,
     };

@@ -1,10 +1,11 @@
-import handleDataSort from '../model/sort/handle-data-sort';
-import { httpRequest } from '../until/http-request';
+import handleDataSort from '~/model/sort/handle-data-sort';
+import { publishRouter } from '~/routers';
+import { httpRequest } from '~/until/http-request';
 
 function serviceSort(router) {
     if (router.query.pid) {
         const { pid, sort } = router.query;
-        const path = `productList/represented_products`;
+        const path = publishRouter.sort;
         const params = {
             sort,
             refine: `cgid=${pid[1]}`,

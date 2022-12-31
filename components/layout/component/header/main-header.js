@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import styles from './main-header.module.scss';
 import { Menu } from '~/components/layout/component/header';
 import { HeaderTop } from '~/components/layout/component/header';
-import serviceCatelory from '../../../../api-services/service-catelory';
+import serviceCatelory from '~/services/service-catelory';
 
 const cx = classNames.bind(styles);
 

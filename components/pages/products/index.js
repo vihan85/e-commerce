@@ -7,9 +7,9 @@ import { ProductSidebar } from '~/components/pages/products/sidebar';
 import { ProductContent } from './product-content';
 import LoadingSpinner from '~/components/ui/loading-spinner';
 import Button from '~/components/ui//btn/btn';
-import serviceProductList from '../../../api-services/service-product-list';
+import serviceProductList from '~/services/service-product-list';
 import { useRouter } from 'next/router';
-import serviceRefinement from '../../../api-services/service-refinment';
+import serviceRefinement from '~/services/service-refinment';
 
 const cx = classNames.bind(styles);
 

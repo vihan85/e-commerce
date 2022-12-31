@@ -8,10 +8,10 @@ import SidebarColor from './sidebar-color';
 import SideBarNewArrival from './sidebar-new-arrival';
 import SidebarPrice from './sidebar-price';
 import SidebarSort from './sidebar-sort';
-import Button from '../../../ui/btn/btn';
+import Button from '~/components/ui/btn/btn';
 import { useRouter } from 'next/router';
-import serviceRefinement from '../../../../api-services/service-refinment';
-import serviceSort from '../../../../api-services/service-sort';
+import serviceRefinement from '~/services/service-refinment';
+import serviceSort from '~/services/service-sort';
 const cx = classNames.bind(styles);
 
 function ProductSidebar({ routerId }) {
