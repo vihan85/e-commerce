@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import CateloryPage from '~/components/pages/catelories-page/catelory-page';
 import { useRouter } from 'next/router';
-import { getFeatureCatelory } from '../helpers/api-util';
 import LoadingSpinner from '~/components/ui/loading-spinner';
 
 function ProductPage() {

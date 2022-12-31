@@ -23,10 +23,7 @@ function Menu({ data }) {
                                 return (
                                     <li
                                         key={item.c_id}
-                                        className={cx(mainHeaderItem)}
-                                        onClick={(e) => {
-                                            console.log(e);
-                                        }}>
+                                        className={cx(mainHeaderItem)}>
                                         <Link href={linkhref}>
                                             {item.c_name}
                                             <span className={cx('main-header_icon')}>

@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 import ProductVariationsPage from '~/components/pages/product-variations-page';
-import { getDataProductVariations } from '../../helpers/api-util';
+import serviceVariations from '../../api-services/service-variation';
 
 function ProductVariations() {
     const router = useRouter();
@@ -11,7 +11,7 @@ function ProductVariations() {
     useEffect(() => {
         if (router.query.provariations !== undefined) {
             const [link] = router.query.provariations.split('&');
-            getDataProductVariations(link).then((res) => setData(res));
+            serviceVariations(link).then((res) => setData(res));
         }
     }, [router.query.provariations]);
     if (router.query.provariations !== undefined) {

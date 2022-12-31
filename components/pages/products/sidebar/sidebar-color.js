@@ -10,7 +10,6 @@ function SidebarColor({ data, routerId }) {
 
     const handleRefineColor = (id) => {
         if (router.asPath.includes(id)) {
-            console.log(router.asPath);
             router.push({
                 pathname: router.query.pid.join('/'),
             });

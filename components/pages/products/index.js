@@ -5,7 +5,6 @@ import { RouterAcctive } from '~/pages/_app';
 import styles from './products.module.scss';
 import { ProductSidebar } from '~/components/pages/products/sidebar';
 import { ProductContent } from './product-content';
-import { getFeatureProductshow } from '~/helpers/api-util';
 import LoadingSpinner from '~/components/ui/loading-spinner';
 import Button from '~/components/ui//btn/btn';
 import serviceProductList from '../../../api-services/service-product-list';

@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 
 import styles from './main-header.module.scss';
 import { Menu } from '~/components/layout/component/header';
-import { getFeatureCatelory } from '~/helpers/api-util';
 import { HeaderTop } from '~/components/layout/component/header';
+import serviceCatelory from '../../../../api-services/service-catelory';
 
 const cx = classNames.bind(styles);
 
@@ -12,12 +12,9 @@ function MainHeader() {
     const [dataCatelory, setDataCatelory] = useState();
 
     useEffect(() => {
-        const fetch = async () => {
-            getFeatureCatelory().then((res) => {
-                setDataCatelory(res);
-            });
-        };
-        fetch();
+        serviceCatelory().then((res) => {
+            setDataCatelory(res);
+        });
     }, []);
 
     if (dataCatelory !== undefined) {
