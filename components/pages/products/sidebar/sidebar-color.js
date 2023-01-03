@@ -7,18 +7,23 @@ const cx = classNames.bind(styles);
 function SidebarColor({ data, routerId }) {
     const dataColors = data;
     const router = useRouter();
+    const { pid, ...params } = router.query;
 
     const handleRefineColor = (id) => {
-        if (router.asPath.includes(id)) {
-            console.log(router.asPath);
+        if (params.refine_1 && params.refine_1.includes(id)) {
+            delete params.refine_1;
             router.push({
-                pathname: router.query.pid.join('/'),
+                pathname: pid.join('/'),
+                query: {
+                    ...params,
+                },
             });
         } else {
             router.push({
-                pathname: router.query.pid.join('/'),
+                pathname: pid.join('/'),
                 query: {
-                    refine: id,
+                    ...params,
+                    refine_1: `c_refinementColor=${id}`,
                 },
             });
         }

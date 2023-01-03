@@ -1,14 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
+import Image from 'next/image';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
+import Button from '~/components/ui//btn/btn';
 
 import styles from './product-content.module.scss';
 
 const cx = classNames.bind(styles);
 
-function ProductContent({ data, routerId }) {
+function ProductContent({ data, routerId, changeCount }) {
     const getData = (productId, keyValue, key) => {
         if (data.dataPrice !== undefined && data.dataPrice) {
             const objectValue = data.dataPrice.find((price) => {
@@ -72,7 +74,9 @@ function ProductContent({ data, routerId }) {
                                     <div className={cx('product-item')}>
                                         <div className={cx('product-item_img')}>
                                             <Link href={`/product-variations/${routerId[0]}&${product.p_id}`}>
-                                                <img
+                                                <Image
+                                                    width={277}
+                                                    height={277}
                                                     src={getImg.url}
                                                     alt={getImg.alt}
                                                 />
@@ -101,6 +105,14 @@ function ProductContent({ data, routerId }) {
                                 </div>
                             );
                         })}
+                    <div className={`col l-12 ${cx('center')}`}>
+                        <Button
+                            onClick={() => {
+                                changeCount(12);
+                            }}>
+                            More Results
+                        </Button>
+                    </div>
                 </div>
             </div>
         );

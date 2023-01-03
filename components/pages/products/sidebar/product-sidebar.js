@@ -5,13 +5,13 @@ import { useEffect, useState } from 'react';
 import styles from './product-sidebar.module.scss';
 import SidebarCatelogy from './sidebar-catelogy';
 import SidebarColor from './sidebar-color';
-import { getRefinements } from '~/helpers/api-util';
 import SideBarNewArrival from './sidebar-new-arrival';
 import SidebarPrice from './sidebar-price';
 import SidebarSort from './sidebar-sort';
-import { getSort } from '../../../../helpers/api-util';
-import Button from '../../../ui/btn/btn';
+import Button from '~/components/ui/btn/btn';
 import { useRouter } from 'next/router';
+import serviceRefinement from '~/services/service-refinment';
+import serviceSort from '~/services/service-sort';
 const cx = classNames.bind(styles);
 
 function ProductSidebar({ routerId }) {
@@ -20,10 +20,8 @@ function ProductSidebar({ routerId }) {
     const router = useRouter();
 
     useEffect(() => {
-        getRefinements(routerId).then((res) => {
-            setRefinements(res);
-        });
-        getSort().then((res) => {
+        serviceRefinement(router.query).then((res) => setRefinements(res));
+        serviceSort(router).then((res) => {
             setSort(res);
         });
     }, [routerId]);

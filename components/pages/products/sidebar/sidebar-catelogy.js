@@ -13,6 +13,10 @@ function SidebarCatelogy({ data, routerId }) {
     const handleChange = (id) => {
         router.push({
             pathname: `${router.query.pid[0]}/${id}`,
+            query:{
+                refine: data.re_id
+            }
+
         });
     };
     if (data) {
