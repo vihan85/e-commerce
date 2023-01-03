@@ -1,18 +1,25 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
+import TippyHeadless from '@tippyjs/react/headless';
 import { faArrowRightToBracket, faBagShopping, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDebounce } from '~/hooks';
 import styles from './main-header.module.scss';
+import Search from '../../../search';
+import serviceSearch from '../../../../services/service-search';
 
 const cx = classNames.bind(styles);
 
 function HeaderTop() {
     const [inputValue, setInputValue] = useState('');
     const searchValues = useDebounce(inputValue, 800);
+    useEffect(() => {
+        serviceSearch(searchValues).then((res) => console.log(res));
+    }, [searchValues]);
+
     return (
         <div className={`${cx('navbar-header')} grid wide`}>
             <div className='row'>
@@ -28,15 +35,28 @@ function HeaderTop() {
                             <img src={'logo.svg'} />
                         </Link>
                     </div>
+
                     <div className={cx('navbar-header_nav-search-container')}>
                         <form className={cx('navbar-header_nav-search')}>
-                            <input
-                                value={inputValue}
-                                onChange={(e) => {
-                                    setInputValue(e.target.value);
-                                }}
-                                placeholder='Search (Keyword,etc)'
-                            />
+                            <TippyHeadless
+                                trigger={'click'}
+                                interactive={true}
+                                placement={'bottom-start'}
+                                render={(attrs) => (
+                                    <div
+                                        {...attrs}
+                                        tabIndex='-1'>
+                                        <Search />
+                                    </div>
+                                )}>
+                                <input
+                                    value={inputValue}
+                                    onChange={(e) => {
+                                        setInputValue(e.target.value);
+                                    }}
+                                    placeholder='Search (Keyword,etc)'
+                                />
+                            </TippyHeadless>
                             <button className={cx('navbar-header_nav-search-icon')}>
                                 <FontAwesomeIcon icon={faSearch} />
                             </button>

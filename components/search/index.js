@@ -1,0 +1,91 @@
+/* eslint-disable @next/next/no-img-element */
+import classNames from 'classnames/bind';
+import Link from 'next/link';
+import styles from './search.module.scss';
+const cx = classNames.bind(styles);
+function Search() {
+    return (
+        <div className={cx('container')}>
+            <div className={cx('wapper')}>
+                <div className={cx('header')}>
+                    <p>Products</p>
+                </div>
+                <div className={cx('body')}>
+                    <ul>
+                        <li className={cx('item')}>
+                            <div className={cx('avatar')}>
+                                <span>
+                                    <img
+                                        alt='Product thumbnail image for Modern Dress Shirt'
+                                        src='https://tse3.mm.bing.net/th?id=OIP.URQlN8OWLWD3U_42eisGHwHaKu&pid=Api&P=0'
+                                    />
+                                </span>
+                            </div>
+                            <div className={cx('des')}>
+                                <p>
+                                    <Link href={'/'}>Modern Dress</Link>
+                                </p>
+                            </div>
+                        </li>
+                        <li className={cx('item')}>
+                            <div className={cx('avatar')}>
+                                <span>
+                                    <img
+                                        alt='Product thumbnail image for Modern Dress Shirt'
+                                        src='https://tse3.mm.bing.net/th?id=OIP.URQlN8OWLWD3U_42eisGHwHaKu&pid=Api&P=0'
+                                    />
+                                </span>
+                            </div>
+                            <div className={cx('des')}>
+                                <p>
+                                    <Link href={'/'}>Modern Dress</Link>
+                                </p>
+                            </div>
+                        </li>{' '}
+                        <li className={cx('item')}>
+                            <div className={cx('avatar')}>
+                                <span>
+                                    <img
+                                        alt='Product thumbnail image for Modern Dress Shirt'
+                                        src='https://tse3.mm.bing.net/th?id=OIP.URQlN8OWLWD3U_42eisGHwHaKu&pid=Api&P=0'
+                                    />
+                                </span>
+                            </div>
+                            <div className={cx('des')}>
+                                <p>
+                                    <Link href={'/'}>Modern Dress</Link>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div className={cx('separate')}></div>
+            <div className={cx('wapper')}>
+                <div className={cx('header')}>
+                    <p>Catelories</p>
+                </div>
+                <div className={cx('body')}>
+                    <ul>
+                        <li className={cx('item')}>
+                            <div className={cx('avatar')}>
+                                <span>
+                                    <img
+                                        alt='Product thumbnail image for Modern Dress Shirt'
+                                        src='https://tse3.mm.bing.net/th?id=OIP.URQlN8OWLWD3U_42eisGHwHaKu&pid=Api&P=0'
+                                    />
+                                </span>
+                            </div>
+                            <div className={cx('des')}>
+                                <p>
+                                    <Link href={'/'}>Modern Dress Shirt</Link>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    );
+}
+export default Search;
