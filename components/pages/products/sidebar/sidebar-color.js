@@ -11,9 +11,7 @@ function SidebarColor({ data, routerId }) {
 
     const handleRefineColor = (id) => {
         if (params.refine_1 && params.refine_1.includes(id)) {
-            console.log(id);
             delete params.refine_1;
-            console.log(params);
             router.push({
                 pathname: pid.join('/'),
                 query: {

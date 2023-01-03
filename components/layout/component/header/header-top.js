@@ -20,10 +20,6 @@ function HeaderTop() {
     const [dataSearch, setDataSearch] = useState({});
     const [showSearchResult, setShowSearchResult] = useState(false);
     const productsCart =localStorage.products_cart? JSON.parse(localStorage.products_cart):[]
-
-
-    const iconClose = <FontAwesomeIcon icon={faClose} />;
-
     useEffect(() => {
         serviceSearch(searchValues).then((res) => setDataSearch(res));
     }, [searchValues]);
@@ -81,6 +77,7 @@ function HeaderTop() {
                                 visible={true}
                                 interactive={true}
                                 placement={'bottom-start'}
+                                offset={[400,10]}
                                 render={(attrs) => (
                                     <div
                                         {...attrs}

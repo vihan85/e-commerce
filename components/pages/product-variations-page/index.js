@@ -8,24 +8,25 @@ import styles from './product-variations-page.module.scss';
 const cx = classNames.bind(styles);
 
 function ProductVariationsPage({ data }) {
-    const colorRef = useRef();
-    const handleSubmit = () => {
-        if (localStorage.products_cart) {
-            const productsCartList = JSON.parse(localStorage.products_cart);
-            productsCartList.push(data);
-            localStorage.products_cart = JSON.stringify(productsCartList);
-        } else {
-            localStorage.products_cart = JSON.stringify([]);
-            const productsCartList = JSON.parse(localStorage.products_cart);
-            productsCartList.push(data);
-            localStorage.products_cart = JSON.stringify(productsCartList);
-        }
-    };
+    const sizerRef = useRef();
+
     if (data) {
         const { data_product, data_price, data_images, data_variants } = data;
         const { dt_image_groups } = data_images;
         const [large, medium, small] = dt_image_groups;
         const { images } = large;
+        const handleSubmit = () => {
+            if (localStorage.products_cart) {
+                const productsCartList = JSON.parse(localStorage.products_cart);
+                productsCartList.push(data);
+                localStorage.products_cart = JSON.stringify(productsCartList);
+            } else {
+                localStorage.products_cart = JSON.stringify([]);
+                const productsCartList = JSON.parse(localStorage.products_cart);
+                productsCartList.push(data);
+                localStorage.products_cart = JSON.stringify(productsCartList);
+            }
+        };
         return (
             <div className={cx('grid wide')}>
                 <div className={cx('row')}>
@@ -92,7 +93,7 @@ function ProductVariationsPage({ data }) {
                                                         return sizes.values.map((size) => {
                                                             return (
                                                                 <option
-                                                                    ref={colorRef}
+                                                                    ref={sizerRef}
                                                                     key={size.value}
                                                                     value={size.value}>
                                                                     {size.name}

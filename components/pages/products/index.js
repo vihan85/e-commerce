@@ -14,7 +14,6 @@ const cx = classNames.bind(styles);
 
 function ProductListPage() {
     const [count, setCount] = useState('12');
-    console.log(count);
     const changeCount = (count) => {
         setCount((prev) => +prev + count);
     };
