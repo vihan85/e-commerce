@@ -1,18 +1,17 @@
-const handleDataProductVariations = (dataBases) => {
+const handleDataProductVariations = (dataBases, keyCustom) => {
     const totalData = {};
     dataBases.forEach((dataBase) => {
         const data = {};
         for (let key in dataBase.data) {
-            data[`dt_${key}`] = dataBase.data[key];
+            data[`${keyCustom}_${key}`] = dataBase.data[key];
         }
-        if (data.dt_price) {
+        if (data[`${keyCustom}_price`]) {
             totalData.data_price = data;
-        } else if (data.dt_image_groups) {
+        } else if (data[`${keyCustom}_image_groups`]) {
             totalData.data_images = data;
-        }else if(data.dt_variants){
+        } else if (data[`${keyCustom}_variants`]) {
             totalData.data_variants = data;
-        }
-         else {
+        } else {
             totalData.data_product = data;
         }
     });

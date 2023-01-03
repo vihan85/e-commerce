@@ -16,8 +16,10 @@ const cx = classNames.bind(styles);
 function HeaderTop() {
     const [inputValue, setInputValue] = useState('');
     const searchValues = useDebounce(inputValue, 800);
+    const [dataSearch, setDataSearch] = useState({});
+    const [showSearchResult, setShowSearchResult] = useState(false);
     useEffect(() => {
-        serviceSearch(searchValues).then((res) => console.log(res));
+        serviceSearch(searchValues).then((res) => setDataSearch(res));
     }, [searchValues]);
 
     return (
@@ -39,18 +41,24 @@ function HeaderTop() {
                     <div className={cx('navbar-header_nav-search-container')}>
                         <form className={cx('navbar-header_nav-search')}>
                             <TippyHeadless
-                                trigger={'click'}
+                                visible={Object.keys(dataSearch).length > 0 && showSearchResult}
+                                onClickOutside={() => {
+                                    setShowSearchResult(false);
+                                }}
                                 interactive={true}
                                 placement={'bottom-start'}
                                 render={(attrs) => (
                                     <div
                                         {...attrs}
                                         tabIndex='-1'>
-                                        <Search />
+                                        <Search dataSearch={Object.keys(dataSearch).length > 0 && dataSearch} />
                                     </div>
                                 )}>
                                 <input
                                     value={inputValue}
+                                    onFocus={() => {
+                                        setShowSearchResult(true);
+                                    }}
                                     onChange={(e) => {
                                         setInputValue(e.target.value);
                                     }}
