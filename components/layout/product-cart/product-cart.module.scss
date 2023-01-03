@@ -20,6 +20,15 @@
 
 .body {
     padding-top: 8px;
+    li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+.item_icon-close{
+    padding: 16px;
+    font-size:  1.5rem;
 }
 
 .item {
@@ -27,7 +36,7 @@
     padding: 8px 0;
 }
 .avatar {
-    width: 40px ;
+    width: 40px;
     span {
         overflow: hidden;
         display: block;
@@ -63,7 +72,7 @@
     width: 100%;
     height: 0.8px;
     background-color: var(--border-color);
-    margin-top: 16px;
+    margin: 16px;
 }
 
 .Catelories {

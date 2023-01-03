@@ -2,10 +2,25 @@
 /* eslint-disable jsx-a11y/alt-text */
 import classNames from 'classnames/bind';
 import Link from 'next/link';
+import { useRef } from 'react';
 
 import styles from './product-variations-page.module.scss';
 const cx = classNames.bind(styles);
+
 function ProductVariationsPage({ data }) {
+    const colorRef = useRef();
+    const handleSubmit = () => {
+        if (localStorage.products_cart) {
+            const productsCartList = JSON.parse(localStorage.products_cart);
+            productsCartList.push(data);
+            localStorage.products_cart = JSON.stringify(productsCartList);
+        } else {
+            localStorage.products_cart = JSON.stringify([]);
+            const productsCartList = JSON.parse(localStorage.products_cart);
+            productsCartList.push(data);
+            localStorage.products_cart = JSON.stringify(productsCartList);
+        }
+    };
     if (data) {
         const { data_product, data_price, data_images, data_variants } = data;
         const { dt_image_groups } = data_images;
@@ -70,12 +85,14 @@ function ProductVariationsPage({ data }) {
                                         <p>Select size</p>
                                         <select>
                                             <option>Select Size</option>
-                                            {data_variants&&data_variants.dt_variation_attributes !== undefined &&
+                                            {data_variants &&
+                                                data_variants.dt_variation_attributes !== undefined &&
                                                 data_variants.dt_variation_attributes.map((sizes) => {
                                                     if (sizes.id === 'size') {
                                                         return sizes.values.map((size) => {
                                                             return (
                                                                 <option
+                                                                    ref={colorRef}
                                                                     key={size.value}
                                                                     value={size.value}>
                                                                     {size.name}
@@ -97,6 +114,7 @@ function ProductVariationsPage({ data }) {
                                 </div>
                             </div>
                         </div>
+                        <button onClick={handleSubmit}> Add to cart</button>
                     </div>
                 </div>
             </div>
