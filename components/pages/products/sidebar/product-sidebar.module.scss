@@ -1,0 +1,118 @@
+// sidebar
+.custom-select {
+    select {
+        padding: 6px 28px 6px 12px;
+        border: 1px solid #ced4da;
+        border-radius: 0.1875rem;
+        font-size: 1.6rem;
+        width: 100%;
+        option {
+        }
+    }
+}
+.card {
+    border: 1px solid #ced4da;
+    margin: 8px 0;
+}
+.card-item {
+    padding: 6px 28px 6px 12px;
+    color: #00a1e0;
+    list-style-type: none;
+    font-size: 1.3rem;
+
+    input {
+        margin-right: 4px;
+    }
+    ul {
+        padding: 0 8px;
+    }
+    li {
+        margin: 4px;
+    }
+    label {
+        cursor: pointer;
+    }
+}
+.card-header {
+    padding: 6px 28px 6px 12px;
+    border-bottom: 1px solid #ced4da;
+    font-size: 1.6rem;
+    p {
+        margin: 0;
+    }
+}
+// button-reset
+.button-reset {
+    color: var(--primari-color);
+    border-color: currentColor;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button {
+        width: 100%;
+    }
+}
+
+//sidebar color
+.color {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 16px;
+}
+.btn-circle-color {
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    .circle {
+        border-radius: 50%;
+        padding: 6px;
+        width: 4rem;
+        height: 4rem;
+        display: inline-block;
+    }
+}
+.circle-Beige {
+    background-color: beige;
+}
+.circle-Black {
+    background-color: black;
+}
+.circle-Blue {
+    background-color: blue;
+}
+.circle-Navy {
+    background-color: navy;
+}
+.circle-Brown {
+    background-color: brown;
+}
+.circle-Green {
+    background-color: green;
+}
+.circle-Grey {
+    background-color: grey;
+}
+.circle-Pink {
+    background-color: pink;
+}
+.circle-Purple {
+    background-color: purple;
+}
+.circle-Orange {
+    background-color: orange;
+}
+.circle-White {
+    background-color: white;
+}
+
+.circle-Red {
+    background-color: red;
+}
+.circle-Yellow {
+    background-color: yellow;
+}
+.circle-Miscellaneous {
+    background-color: miscellaneous;
+}

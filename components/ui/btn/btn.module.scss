@@ -1,0 +1,17 @@
+.btn {
+    background-color: transparent;
+    border: 1px solid var(--primari-color);
+    font-size: 1.6rem;
+    padding: 8px;
+    color: var(--primari-color);
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.08s ease-in;
+    width: 250px;
+    height: 38px;
+
+    &:hover {
+        background-color: var(--primari-color);
+        color: white;
+    }
+}
