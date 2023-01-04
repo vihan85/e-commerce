@@ -6,7 +6,6 @@ import { useState } from 'react';
 import styles from './product-cart.module.scss';
 const cx = classNames.bind(styles);
 function ProductCart({ productsCart }) {
-    console.log(productsCart);
     const handleDelete = (index) => {
         const proList = JSON.parse(localStorage.cart_list);
         proList.splice(index, 1);
@@ -31,7 +30,7 @@ function ProductCart({ productsCart }) {
                     <ul>
                         {productsCart.map((item, index) => {
                             return (
-                                <li key={item.id}>
+                                <li key={item.id_product}>
                                     <div className={cx('info')}>
                                         <div className={cx('item')}>
                                             <div className={cx('avatar')}>

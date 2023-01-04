@@ -18,6 +18,7 @@ function ProductVariationsPage({ data }) {
     const priceProduceRef = useRef()
 
     if (data) {
+        console.log
         const { data_product, data_price, data_images, data_variants } = data;
         const { dt_image_groups } = data_images;
         const [large, medium, small] = dt_image_groups;
@@ -25,6 +26,7 @@ function ProductVariationsPage({ data }) {
         const handleSubmit = () => {
             const productSelected = {
                 name: nameProductRef.current.textContent,
+                id_product: new Date().toISOString(),
                 id: idproductRef.current.textContent,
                 size: sizerRef.current.value,
                 quanlity: quanlity.current.value,
