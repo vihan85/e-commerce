@@ -1,7 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
-import Image from 'next/image';
-
 import classNames from 'classnames/bind';
 import Link from 'next/link';
 import styles from './home-page.module.scss';
@@ -10,9 +8,7 @@ function HomePage() {
     return (
         <div className={cx('container')}>
             <div className={cx('banner')}>
-                <Image
-                    width={400}
-                    height={400}
+                <img
                     src={
                         'https://zygo-001.dx.commercecloud.salesforce.com/on/demandware.static/-/Library-Sites-RefArchSharedLibrary/default/dwe5d89797/images/homepage/homepage-4/large.jpg'
                     }
@@ -26,9 +22,7 @@ function HomePage() {
                                 <Link
                                     className={cx('item')}
                                     href={'/womens/womens-clothing/womens-clothing-dresses'}>
-                                    <Image
-                                        width={373}
-                                        height={336}
+                                    <img
                                         src={
                                             'https://zygo-001.dx.commercecloud.salesforce.com/on/demandware.static/-/Library-Sites-RefArchSharedLibrary/default/dw62149d09/images/homepage/homepage-5/large.jpg'
                                         }
@@ -41,9 +35,7 @@ function HomePage() {
                                 <Link
                                     className={cx('item')}
                                     href={'/womens/womens-jewelry'}>
-                                    <Image
-                                        width={373}
-                                        height={336}
+                                    <img
                                         src={
                                             'https://zygo-001.dx.commercecloud.salesforce.com/on/demandware.static/-/Library-Sites-RefArchSharedLibrary/default/dw38e03393/images/homepage/homepage-6/large.jpg'
                                         }
@@ -55,9 +47,7 @@ function HomePage() {
                                 <Link
                                     href={'/womens/womens-accessories/womens-accessories-shoes'}
                                     className={cx('item')}>
-                                    <Image
-                                        width={373}
-                                        height={336}
+                                    <img
                                         src={
                                             'https://zygo-001.dx.commercecloud.salesforce.com/on/demandware.static/-/Library-Sites-RefArchSharedLibrary/default/dw03797d20/images/homepage/homepage-1/large.jpg'
                                         }
@@ -71,9 +61,7 @@ function HomePage() {
                         <Link
                             className={cx('item')}
                             href={'/mens/mens-clothing'}>
-                            <Image
-                                width={383}
-                                height={673}
+                            <img
                                 src={
                                     'https://zygo-001.dx.commercecloud.salesforce.com/on/demandware.static/-/Library-Sites-RefArchSharedLibrary/default/dwa83755d9/images/homepage/homepage-3/large.jpg'
                                 }

@@ -16,10 +16,10 @@ const cx = classNames.bind(styles);
 
 function HeaderTop() {
     const [inputValue, setInputValue] = useState('');
-    const searchValues = useDebounce(inputValue, 800);
     const [dataSearch, setDataSearch] = useState({});
+    const searchValues = useDebounce(inputValue, 800);
     const [showSearchResult, setShowSearchResult] = useState(false);
-    const productsCart =localStorage.products_cart? JSON.parse(localStorage.products_cart):[]
+    const productsCart =localStorage.cart_list? JSON.parse(localStorage.cart_list):[]
     useEffect(() => {
         serviceSearch(searchValues).then((res) => setDataSearch(res));
     }, [searchValues]);
@@ -74,7 +74,7 @@ function HeaderTop() {
 
                         <div className={cx('navbar-header_nav-card')}>
                             <TippyHeadless
-                                visible={true}
+                                
                                 interactive={true}
                                 placement={'bottom-start'}
                                 offset={[400,10]}
