@@ -82,7 +82,7 @@ function HeaderTop() {
                                     <div
                                         {...attrs}
                                         tabIndex='-1'>
-                                        <ProductCart productsCart={productsCart} />
+                                        {/* <ProductCart productsCart={productsCart} /> */}
                                     </div>
                                 )}>
                                 <span className={cx('navbar-header_nav-card-icon')}>

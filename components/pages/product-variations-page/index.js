@@ -3,6 +3,7 @@
 import classNames from 'classnames/bind';
 import Link from 'next/link';
 import { useRef } from 'react';
+import Button from '~/components/ui/btn/btn'
 
 import styles from './product-variations-page.module.scss';
 const cx = classNames.bind(styles);
@@ -19,7 +20,15 @@ function ProductVariationsPage({ data }) {
             if (localStorage.products_cart) {
                 const productsCartList = JSON.parse(localStorage.products_cart);
                 productsCartList.push(data);
-                localStorage.products_cart = JSON.stringify(productsCartList);
+
+                const string = productsCartList.map((element) => {
+                    let result = '';
+
+                    result += JSON.stringify(element);
+
+                    return result;
+                });
+                localStorage.products_cart = JSON.stringify(string);
             } else {
                 localStorage.products_cart = JSON.stringify([]);
                 const productsCartList = JSON.parse(localStorage.products_cart);
@@ -115,7 +124,9 @@ function ProductVariationsPage({ data }) {
                                 </div>
                             </div>
                         </div>
-                        <button onClick={handleSubmit}> Add to cart</button>
+                        <div className={`${cx('cart-btn')}`}>
+                            <Button onClick={handleSubmit}> Add to cart</Button>
+                        </div>
                     </div>
                 </div>
             </div>
