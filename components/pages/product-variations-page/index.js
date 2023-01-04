@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import classNames from 'classnames/bind';
 import Link from 'next/link';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Button from '~/components/ui/btn/btn';
 
 import styles from './product-variations-page.module.scss';
@@ -13,23 +13,30 @@ function ProductVariationsPage({ data }) {
     const nameProductRef = useRef();
     const idproductRef = useRef();
     const quanlity = useRef();
-    const imageProductRef= useRef()
+    const imageProductRef = useRef();
 
     if (data) {
         const { data_product, data_price, data_images, data_variants } = data;
         const { dt_image_groups } = data_images;
         const [large, medium, small] = dt_image_groups;
         const { images } = large;
-
         const handleSubmit = () => {
             const productSelected = {
                 name: nameProductRef.current.textContent,
                 id: idproductRef.current.textContent,
                 size: sizerRef.current.value,
                 quanlity: quanlity.current.value,
-                image: imageProductRef.current.getAttribute('src')
+                image: imageProductRef.current.getAttribute('src'),
             };
-            console.log(productSelected);
+            if (localStorage.cart_list) {
+                const cartList = JSON.parse(localStorage.cart_list);
+                cartList.push(productSelected);
+                localStorage.cart_list = JSON.stringify(cartList);
+            } else {
+                const cartList = [];
+                cartList.push(productSelected);
+                localStorage.cart_list = JSON.stringify(cartList);
+            }
         };
         return (
             <div className={cx('grid wide')}>
@@ -38,7 +45,7 @@ function ProductVariationsPage({ data }) {
                         <div className={cx('product-img')}>
                             {images.map((image) => (
                                 <img
-                                ref={imageProductRef}
+                                    ref={imageProductRef}
                                     key={image.link}
                                     alt={image.alt}
                                     src={image.link}

@@ -19,7 +19,7 @@ function HeaderTop() {
     const searchValues = useDebounce(inputValue, 800);
     const [dataSearch, setDataSearch] = useState({});
     const [showSearchResult, setShowSearchResult] = useState(false);
-    const productsCart =localStorage.products_cart? JSON.parse(localStorage.products_cart):[]
+    const productsCart =localStorage.cart_list? JSON.parse(localStorage.cart_list):[]
     useEffect(() => {
         serviceSearch(searchValues).then((res) => setDataSearch(res));
     }, [searchValues]);
@@ -82,7 +82,7 @@ function HeaderTop() {
                                     <div
                                         {...attrs}
                                         tabIndex='-1'>
-                                        {/* <ProductCart productsCart={productsCart} /> */}
+                                        <ProductCart productsCart={productsCart} />
                                     </div>
                                 )}>
                                 <span className={cx('navbar-header_nav-card-icon')}>
