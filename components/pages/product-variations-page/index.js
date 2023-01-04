@@ -9,11 +9,13 @@ import styles from './product-variations-page.module.scss';
 const cx = classNames.bind(styles);
 
 function ProductVariationsPage({ data }) {
+
     const sizerRef = useRef();
     const nameProductRef = useRef();
     const idproductRef = useRef();
     const quanlity = useRef();
     const imageProductRef = useRef();
+    const priceProduceRef = useRef()
 
     if (data) {
         const { data_product, data_price, data_images, data_variants } = data;
@@ -26,6 +28,7 @@ function ProductVariationsPage({ data }) {
                 id: idproductRef.current.textContent,
                 size: sizerRef.current.value,
                 quanlity: quanlity.current.value,
+                price: priceProduceRef.current.getAttribute('value'),
                 image: imageProductRef.current.getAttribute('src'),
             };
             if (localStorage.cart_list) {
@@ -129,6 +132,7 @@ function ProductVariationsPage({ data }) {
                                     </div>
                                 </div>
                             </div>
+                            <span value={data_price.dt_price} ref={priceProduceRef} className={`${cx('price')}`}>Price: {data_price.dt_price} $</span>
                         </div>
                         <div className={`${cx('cart-btn')}`}>
                             <Button onClick={handleSubmit}> Add to cart</Button>
