@@ -9,16 +9,15 @@ import styles from './product-variations-page.module.scss';
 const cx = classNames.bind(styles);
 
 function ProductVariationsPage({ data }) {
-
     const sizerRef = useRef();
     const nameProductRef = useRef();
     const idproductRef = useRef();
     const quanlity = useRef();
     const imageProductRef = useRef();
-    const priceProduceRef = useRef()
+    const priceProduceRef = useRef();
 
     if (data) {
-        console.log
+        console.log;
         const { data_product, data_price, data_images, data_variants } = data;
         const { dt_image_groups } = data_images;
         const [large, medium, small] = dt_image_groups;
@@ -42,6 +41,16 @@ function ProductVariationsPage({ data }) {
                 cartList.push(productSelected);
                 localStorage.cart_list = JSON.stringify(cartList);
             }
+            // send info to API
+            fetch('/api/cartlist', {
+                method: 'POST',
+                body: JSON.stringify(productSelected),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then((res) => res.json())
+                .then((data) => console.log(data));
         };
         return (
             <div className={cx('grid wide')}>
@@ -134,7 +143,12 @@ function ProductVariationsPage({ data }) {
                                     </div>
                                 </div>
                             </div>
-                            <span value={data_price.dt_price} ref={priceProduceRef} className={`${cx('price')}`}>Price: {data_price.dt_price} $</span>
+                            <span
+                                value={data_price.dt_price}
+                                ref={priceProduceRef}
+                                className={`${cx('price')}`}>
+                                Price: {data_price.dt_price} $
+                            </span>
                         </div>
                         <div className={`${cx('cart-btn')}`}>
                             <Button onClick={handleSubmit}> Add to cart</Button>

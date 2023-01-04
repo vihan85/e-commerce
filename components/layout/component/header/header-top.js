@@ -74,7 +74,7 @@ function HeaderTop() {
 
                         <div className={cx('navbar-header_nav-card')}>
                             <TippyHeadless
-                                
+
                                 interactive={true}
                                 placement={'bottom-start'}
                                 offset={[400,10]}

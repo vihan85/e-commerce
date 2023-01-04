@@ -20,7 +20,6 @@ const serviceProductList = async (router, count) => {
             //handle data
             if (res) {
                 const [resProduct, resPrice, resImg] = res;
-                console.log(res)
                 if (resProduct.status === 200) {
                     const dataProduct = {
                         dataProduct: [],
