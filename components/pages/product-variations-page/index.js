@@ -42,15 +42,15 @@ function ProductVariationsPage({ data }) {
                 localStorage.cart_list = JSON.stringify(cartList);
             }
             // send info to API
-            fetch('/api/cartlist', {
-                method: 'POST',
-                body: JSON.stringify(productSelected),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-                .then((res) => res.json())
-                .then((data) => console.log(data));
+            // fetch('/api/cartlist', {
+            //     method: 'POST',
+            //     body: JSON.stringify(productSelected),
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            // })
+            //     .then((res) => res.json())
+            //     .then((data) => console.log(data));
         };
         return (
             <div className={cx('grid wide')}>

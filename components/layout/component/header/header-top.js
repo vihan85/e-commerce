@@ -21,7 +21,10 @@ function HeaderTop() {
     const [showSearchResult, setShowSearchResult] = useState(false);
     const productsCart =localStorage.cart_list? JSON.parse(localStorage.cart_list):[]
     useEffect(() => {
-        serviceSearch(searchValues).then((res) => setDataSearch(res));
+        if(searchValues !== ' ') {
+            serviceSearch(searchValues).then((res) => setDataSearch(res));
+        }
+        return
     }, [searchValues]);
 
     return (

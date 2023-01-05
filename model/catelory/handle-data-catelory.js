@@ -12,14 +12,14 @@ function handleDataCatelory(dataBase) {
                     c_id: element.id,
                     c_name: element.name,
                     c_catelories: handleDataCatelory(element, 'categories'),
-                    c_headerbanner: element.c_slotBannerImage,
+                    c_headerbanner: element.c_slotBannerImage?element.c_slotBannerImage:null,
                     c_parent_tree: element.parent_category_tree,
                 });
             } else {
                 dataCategories.push({
                     c_id: element.id,
                     c_name: element.name,
-                    c_headerbanner: element.c_slotBannerImage,
+                    c_headerbanner: element.c_slotBannerImage?element.c_slotBannerImage:null,
                     c_parent_tree: element.parent_category_tree,
                 });
             }

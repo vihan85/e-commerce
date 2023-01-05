@@ -36,7 +36,6 @@ function Menu({ data }) {
                             } else {
                                 return (
                                     <li
-                                        onClick={() => {}}
                                         className={cx(mainHeaderItem)}
                                         key={item.c_id}>
                                         <Link href={linkhref}>{item.c_name}</Link>
