@@ -1,8 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
-import { useState } from 'react';
 import styles from './product-cart.module.scss';
 const cx = classNames.bind(styles);
 function ProductCart({ productsCart }) {
