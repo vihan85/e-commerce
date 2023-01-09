@@ -8,9 +8,7 @@
     flex-direction: column;
     font-size: 1.6rem;
     margin-bottom: 16px;
-    label {
-        padding: 8px 0;
-    }
+
     input {
         overflow: visible;
         padding: 8px;
@@ -36,6 +34,20 @@
     span {
         color: red;
         font-size: 1.3rem;
+    }
+}
+.required {
+    label {
+        padding: 8px 0;
+        cursor: pointer;
+        &::before {
+            z-index: 5;
+            display: inline-block;
+            content: '*';
+            color: #ff370f;
+            font-size: 1.6rem;
+            margin-right: 8px;
+        }
     }
 }
 .btn-login {
