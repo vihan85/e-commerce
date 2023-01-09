@@ -4,8 +4,9 @@
     display: flex; // để sử dụgn margin:auto căn giữa
     inset: 0px; // vị trí góc tọa độ 0-0
 }
-.modal-wrapper{
+.modal-wrapper {
     min-width: 500px;
+    max-width: 500px;
     min-height: 500px;
     background-color: white;
     position: relative;
@@ -15,16 +16,20 @@
         justify-content: space-around;
         font-size: 1.6rem;
         color: var(--primari-color);
-        cursor:pointer;
-        p{
-        flex: 0.5;
-        text-align: center;
-        border-bottom: 1px solid currentColor;
-        margin: 0;
-        padding: 8px 16px
+        cursor: pointer;
+        p {
+            flex: 0.5;
+            text-align: center;
+
+            margin: 0;
+            padding: 8px 16px;
+        }
+        .borderModalTitle {
+            border-bottom: 2px solid currentColor;
+            transition: border-bottom 0.5 linear;
         }
     }
 }
-.modal-content{
-    padding: 16px
+.modal-content {
+    padding: 16px;
 }

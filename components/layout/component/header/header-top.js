@@ -13,14 +13,16 @@ import serviceSearch from '../../../../services/service-search';
 import ProductCart from '../../product-cart';
 import Login from '../login/login';
 import Modal from '../login/modal';
+import CreateAccount from '../login/create-acount';
 
 const cx = classNames.bind(styles);
 
 function HeaderTop() {
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState();
     const [dataSearch, setDataSearch] = useState({});
     const searchValues = useDebounce(inputValue, 800);
     const [showSearchResult, setShowSearchResult] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const productsCart = localStorage.cart_list ? JSON.parse(localStorage.cart_list) : [];
     useEffect(() => {
         if (searchValues !== ' ') {
@@ -34,7 +36,10 @@ function HeaderTop() {
             <div className={`${cx('navbar-header')} grid wide`}>
                 <div className='row'>
                     <div className={`${cx('navbar-header_login')} col l-4`}>
-                        <button>
+                        <button
+                            onClick={() => {
+                                setShowModal(!showModal);
+                            }}>
                             <FontAwesomeIcon icon={faArrowRightToBracket} />
                             <Link href={'/'}>Login</Link>
                         </button>
@@ -68,7 +73,11 @@ function HeaderTop() {
                                             setShowSearchResult(true);
                                         }}
                                         onChange={(e) => {
-                                            setInputValue(e.target.value);
+                                            if (e.target.value.startsWith(' ')) {
+                                                setInputValue(inputValue.trim());
+                                            } else {
+                                                setInputValue(e.target.value);
+                                            }
                                         }}
                                         placeholder='Search (Keyword,etc)'
                                     />
@@ -100,9 +109,12 @@ function HeaderTop() {
                     </div>
                 </div>
             </div>
-            <Modal>
-                <Login/>
-            </Modal>
+            {showModal && (
+                <Modal>
+                    <Login />
+                    <CreateAccount/>
+                </Modal>
+            )}
         </>
     );
 }

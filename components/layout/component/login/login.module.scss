@@ -27,7 +27,17 @@
             box-shadow: 0 0 0 0.2rem rgb(0 161 224 / 25%);
         }
     }
+    input.invalid {
+        border: 1px solid #ff370f;
+        &:focus {
+            border-color: #61d2ff;
+        }
+    }
+    span {
+        color: red;
+        font-size: 1.3rem;
+    }
 }
-.btn-login{
+.btn-login {
     width: 100%;
 }
