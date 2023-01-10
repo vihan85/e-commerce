@@ -3,53 +3,7 @@
 .form-1 {
     margin-top: 16px;
 }
-.form-group {
-    display: flex;
-    flex-direction: column;
-    font-size: 1.6rem;
-    margin-bottom: 16px;
 
-    input {
-        overflow: visible;
-        padding: 8px;
-        border-radius: 2px;
-        border: 1px solid #ccc;
-        color: #ccc;
-        width: 100%;
-        &:focus {
-            color: #495057;
-            background-color: #fff;
-            border-color: #61d2ff;
-            outline: 0;
-            -webkit-box-shadow: 0 0 0 0.2rem rgb(0 161 224 / 25%);
-            box-shadow: 0 0 0 0.2rem rgb(0 161 224 / 25%);
-        }
-    }
-    input.invalid {
-        border: 1px solid #ff370f;
-        &:focus {
-            border-color: #61d2ff;
-        }
-    }
-    span {
-        color: red;
-        font-size: 1.3rem;
-    }
-}
-.required {
-    label {
-        padding: 8px 0;
-        cursor: pointer;
-        &::before {
-            z-index: 5;
-            display: inline-block;
-            content: '*';
-            color: #ff370f;
-            font-size: 1.6rem;
-            margin-right: 8px;
-        }
-    }
-}
 .btn-login {
     width: 100%;
 }

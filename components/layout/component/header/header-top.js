@@ -13,7 +13,8 @@ import serviceSearch from '../../../../services/service-search';
 import ProductCart from '../../product-cart';
 import Login from '../login/login';
 import Modal from '../login/modal';
-import CreateAccount from '../login/create-acount';
+import CreateAccount from '../create-account';
+
 
 const cx = classNames.bind(styles);
 

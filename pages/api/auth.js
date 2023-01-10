@@ -1,3 +1,5 @@
+import checkIsRequired from "../../helpers/validate-isrequires-helper";
+
 function handler(req, res) {
     if (req.method === 'POST') {
         const valueValadate = {
@@ -36,11 +38,7 @@ function handler(req, res) {
             auth.account.confirmPass = valueValadate.confirmPass;
         }
         // isRequired
-        for (let key in valueValadate) {
-            if (valueValadate[key] === '') {
-                auth.error[key] = 'Please fill out this field.';
-            }
-        }
+        checkIsRequired(valueValadate,auth)
         //respon status
         if (Object.keys(auth.error).length > 0 || Object.values(auth.account).indexOf(undefined) > -1) {
             auth.status = 'error';

@@ -1,11 +1,12 @@
-import classNames from 'classnames/bind';
-import styles from './login.module.scss';
 import Button from '../../../ui/btn/btn';
-import { useRef, useState } from 'react';
 import Input from '../input';
+import classNames from 'classnames/bind';
+import { useRef, useState } from 'react';
+
+import styles from '../login/login.module.scss';
 const cx = classNames.bind(styles);
-function Login() {
-    //input value
+
+function CreateAccount() {
     const [inputEmailValue, setInputEmailValue] = useState('');
     const [inputPassValue, setInputPassValue] = useState('');
     const [inputconfirmPassValue, setInputconfirmPassValue] = useState('');
@@ -13,6 +14,24 @@ function Login() {
     const passWordlValueRef = useRef();
     const confirmPassWordlValueRef = useRef();
     const inputs = [
+      
+        {
+            id: 'login-form-email',
+            label: 'Email',
+            attr_id: 'email',
+            classes: cx({ invalid: auth && auth.status === 'error' && auth.error.email && true }),
+            ref: emailValueRef,
+            placeholder: "Your's Email",
+            value: inputEmailValue,
+            required: true,
+            errorMessage: auth && auth.status === 'error' && auth.error.email,
+            onChange: (e) => {
+                setInputEmailValue(e.target.value);
+            },
+            onBlur: (e) => {
+                handleBlur(e.target.getAttribute('id'), emailValueRef);
+            },
+        },
         {
             id: 'login-form-email',
             label: 'Email',
@@ -103,7 +122,6 @@ function Login() {
             api(validateValues);
         }
     };
-
     return (
         <div className={cx('login')}>
             <div className={cx('login_wrapper')}>
@@ -124,4 +142,4 @@ function Login() {
         </div>
     );
 }
-export default Login;
+export default CreateAccount;
