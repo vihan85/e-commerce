@@ -1,6 +1,17 @@
-import HomePage from "~/components/pages/home-page";
-
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import HomePage from '~/components/pages/home-page';
+import LoadingSpinner from '../components/ui/loading-spinner';
 
 export default function Home() {
-    return <HomePage/>
+    const [showSpinner, setShowSpinner] = useState(true);
+    useEffect(() => {
+        const showSpinner = setTimeout(() => {
+            setShowSpinner(false);
+        }, 2000);
+        return () => {
+            clearTimeout(showSpinner);
+        };
+    }, [showSpinner]);
+    return <>{showSpinner? <LoadingSpinner/>: <HomePage/>}</>;
 }

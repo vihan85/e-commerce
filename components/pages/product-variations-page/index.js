@@ -17,7 +17,6 @@ function ProductVariationsPage({ data }) {
     const priceProduceRef = useRef();
 
     if (data) {
-        console.log;
         const { data_product, data_price, data_images, data_variants } = data;
         const { dt_image_groups } = data_images;
         const [large, medium, small] = dt_image_groups;
@@ -41,16 +40,6 @@ function ProductVariationsPage({ data }) {
                 cartList.push(productSelected);
                 localStorage.cart_list = JSON.stringify(cartList);
             }
-            // send info to API
-            // fetch('/api/cartlist', {
-            //     method: 'POST',
-            //     body: JSON.stringify(productSelected),
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            // })
-            //     .then((res) => res.json())
-            //     .then((data) => console.log(data));
         };
         return (
             <div className={cx('grid wide')}>

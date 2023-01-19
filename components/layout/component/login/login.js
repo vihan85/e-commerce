@@ -8,7 +8,6 @@ function Login() {
     //input value
     const [inputEmailValue, setInputEmailValue] = useState('');
     const [inputPassValue, setInputPassValue] = useState('');
-    const [inputconfirmPassValue, setInputconfirmPassValue] = useState('');
     const emailValueRef = useRef();
     const passWordlValueRef = useRef();
     const confirmPassWordlValueRef = useRef();
@@ -45,21 +44,7 @@ function Login() {
                 handleBlur(e.target.getAttribute('id'), passWordlValueRef);
             },
         },
-        {
-            id: 'login-form-confirmPassWord',
-            label: 'Confirm your password',
-            attr_id: 'confirmPass',
-            ref: confirmPassWordlValueRef,
-            placeholder: 'Confirm your password',
-            value: inputconfirmPassValue,
-            required: true,
-            onChange: (e) => {
-                setInputconfirmPassValue(e.target.value);
-            },
-            onBlur: (e) => {
-                handleBlur(e.target.getAttribute('id'), confirmPassWordlValueRef);
-            },
-        },
+
     ];
     //validate
     const [auth, setAuth] = useState();
@@ -81,7 +66,7 @@ function Login() {
         const validateValues = {
             email: emailValueRef.current.value,
             pass: passWordlValueRef.current.value,
-            confirmPassWord: confirmPassWordlValueRef.current.value,
+
         };
         api(validateValues);
     };
@@ -94,14 +79,7 @@ function Login() {
 
             api(validateValues);
         }
-        if (id.includes(keyId) && keyId == 'confirmPassWord') {
-            const validateValues = {
-                [keyId]: ref.current.value,
-                pass: passWordlValueRef.current.value,
-            };
-
-            api(validateValues);
-        }
+        
     };
 
     return (

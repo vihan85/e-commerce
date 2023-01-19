@@ -4,7 +4,7 @@ import styles from './modal.module.scss';
 import Overlay from './overlay';
 const cx = classNames.bind(styles);
 function Modal({ children }) {
-    const [login, createAcount] = children;
+    const [login, createAcount,btn] = children;
 
     const [borderModal, setBorderModal] = useState(true);
     return (
@@ -29,8 +29,10 @@ function Modal({ children }) {
                         </p>
                     </header>
                     <div>{borderModal ? login : createAcount}</div>
+                    {btn}
                 </div>
             </div>
+
         </div>
     );
 }

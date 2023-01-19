@@ -14,24 +14,7 @@ function CreateAccount() {
     const passWordlValueRef = useRef();
     const confirmPassWordlValueRef = useRef();
     const inputs = [
-      
-        {
-            id: 'login-form-email',
-            label: 'Email',
-            attr_id: 'email',
-            classes: cx({ invalid: auth && auth.status === 'error' && auth.error.email && true }),
-            ref: emailValueRef,
-            placeholder: "Your's Email",
-            value: inputEmailValue,
-            required: true,
-            errorMessage: auth && auth.status === 'error' && auth.error.email,
-            onChange: (e) => {
-                setInputEmailValue(e.target.value);
-            },
-            onBlur: (e) => {
-                handleBlur(e.target.getAttribute('id'), emailValueRef);
-            },
-        },
+
         {
             id: 'login-form-email',
             label: 'Email',

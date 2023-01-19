@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 import styles from './catelory-page.module.scss';
 const cx = classNames.bind(styles);
 function CateloryPage({ menu, cateloryId }) {
-    console.log(menu);
+
     if (menu !== undefined) {
         return (
             <div className={cx('container')}>

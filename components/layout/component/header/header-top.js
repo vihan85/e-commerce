@@ -14,6 +14,7 @@ import ProductCart from '../../product-cart';
 import Login from '../login/login';
 import Modal from '../login/modal';
 import CreateAccount from '../create-account';
+import Button from '../../../ui/btn/btn';
 
 
 const cx = classNames.bind(styles);
@@ -84,7 +85,9 @@ function HeaderTop() {
                                     />
                                 </TippyHeadless>
                                 <button className={cx('navbar-header_nav-search-icon')}>
-                                    <FontAwesomeIcon icon={faSearch} />
+                                    <span onClick={(e)=> {
+                                        e.preventDefault()
+                                         setInputValue('')}}><FontAwesomeIcon icon={faSearch} /></span>
                                 </button>
                             </form>
 
@@ -114,6 +117,7 @@ function HeaderTop() {
                 <Modal>
                     <Login />
                     <CreateAccount/>
+                    <Button marTop maxWidth onClick={()=> {setShowModal(!showModal)}}>Close</Button>
                 </Modal>
             )}
         </>
