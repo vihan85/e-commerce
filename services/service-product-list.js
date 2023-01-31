@@ -16,6 +16,7 @@ const serviceProductList = async (router, count) => {
         params.refine = `cgid=${pid[currentIndex]}`;
         params.count = count;
         //call API
+        console.log(params)
         const datas = Promise.all(servicesLoop(paths, params)).then((res) => {
             //handle data
             if (res) {

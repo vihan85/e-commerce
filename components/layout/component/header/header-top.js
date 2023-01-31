@@ -43,7 +43,7 @@ function HeaderTop() {
                                 setShowModal(!showModal);
                             }}>
                             <FontAwesomeIcon icon={faArrowRightToBracket} />
-                            <Link href={'/'}>Login</Link>
+                            <button >Login</button>
                         </button>
                     </div>
                     <div className={`${cx('navbar-header_nav')} col l-8`}>
