@@ -13,7 +13,14 @@ const publishRouter = {
         price: 'productDetail/prices',
         image: 'productDetail/images',
         variant: 'productDetail/variations',
-
-    }
+    },
 };
-export {publishRouter}
+const mockRoutes = {
+    product_list: {
+        product: 'api/productList/:womens',
+        price: 'api/prices/:womens',
+        image: 'api/images/:womens',
+    },
+    catelory: 'categories',
+};
+export { publishRouter, mockRoutes };
