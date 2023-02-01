@@ -21,6 +21,8 @@ const mockRoutes = {
         price: 'api/prices/:womens',
         image: 'api/images/:womens',
     },
-    catelory: 'categories',
+    catelory: 'api/categories',
+    refinements: 'api/productList/:womens',
+    sort: `api/represented`,
 };
 export { publishRouter, mockRoutes };

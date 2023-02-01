@@ -14,6 +14,7 @@ function MainHeader() {
     useEffect(() => {
         serviceCatelory().then((res) => {
             setDataCatelory(res);
+            console.log(res);
         });
     }, []);
 
