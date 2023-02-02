@@ -14,7 +14,7 @@ const cx = classNames.bind(styles);
 function ProductContent({ data, routerId, changeCount }) {
     const totalRef = useRef();
     const [total, setTotal] = useState(data.pro_total);
-
+    const fallBackImageURL = '/placeholder-image.png';
     const getData = (productId, keyValue, key) => {
         if (data.dataPrice !== undefined && data.dataPrice) {
             const objectValue = data.dataPrice.find((price) => {
@@ -42,6 +42,11 @@ function ProductContent({ data, routerId, changeCount }) {
         }
 
         return;
+    };
+
+    const handleError = (e) => {
+        console.log(e.target.getAttribute('src'));
+        e.target.setAttribute('src', fallBackImageURL);
     };
 
     if (!routerId) {
@@ -79,6 +84,7 @@ function ProductContent({ data, routerId, changeCount }) {
                                         <div className={cx('product-item_img')}>
                                             <Link href={`/product-variations/${routerId[0]}&${product.p_id}`}>
                                                 <Image
+                                                    onError={handleError}
                                                     width={277}
                                                     height={277}
                                                     src={getImg.url}
