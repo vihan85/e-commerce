@@ -14,7 +14,10 @@ function Search({ dataSearch, icon }) {
                     <div className={cx('body')}>
                         <ul>
                             {dataSearch.map((item) => (
+
                                 <li key={item.se_product_id}>
+
+
                                     <div className={cx('item')}>
                                         <div className={cx('avatar')}>
                                             <span>

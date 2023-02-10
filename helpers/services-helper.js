@@ -10,9 +10,11 @@ import { httpRequest } from '../until/http-request';
  */
 const servicesLoop = (paths, params) => {
     const arrPromise = [];
+
     for (let key in paths) {
-        arrPromise.push(httpRequest.get(paths[key], { params }));
+        arrPromise.push(httpRequest.get(`${paths[key]}`, { params }));
     }
     return arrPromise;
 };
+
 export default servicesLoop;

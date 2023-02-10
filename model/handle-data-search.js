@@ -4,8 +4,8 @@ function hendleDataSearch(database) {
         products: [],
     };
     database.forEach((data) => {
-        if (data.data.hits) {
-            data.data.hits.forEach((items) => {
+        if (data.data.preview.body.hits) {
+            data.data.preview.body.hits.forEach((items) => {
                 const item = {};
                 for (let key in items) {
                     item[`se_${key}`] = items[key];
@@ -15,6 +15,7 @@ function hendleDataSearch(database) {
                 } else {
                     reliableDataHits.products.push(item);
                 }
+
             });
         }
     });

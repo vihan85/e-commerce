@@ -17,12 +17,12 @@ const publishRouter = {
 };
 const mockRoutes = {
     product_list: {
-        product: 'api/productList/:womens',
-        price: 'api/prices/:womens',
-        image: 'api/images/:womens',
+        product: 'api/mock/variants/represented_products',
+        price: 'api/mock/variants/prices',
+        image: 'api/mock/variants/images',
     },
-    catelory: 'api/categories',
-    refinements: 'api/productList/:womens',
-    sort: `api/represented`,
+    catelories: 'api/mock/variants',
+    refinements: 'api/mock/variants/represented_products',
+    sort: 'api/mock/variants/represented_products',
 };
 export { publishRouter, mockRoutes };

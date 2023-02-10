@@ -11,32 +11,24 @@ import { mockRoutes } from '../routers';
  */
 const serviceProductList = async (router, count) => {
     if (router.query.pid !== undefined) {
-        const paths = publishRouter.product_list;
-        const mockPaths = mockRoutes.product_list;
         const { pid, ...params } = router.query;
         const currentIndex = pid.length - 1;
+        const paths = publishRouter.product_list;
+        const mockPaths = {
+            product: `${mockRoutes.product_list.product}:${pid[currentIndex]}`,
+            price: `${mockRoutes.product_list.price}:${pid[currentIndex]}`,
+            image: `${mockRoutes.product_list.image}:${pid[currentIndex]}`,
+        };
         // add param refine into object router
         params.refine = `cgid=${pid[currentIndex]}`;
         params.count = count;
-        //call API
-        // const mockDatas = Promise.all(mockservicesLoop(mockRoutes.product_list)).then((res)=>{
-        //     if (res) {
-        //         const [resProduct, resPrice, resImg] = res;
-        //         if (resProduct.status === 200) {
-        //             const dataProduct = {
-        //                 dataProduct: [],
-        //                 dataPrice: [],
-        //                 dataImg: [],
-        //                 pro_total: resProduct.data.total,
-        //             };
-        //             handleDataProductList(resProduct.data, { key: 'p_name', value: 'product_name' }, dataProduct.dataProduct);
-        //             handleDataProductList(resPrice.data, { key: 'p_price', value: 'price' }, dataProduct.dataPrice);
-        //             handleDataProductList(resImg.data, { key: 'p_image', value: 'image' }, dataProduct.dataImg);
+        /*
+        Mock
+        - servicesLoop(mockPaths, params,pid[currentIndex])
+        UnMock
+        - servicesLoop(paths, params)
+        */
 
-        //             return dataProduct;
-        //         }
-        //     }
-        // })
         const datas = Promise.all(servicesLoop(mockPaths, params)).then((res) => {
             //handle data
             if (res) {
@@ -46,11 +38,11 @@ const serviceProductList = async (router, count) => {
                         dataProduct: [],
                         dataPrice: [],
                         dataImg: [],
-                        pro_total: resProduct.data.total,
+                        pro_total: resProduct.data.preview.body.total,
                     };
-                    handleDataProductList(resProduct.data, { key: 'p_name', value: 'product_name' }, dataProduct.dataProduct);
-                    handleDataProductList(resPrice.data, { key: 'p_price', value: 'price' }, dataProduct.dataPrice);
-                    handleDataProductList(resImg.data, { key: 'p_image', value: 'image' }, dataProduct.dataImg);
+                    handleDataProductList(resProduct.data.preview.body, { key: 'p_name', value: 'product_name' }, dataProduct.dataProduct);
+                    handleDataProductList(resPrice.data.preview.body, { key: 'p_price', value: 'price' }, dataProduct.dataPrice);
+                    handleDataProductList(resImg.data.preview.body, { key: 'p_image', value: 'image' }, dataProduct.dataImg);
                     return dataProduct;
                 }
             }
