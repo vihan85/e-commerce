@@ -1,4 +1,4 @@
-import { httpRequest } from '../until/http-request';
+import { httpMock } from '../until/http-request';
 
 /**
  *
@@ -8,13 +8,11 @@ import { httpRequest } from '../until/http-request';
  * @returns {Promise} =>arrayPromise (path:product, path:price, path:image)
  *
  */
-const servicesLoop = (paths, params) => {
+const mockservicesLoop = (paths, params) => {
     const arrPromise = [];
-
     for (let key in paths) {
-        arrPromise.push(httpRequest.get(`${paths[key]}`, { params }));
+        arrPromise.push(httpMock.get(paths[key], { params }));
     }
     return arrPromise;
 };
-
-export default servicesLoop;
+export default mockservicesLoop;

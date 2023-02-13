@@ -2,13 +2,19 @@
 /* eslint-disable jsx-a11y/alt-text */
 import classNames from 'classnames/bind';
 import Link from 'next/link';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import Button from '~/components/ui/btn/btn';
 
 import styles from './product-variations-page.module.scss';
 const cx = classNames.bind(styles);
 
 function ProductVariationsPage({ data }) {
     const sizerRef = useRef();
+    const nameProductRef = useRef();
+    const idproductRef = useRef();
+    const quanlity = useRef();
+    const imageProductRef = useRef();
+    const priceProduceRef = useRef();
 
     if (data) {
         const { data_product, data_price, data_images, data_variants } = data;
@@ -16,15 +22,23 @@ function ProductVariationsPage({ data }) {
         const [large, medium, small] = dt_image_groups;
         const { images } = large;
         const handleSubmit = () => {
-            if (localStorage.products_cart) {
-                const productsCartList = JSON.parse(localStorage.products_cart);
-                productsCartList.push(data);
-                localStorage.products_cart = JSON.stringify(productsCartList);
+            const productSelected = {
+                name: nameProductRef.current.textContent,
+                id_product: new Date().toISOString(),
+                id: idproductRef.current.textContent,
+                size: sizerRef.current.value,
+                quanlity: quanlity.current.value,
+                price: priceProduceRef.current.getAttribute('value'),
+                image: imageProductRef.current.getAttribute('src'),
+            };
+            if (localStorage.cart_list) {
+                const cartList = JSON.parse(localStorage.cart_list);
+                cartList.push(productSelected);
+                localStorage.cart_list = JSON.stringify(cartList);
             } else {
-                localStorage.products_cart = JSON.stringify([]);
-                const productsCartList = JSON.parse(localStorage.products_cart);
-                productsCartList.push(data);
-                localStorage.products_cart = JSON.stringify(productsCartList);
+                const cartList = [];
+                cartList.push(productSelected);
+                localStorage.cart_list = JSON.stringify(cartList);
             }
         };
         return (
@@ -34,6 +48,7 @@ function ProductVariationsPage({ data }) {
                         <div className={cx('product-img')}>
                             {images.map((image) => (
                                 <img
+                                    ref={imageProductRef}
                                     key={image.link}
                                     alt={image.alt}
                                     src={image.link}
@@ -54,11 +69,15 @@ function ProductVariationsPage({ data }) {
                                     <Link href={'/'}> / top</Link>
                                 </li>
                             </ul>
-                            <h1 className={cx('product-info_title')}>{data_product.dt_name}</h1>
+                            <h1
+                                ref={nameProductRef}
+                                className={cx('product-info_title')}>
+                                {data_product.dt_name}
+                            </h1>
                             <div className={cx('product-info_rating')}>
                                 <p className={cx('product-info_rating-name')}>
                                     Item No.
-                                    <span>{data_product.dt_id}</span>
+                                    <span ref={idproductRef}>{data_product.dt_id}</span>
                                 </p>
                                 <ul className={cx('product-info_rating-start')}></ul>
                             </div>
@@ -84,7 +103,7 @@ function ProductVariationsPage({ data }) {
                                 <div className={`${cx('product-info_select-size')} row`}>
                                     <div className={cx('col l-8')}>
                                         <p>Select size</p>
-                                        <select>
+                                        <select ref={sizerRef}>
                                             <option>Select Size</option>
                                             {data_variants &&
                                                 data_variants.dt_variation_attributes !== undefined &&
@@ -93,7 +112,6 @@ function ProductVariationsPage({ data }) {
                                                         return sizes.values.map((size) => {
                                                             return (
                                                                 <option
-                                                                    ref={sizerRef}
                                                                     key={size.value}
                                                                     value={size.value}>
                                                                     {size.name}
@@ -106,16 +124,24 @@ function ProductVariationsPage({ data }) {
                                     </div>
                                     <div className={cx('col l-4')}>
                                         <p>Quality</p>
-                                        <select>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
+                                        <select ref={quanlity}>
+                                            <option value={1}>1</option>
+                                            <option value={2}>2</option>
+                                            <option value={3}>3</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
+                            <span
+                                value={data_price.dt_price}
+                                ref={priceProduceRef}
+                                className={`${cx('price')}`}>
+                                Price: {data_price.dt_price} $
+                            </span>
                         </div>
-                        <button onClick={handleSubmit}> Add to cart</button>
+                        <div className={`${cx('cart-btn')}`}>
+                            <Button onClick={handleSubmit}> Add to cart</Button>
+                        </div>
                     </div>
                 </div>
             </div>

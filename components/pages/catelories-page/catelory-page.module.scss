@@ -17,6 +17,7 @@
     color: #fff;
 }
 .container_catelory-image {
+
     display: block;
     height: 25vw;
     position: relative;
@@ -35,6 +36,7 @@
     img {
         border-style: none;
         height: 25vw;
+        width: 100%;
     }
 }
 .container_catelory-title-list {
