@@ -5,10 +5,9 @@ import classNames from 'classnames/bind';
 import styles from './catelory-page.module.scss';
 const cx = classNames.bind(styles);
 function CateloryPage({ menu, cateloryId }) {
-
     if (menu !== undefined) {
         return (
-            <div className={cx('container')}>
+            <div className={cx('container ani-hide-to-show')}>
                 {menu.c_headerbanner && (
                     <div className={cx('container_catelory-image')}>
                         <img src={menu.c_headerbanner} />

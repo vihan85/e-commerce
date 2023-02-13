@@ -36,7 +36,7 @@ function ProductListPage() {
         return <LoadingSpinner />;
     }
     return (
-        <div className={cx('container', 'grid ')}>
+        <div className={cx('container', 'grid ani-hide-to-show')}>
             <div className={cx('wrapper')}>
                 <div className={'col c-3'}>
                     <ProductSidebar

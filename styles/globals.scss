@@ -10,7 +10,7 @@
     --header-color: #444444;
     --menu-hover-color: #444;
     --text-color: #444;
-    --border-color: #ccc
+    --border-color: #ccc;
 }
 * {
     box-sizing: border-box;
@@ -767,4 +767,28 @@ button {
     100% {
         transform: rotate(360deg);
     }
+}
+// animination
+@keyframes show-up-to-down {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes hide-to-show {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.ani-hide-to-show {
+    animation: hide-to-show ease 3s;
+}
+.ani-show-up-to-down {
+    animation: show-up-to-down ease 3s;
 }

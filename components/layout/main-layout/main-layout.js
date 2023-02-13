@@ -8,9 +8,11 @@ const cx = classNames.bind(styles);
 function MainLayout({ children }) {
     return (
         <div>
-            <MainHeader />
+            <header className={cx('header', { 'ani-show-up-to-down': true })}>
+                <MainHeader />
+            </header>
 
-            <main>{children}</main>
+            <main className={cx('container', { 'ani-hide-to-show': true })}>{children}</main>
 
             {<Footer />}
         </div>

@@ -15,10 +15,14 @@ function ProductVariations() {
         }
         return;
     }, [router.query.provariations]);
-    if(Object.keys(data).length === 0) {
-       return <LoadingSpinner/>
+    if (Object.keys(data).length === 0) {
+        return <LoadingSpinner />;
     }
 
-    return <ProductVariationsPage data={Object.keys(data).length > 0 && data} />;
+    return (
+        <div className='ani-hide-to-show'>
+            <ProductVariationsPage data={Object.keys(data).length > 0 && data} />
+        </div>
+    );
 }
 export default ProductVariations;

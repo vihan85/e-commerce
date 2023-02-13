@@ -19,7 +19,6 @@ export default function MyApp({ Component, pageProps }) {
         };
     }, [showSpinner]);
 
-
     return (
         <>
             {showSpinner ? (
@@ -28,7 +27,7 @@ export default function MyApp({ Component, pageProps }) {
                 <RouterAcctive.Provider value={{ router }}>
                     <MainLayout>
                         <Head>
-                            <title>Ecommerce</title>
+                            <title>E-ommerce</title>
                         </Head>
                         <Component {...pageProps} />
                     </MainLayout>
