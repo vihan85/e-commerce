@@ -1,14 +1,24 @@
 /* eslint-disable @next/next/no-img-element */
 import classNames from 'classnames/bind';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import styles from './product-cart.module.scss';
 const cx = classNames.bind(styles);
-function ProductCart({ productsCart }) {
+function ProductCart({  }) {
+    const [reload, setReload] = useState(false);
+    const productsCart = JSON.parse(localStorage.cart_list)
+    console.log(productsCart)
     const handleDelete = (index) => {
         const proList = JSON.parse(localStorage.cart_list);
         proList.splice(index, 1);
         localStorage.cart_list = JSON.stringify(proList);
+        setReload(!reload);
     };
+    useEffect(() => {
+        if (false) {
+            window.location.reload();
+        }
+    }, [reload]);
     const handleSumPrice = () => {
         return productsCart.reduce((total, currentValue) => {
             const result = Number(total) + Number(currentValue.price) * Number(currentValue.quanlity);
