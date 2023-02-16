@@ -7,14 +7,14 @@ import Button from '~/components/ui/btn/btn';
 
 import styles from './product-variations-page.module.scss';
 const cx = classNames.bind(styles);
-
 function ProductVariationsPage({ data }) {
+    const [showErr, setShowErr] = useState(false)
     const sizerRef = useRef();
     const nameProductRef = useRef();
     const idproductRef = useRef();
     const quanlity = useRef();
     const imageProductRef = useRef();
-    const priceProduceRef = useRef();
+    const priceProduceRef = useRef()
 
     if (data) {
         const { data_product, data_price, data_images, data_variants } = data;
@@ -31,16 +31,21 @@ function ProductVariationsPage({ data }) {
                 price: priceProduceRef.current.getAttribute('value'),
                 image: imageProductRef.current.getAttribute('src'),
             };
-            if (localStorage.cart_list) {
-                const cartList = JSON.parse(localStorage.cart_list);
-                cartList.push(productSelected);
-                localStorage.cart_list = JSON.stringify(cartList);
-            } else {
-                const cartList = [];
-                cartList.push(productSelected);
-                localStorage.cart_list = JSON.stringify(cartList);
+            productSelected.size === 'none' || productSelected.quanlity ==='none' ? setShowErr(true) : setShowErr(false)
+            if(productSelected.size !== 'none') {
+                if (localStorage.cart_list) {
+                    const cartList = JSON.parse(localStorage.cart_list);
+                    cartList.push(productSelected);
+                    localStorage.cart_list = JSON.stringify(cartList);
+                } else {
+                    const cartList = [];
+                    cartList.push(productSelected);
+                    localStorage.cart_list = JSON.stringify(cartList);
+                }
             }
-        };
+
+            
+        }
         return (
             <div className={cx('grid wide')}>
                 <div className={cx('row')}>
@@ -104,7 +109,7 @@ function ProductVariationsPage({ data }) {
                                     <div className={cx('col l-8')}>
                                         <p>Select size</p>
                                         <select ref={sizerRef}>
-                                            <option>Select Size</option>
+                                            <option value={'none'}>Select Size</option>
                                             {data_variants &&
                                                 data_variants.dt_variation_attributes !== undefined &&
                                                 data_variants.dt_variation_attributes.map((sizes) => {
@@ -121,7 +126,9 @@ function ProductVariationsPage({ data }) {
                                                     }
                                                 })}
                                         </select>
+                                        <p className={cx('error')}>{showErr &&'Please Select Size!'}</p>
                                     </div>
+                                    
                                     <div className={cx('col l-4')}>
                                         <p>Quality</p>
                                         <select ref={quanlity}>
@@ -138,6 +145,7 @@ function ProductVariationsPage({ data }) {
                                 className={`${cx('price')}`}>
                                 Price: {data_price.dt_price} $
                             </span>
+                            
                         </div>
                         <div className={`${cx('cart-btn')}`}>
                             <Button onClick={handleSubmit}> Add to cart</Button>
