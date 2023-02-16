@@ -45,7 +45,6 @@ function ProductContent({ data, routerId, changeCount }) {
     };
 
     const handleError = (e) => {
-        console.log(e.target.getAttribute('src'));
         e.target.setAttribute('src', fallBackImageURL);
     };
 

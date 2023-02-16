@@ -9,7 +9,6 @@ function serviceVariations(router) {
     const params = { all_images: false, pid: id || nul };
     const datas = Promise.all(servicesLoop(mockPaths, params)).then((database) => {
         if (database[0].status === 200) {
-            console.log(database);
             return handleDataProductVariations(database, 'dt');
         }
     });

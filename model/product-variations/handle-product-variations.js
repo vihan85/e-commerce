@@ -15,7 +15,6 @@ const handleDataProductVariations = (dataBases, keyCustom) => {
             totalData.data_product = data;
         }
     });
-    console.log(totalData);
     return totalData;
 };
 export default handleDataProductVariations;

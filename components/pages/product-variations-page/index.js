@@ -2,9 +2,9 @@
 /* eslint-disable jsx-a11y/alt-text */
 import classNames from 'classnames/bind';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import Button from '~/components/ui/btn/btn';
-
+import { ProviderCart } from '../../layout/main-layout/main-layout';
 import styles from './product-variations-page.module.scss';
 const cx = classNames.bind(styles);
 function ProductVariationsPage({ data }) {
@@ -13,8 +13,10 @@ function ProductVariationsPage({ data }) {
     const nameProductRef = useRef();
     const idproductRef = useRef();
     const quanlity = useRef();
-    const imageProductRef = useRef();
+    const imageProductRef = useRef()
     const priceProduceRef = useRef()
+    const updateQualityCart = useContext(ProviderCart)
+    
 
     if (data) {
         const { data_product, data_price, data_images, data_variants } = data;
@@ -42,6 +44,7 @@ function ProductVariationsPage({ data }) {
                     cartList.push(productSelected);
                     localStorage.cart_list = JSON.stringify(cartList);
                 }
+                updateQualityCart()
             }
 
             
