@@ -786,6 +786,14 @@ button {
         opacity: 1;
     }
 }
+@keyframes zoom {
+    from {
+        font-size:  2em;
+    }
+}
+.ani-zoom {
+    animation: zoom ease 2s;
+}
 .ani-hide-to-show {
     animation: hide-to-show ease 3s;
 }

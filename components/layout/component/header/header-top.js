@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import TippyHeadless from '@tippyjs/react/headless';
-import { faArrowRightToBracket, faBagShopping, faClose, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRightToBracket, faBagShopping, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useDebounce } from '~/hooks';
 import styles from './main-header.module.scss';
 import Search from '../../search';
@@ -15,6 +15,7 @@ import Login from '../login/login';
 import Modal from '../login/modal';
 import CreateAccount from '../create-account';
 import Button from '../../../ui/btn/btn';
+import { ProviderCart } from '../../main-layout/main-layout';
 
 
 const cx = classNames.bind(styles);
@@ -95,7 +96,6 @@ function HeaderTop() {
                                 <TippyHeadless
                                     interactive={true}
                                     placement={'bottom-start'}
-                                    offset={[400, 10]}
                                     render={(attrs) => (
                                         <div
                                             {...attrs}
@@ -103,7 +103,7 @@ function HeaderTop() {
                                             <ProductCart productsCart={productsCart} />
                                         </div>
                                     )}>
-                                    <span className={cx('navbar-header_nav-card-icon')}>
+                                    <span className={cx('navbar-header_nav-card-icon',{'ani-zoom':true})}>
                                         <FontAwesomeIcon icon={faBagShopping} />
                                         <span className={cx('navbar-header_nav-card-icon-quanity')}>{productsCart.length}</span>
                                     </span>

@@ -9,7 +9,9 @@ const cx = classNames.bind(styles);
 const ProviderCart = createContext()
 function MainLayout({ children }) {
     const [updateCart, setUpdateCart] = useState(false)
-    const updateQualityCart = () => {setUpdateCart(!updateCart)}
+    const updateQualityCart = () => {
+            setUpdateCart(!updateCart)
+           }
     const router = useRouter()
     const routerId = router.query.provariations 
     return (

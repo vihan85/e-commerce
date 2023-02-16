@@ -3,6 +3,7 @@
 import classNames from 'classnames/bind';
 import Link from 'next/link';
 import { useContext, useRef, useState } from 'react';
+import tippy from 'tippy.js';
 import Button from '~/components/ui/btn/btn';
 import { ProviderCart } from '../../layout/main-layout/main-layout';
 import styles from './product-variations-page.module.scss';
@@ -46,8 +47,6 @@ function ProductVariationsPage({ data }) {
                 }
                 updateQualityCart()
             }
-
-            
         }
         return (
             <div className={cx('grid wide')}>
