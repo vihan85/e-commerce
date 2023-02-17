@@ -2,18 +2,27 @@
 import classNames from 'classnames/bind';
 import Link from 'next/link';
 import { useContext, useState } from 'react';
+import Button from '../../ui/btn/btn';
 import { ProviderCart } from '../main-layout/main-layout';
+
+
+
 import styles from './product-cart.module.scss';
 const cx = classNames.bind(styles);
 function ProductCart() {
     const productsCart = localStorage.cart_list ? JSON.parse(localStorage.cart_list) : [];
     const updatequalityCart = useContext(ProviderCart)
+    let proList = JSON.parse(localStorage.cart_list);
     const handleDelete = (index) => {
-        const proList = JSON.parse(localStorage.cart_list);
         proList.splice(index, 1);
         localStorage.cart_list = JSON.stringify(proList);
         updatequalityCart()
     };
+    const handleDeleteAll = () => {
+        
+        localStorage.cart_list = JSON.stringify([]);
+        updatequalityCart()
+    }
     const handleSumPrice = () => {
         return productsCart.reduce((total, currentValue) => {
             const result = Number(total) + Number(currentValue.price) * Number(currentValue.quanlity);
@@ -79,6 +88,9 @@ function ProductCart() {
                         })}
                     </ul>
                 </div>
+                {proList.length !== 0 &&(<div className={cx('btn-clear-all')}>
+                    <Button btnPrimary onClick={handleDeleteAll} maxWidth>Clear All</Button>
+                </div>)}
             </div>
         </div>
     );

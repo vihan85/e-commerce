@@ -7,11 +7,25 @@
     max-height: 500px;
     overflow-y: auto;
 }
+.container::-webkit-scrollbar {
+    
+  }
 
 .wapper {
+    position: relative;
     p {
         padding: 0;
         margin: 0;
+    }
+    .btn-clear-all{
+        position: fixed;
+        bottom: 1px;
+        background-color: var(--white-color);
+        width: 97%;
+        min-height: 68px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 
@@ -26,14 +40,16 @@
     justify-content: space-between;
     align-items: center;
     font-weight: 800;
-    background-color: white;
+    background-color: var(--white-color);
+
 }
 
 .body {
     margin-top: 20px;
     padding-top: 8px;
     ul{
-        padding-left:16px;
+        padding-left: 16px;
+        margin-bottom: 50px;
     }
     li{
         border-bottom: 1px solid var(--border-color);

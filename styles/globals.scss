@@ -788,11 +788,16 @@ button {
 }
 @keyframes zoom {
     from {
-        font-size:  2em;
+        color: var(--primari-color);
+        transform:  rotate(-30deg);
+    }
+    to {
+        transform:  rotate(30deg);
     }
 }
 .ani-zoom {
-    animation: zoom ease 2s;
+    animation: zoom ease 0.5s ;
+    animation-direction: alternate;
 }
 .ani-hide-to-show {
     animation: hide-to-show ease 3s;

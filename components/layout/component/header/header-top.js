@@ -5,7 +5,7 @@ import { faArrowRightToBracket, faBagShopping, faSearch } from '@fortawesome/fre
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDebounce } from '~/hooks';
 import styles from './main-header.module.scss';
 import Search from '../../search';
@@ -15,7 +15,7 @@ import Login from '../login/login';
 import Modal from '../login/modal';
 import CreateAccount from '../create-account';
 import Button from '../../../ui/btn/btn';
-import { ProviderCart } from '../../main-layout/main-layout';
+
 
 
 const cx = classNames.bind(styles);
@@ -27,13 +27,13 @@ function HeaderTop() {
     const [showSearchResult, setShowSearchResult] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const productsCart = localStorage.cart_list ? JSON.parse(localStorage.cart_list) : [];
-    useEffect(() => {
+    const cartRef = useRef()
+   useEffect(() => {
         if (searchValues !== ' ') {
             serviceSearch(searchValues).then((res) => setDataSearch(res));
         }
         return;
     }, [searchValues]);
-
     return (
         <>
             <div className={`${cx('navbar-header')} grid wide`}>
@@ -92,18 +92,18 @@ function HeaderTop() {
                                 </button>
                             </form>
 
-                            <div className={cx('navbar-header_nav-card')}>
-                                <TippyHeadless
+                            <div ref={cartRef} className={cx('navbar-header_nav-card')}>
+                                <TippyHeadless                          
                                     interactive={true}
                                     placement={'bottom-start'}
                                     render={(attrs) => (
-                                        <div
+                                        <div 
                                             {...attrs}
                                             tabIndex='-1'>
-                                            <ProductCart productsCart={productsCart} />
+                                            <ProductCart productsCart={productsCart} />                                           
                                         </div>
                                     )}>
-                                    <span className={cx('navbar-header_nav-card-icon',{'ani-zoom':true})}>
+                                    <span className={cx('navbar-header_nav-card-icon')}>
                                         <FontAwesomeIcon icon={faBagShopping} />
                                         <span className={cx('navbar-header_nav-card-icon-quanity')}>{productsCart.length}</span>
                                     </span>
