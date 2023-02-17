@@ -44,13 +44,15 @@ function HeaderTop() {
                                 setShowModal(!showModal);
                             }}>
                             <FontAwesomeIcon icon={faArrowRightToBracket} />
-                            <button >Login</button>
+                            <span>
+                                Login
+                            </span>
                         </button>
                     </div>
                     <div className={`${cx('navbar-header_nav')} col l-8`}>
                         <div className={cx('navbar-header_nav-logo')}>
                             <Link href={'/'}>
-                                <img src={'logo.svg'} />
+                                <img src={'/ecommerce-logo-png-11.png'} />
                             </Link>
                         </div>
 

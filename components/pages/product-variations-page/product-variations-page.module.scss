@@ -1,7 +1,7 @@
 .product-img {
     display: flex;
     overflow: auto;
-
+    cursor: pointer;
     img {
         max-width: 100%;
     }

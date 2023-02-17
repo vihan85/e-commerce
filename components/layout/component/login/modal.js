@@ -9,7 +9,6 @@ function Modal({ children }) {
     const [borderModal, setBorderModal] = useState(true);
     return (
         <div className={cx('modal-container')}>
-            <Overlay />
             <div className={cx('modal-wrapper')}>
                 <div className={cx('modal-content')}>
                     <header>
@@ -32,7 +31,7 @@ function Modal({ children }) {
                     {btn}
                 </div>
             </div>
-
+            <Overlay />
         </div>
     );
 }

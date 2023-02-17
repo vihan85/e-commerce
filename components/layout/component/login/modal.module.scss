@@ -1,10 +1,11 @@
 .modal-container {
     position: fixed;
-    z-index: 1000;
+    z-index: 10;
     display: flex; // để sử dụgn margin:auto căn giữa
     inset: 0px; // vị trí góc tọa độ 0-0
 }
 .modal-wrapper {
+    z-index: 10;
     min-width: 500px;
     max-width: 500px;
     min-height: 500px;

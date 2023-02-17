@@ -2,11 +2,15 @@
 /* eslint-disable jsx-a11y/alt-text */
 import classNames from 'classnames/bind';
 import Link from 'next/link';
-import { useContext, useRef, useState } from 'react';
-import tippy from 'tippy.js';
+import { useContext, useEffect, useRef, useState } from 'react';
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 import Button from '~/components/ui/btn/btn';
-import { ProviderCart } from '../../layout/main-layout/main-layout';
 import styles from './product-variations-page.module.scss';
+import { ProviderCart } from '../../layout/main-layout/main-layout';
+import LoadingSpinner from '../../ui/loading-spinner';
+import Overlay from "../../../components/layout/component/login/overlay"
 const cx = classNames.bind(styles);
 function ProductVariationsPage({ data }) {
     const [showErr, setShowErr] = useState(false)
@@ -16,14 +20,14 @@ function ProductVariationsPage({ data }) {
     const quanlity = useRef();
     const imageProductRef = useRef()
     const priceProduceRef = useRef()
-    const updateQualityCart = useContext(ProviderCart)
-    
-
     if (data) {
         const { data_product, data_price, data_images, data_variants } = data;
         const { dt_image_groups } = data_images;
         const [large, medium, small] = dt_image_groups;
         const { images } = large;
+        const updateQualityCart = useContext(ProviderCart)
+        const [spinner, setSpinner] = useState (false)
+        
         const handleSubmit = () => {
             const productSelected = {
                 name: nameProductRef.current.textContent,
@@ -36,6 +40,7 @@ function ProductVariationsPage({ data }) {
             };
             productSelected.size === 'none' || productSelected.quanlity ==='none' ? setShowErr(true) : setShowErr(false)
             if(productSelected.size !== 'none') {
+                setSpinner(true)
                 if (localStorage.cart_list) {
                     const cartList = JSON.parse(localStorage.cart_list);
                     cartList.push(productSelected);
@@ -46,21 +51,37 @@ function ProductVariationsPage({ data }) {
                     localStorage.cart_list = JSON.stringify(cartList);
                 }
                 updateQualityCart()
+                setTimeout(()=> {
+                    setSpinner(false)}, 500)
             }
         }
         return (
             <div className={cx('grid wide')}>
+                {spinner && (
+                    <>
+                        <LoadingSpinner spinnerCenter={'spinnerCenter'}/>
+                    </>
+                )}
                 <div className={cx('row')}>
                     <div className={cx('col l-6')}>
                         <div className={cx('product-img')}>
-                            {images.map((image) => (
-                                <img
-                                    ref={imageProductRef}
-                                    key={image.link}
-                                    alt={image.alt}
-                                    src={image.link}
-                                />
-                            ))}
+                        <Swiper
+                            onSwiper={(swiper) => console.log(swiper)}
+                            
+                        >
+                                {images.map((image) => (
+                                   <SwiperSlide key={image.link}>
+                                    <img
+                                        ref={imageProductRef}
+                                        alt={image.alt}
+                                        src={image.link}
+                                        />
+                                   </SwiperSlide>
+                                        
+                                   
+                                    
+                                ))}
+                        </Swiper>
                         </div>
                     </div>
                     <div className={cx('col l-6')}>
@@ -91,7 +112,6 @@ function ProductVariationsPage({ data }) {
                             <div className={cx('product-info_select')}>
                                 <div className={cx('product-info_select-color')}>
                                     <p>Select Color</p>
-
                                     {data_variants !== undefined &&
                                         data_variants.dt_variants.map((item) => {
                                             if (item.id === 'color') {

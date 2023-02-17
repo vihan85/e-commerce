@@ -805,3 +805,14 @@ button {
 .ani-show-up-to-down {
     animation: show-up-to-down ease 3s;
 }
+.spinnerCenter{
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 30%;
+    right: 0;
+    z-index: 2;
+}
+img{
+    z-index: 1;
+}

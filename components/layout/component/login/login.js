@@ -90,7 +90,7 @@ function Login() {
                     className={cx('form-1')}>
                     {inputs.map((input) => (
                         <Input
-                            key={input.is}
+                            key={input.id}
                             input={input}
                             auth={auth}
                         />
