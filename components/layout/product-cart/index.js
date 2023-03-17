@@ -12,7 +12,7 @@ const cx = classNames.bind(styles);
 function ProductCart() {
     const productsCart = localStorage.cart_list ? JSON.parse(localStorage.cart_list) : [];
     const updatequalityCart = useContext(ProviderCart)
-    let proList = JSON.parse(localStorage.cart_list);
+    let proList = productsCart
     const handleDelete = (index) => {
         proList.splice(index, 1);
         localStorage.cart_list = JSON.stringify(proList);

@@ -14,16 +14,18 @@ import serviceRefinement from '~/services/service-refinment';
 import serviceSort from '~/services/service-sort';
 const cx = classNames.bind(styles);
 
-function ProductSidebar({ routerId }) {
+function ProductSidebar({ routerId }) {console.log(routerId)
     const [refinements, setRefinements] = useState([]);
     const [sort, setSort] = useState([]);
     const router = useRouter();
-
     useEffect(() => {
-        serviceRefinement(router.query).then((res) => setRefinements(res));
-        serviceSort(router).then((res) => {
-            setSort(res);
-        });
+        if(routerId) {
+            serviceRefinement(router.query).then((res) => setRefinements(res));
+            serviceSort(router).then((res) => {
+                setSort(res);
+            });
+
+        }
     }, [routerId]);
     if (refinements.length > 0) {
         return (

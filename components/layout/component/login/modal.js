@@ -3,9 +3,7 @@ import { useState } from 'react';
 import styles from './modal.module.scss';
 import Overlay from './overlay';
 const cx = classNames.bind(styles);
-function Modal({ children }) {
-    const [login, createAcount,btn] = children;
-
+function Modal({ children, login, createAcount }) {
     const [borderModal, setBorderModal] = useState(true);
     return (
         <div className={cx('modal-container')}>
@@ -27,8 +25,10 @@ function Modal({ children }) {
                             Create Account
                         </p>
                     </header>
-                    <div>{borderModal ? login : createAcount}</div>
-                    {btn}
+                    <div>
+                        {borderModal ? login : createAcount}
+                    </div>
+                    {children}
                 </div>
             </div>
             <Overlay />

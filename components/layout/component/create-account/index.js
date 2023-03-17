@@ -1,8 +1,8 @@
 import Button from '../../../ui/btn/btn';
 import Input from '../input';
-import classNames from 'classnames/bind';
 import { useRef, useState } from 'react';
 
+import classNames from 'classnames/bind';
 import styles from '../login/login.module.scss';
 const cx = classNames.bind(styles);
 
@@ -113,7 +113,7 @@ function CreateAccount() {
                     className={cx('form-1')}>
                     {inputs.map((input) => (
                         <Input
-                            key={input.is}
+                            key={input.id}
                             input={input}
                             auth={auth}
                         />

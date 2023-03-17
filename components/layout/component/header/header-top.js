@@ -15,6 +15,7 @@ import Login from '../login/login';
 import Modal from '../login/modal';
 import CreateAccount from '../create-account';
 import Button from '../../../ui/btn/btn';
+import LoginForm from '../../../login';
 
 
 
@@ -25,9 +26,12 @@ function HeaderTop() {
     const [dataSearch, setDataSearch] = useState({});
     const searchValues = useDebounce(inputValue, 800);
     const [showSearchResult, setShowSearchResult] = useState(false);
-    const [showModal, setShowModal] = useState(false);
+    const [loginForm, setLoginForm] = useState(false);
     const productsCart = localStorage.cart_list ? JSON.parse(localStorage.cart_list) : [];
     const cartRef = useRef()
+    const handleHideModal = () => {
+        setLoginForm(!loginForm)
+    }
    useEffect(() => {
         if (searchValues !== ' ') {
             serviceSearch(searchValues).then((res) => setDataSearch(res));
@@ -41,7 +45,7 @@ function HeaderTop() {
                     <div className={`${cx('navbar-header_login')} col l-4`}>
                         <button
                             onClick={() => {
-                                setShowModal(!showModal);
+                                setLoginForm(!loginForm);
                             }}>
                             <FontAwesomeIcon icon={faArrowRightToBracket} />
                             <span>
@@ -115,13 +119,7 @@ function HeaderTop() {
                     </div>
                 </div>
             </div>
-            {showModal && (
-                <Modal>
-                    <Login />
-                    <CreateAccount/>
-                    <Button marTop maxWidth onClick={()=> {setShowModal(!showModal)}}>Close</Button>
-                </Modal>
-            )}
+            {loginForm && <LoginForm hideModal = {handleHideModal}/>}
         </>
     );
 }
