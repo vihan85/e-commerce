@@ -9,7 +9,12 @@ const cx = classNames.bind(styles);
 function SidebarCatelogy({ data, routerId }) {
     parent = routerId;
     const router = useRouter();
-    const [checked, setChecked] = useState(router.query.pid[1]);
+    let innitValueChecked = undefined
+        if(router.query.pid){
+        const curentIndex = router.query.pid.length -1
+        innitValueChecked = router.query.pid[curentIndex]
+    }
+    const [checked, setChecked] = useState(innitValueChecked);
     const handleChange = (id) => {
         router.push({
             pathname: `${router.query.pid[0]}/${id}`,

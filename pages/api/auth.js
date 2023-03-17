@@ -15,7 +15,7 @@ function handler(req, res) {
             account: {
                 email: undefined,
                 pass: undefined,
-                confirmPass: undefined,
+                confirmPass: '',
             },
         };
         //isEmail
@@ -40,10 +40,10 @@ function handler(req, res) {
         // isRequired
         checkIsRequired(valueValadate,auth)
         //respon status
-        if (Object.keys(auth.error).length > 0 || Object.values(auth.account).indexOf(undefined) > -1) {
+        if (Object.values(auth.account).indexOf(undefined) > -1 || Object.keys(auth.error).length > 0 ) {
             auth.status = 'error';
 
-            res.status(442).json(auth);
+            res.status(422).json(auth);
             return;
         }
 

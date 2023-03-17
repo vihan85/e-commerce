@@ -10,7 +10,7 @@ function HomePage() {
             <div className={cx('banner')}>
                 <img
                     src={
-                        'https://zygo-001.dx.commercecloud.salesforce.com/on/demandware.static/-/Library-Sites-RefArchSharedLibrary/default/dwe5d89797/images/homepage/homepage-4/large.jpg'
+                        'http://localhost:3000/_next/image?url=https%3A%2F%2Fedge.disstg.commercecloud.salesforce.com%2Fdw%2Fimage%2Fv2%2FZYGO_001%2Fon%2Fdemandware.static%2F-%2FSites-apparel-m-catalog%2Fdefault%2Fdw73cfca1f%2Fimages%2Flarge%2FPG.10247474.JJP49XX.PZ.jpg&w=384&q=75'
                     }
                 />
             </div>
@@ -24,7 +24,7 @@ function HomePage() {
                                     href={'/womens/womens-clothing/womens-clothing-dresses'}>
                                     <img
                                         src={
-                                            'https://zygo-001.dx.commercecloud.salesforce.com/on/demandware.static/-/Library-Sites-RefArchSharedLibrary/default/dw62149d09/images/homepage/homepage-5/large.jpg'
+                                            'http://localhost:3000/_next/image?url=https%3A%2F%2Fedge.disstg.commercecloud.salesforce.com%2Fdw%2Fimage%2Fv2%2FZYGO_001%2Fon%2Fdemandware.static%2F-%2FSites-apparel-m-catalog%2Fdefault%2Fdw73cfca1f%2Fimages%2Flarge%2FPG.10247474.JJP49XX.PZ.jpg&w=384&q=75'
                                         }
                                     />
 
@@ -37,7 +37,7 @@ function HomePage() {
                                     href={'/womens/womens-jewelry'}>
                                     <img
                                         src={
-                                            'https://zygo-001.dx.commercecloud.salesforce.com/on/demandware.static/-/Library-Sites-RefArchSharedLibrary/default/dw38e03393/images/homepage/homepage-6/large.jpg'
+                                            'http://localhost:3000/_next/image?url=https%3A%2F%2Fedge.disstg.commercecloud.salesforce.com%2Fdw%2Fimage%2Fv2%2FZYGO_001%2Fon%2Fdemandware.static%2F-%2FSites-apparel-m-catalog%2Fdefault%2Fdw73cfca1f%2Fimages%2Flarge%2FPG.10247474.JJP49XX.PZ.jpg&w=384&q=75'
                                         }
                                     />
                                     <span>Womens Jewelry</span>
@@ -49,7 +49,7 @@ function HomePage() {
                                     className={cx('item')}>
                                     <img
                                         src={
-                                            'https://zygo-001.dx.commercecloud.salesforce.com/on/demandware.static/-/Library-Sites-RefArchSharedLibrary/default/dw03797d20/images/homepage/homepage-1/large.jpg'
+                                            'http://localhost:3000/_next/image?url=https%3A%2F%2Fedge.disstg.commercecloud.salesforce.com%2Fdw%2Fimage%2Fv2%2FZYGO_001%2Fon%2Fdemandware.static%2F-%2FSites-apparel-m-catalog%2Fdefault%2Fdw73cfca1f%2Fimages%2Flarge%2FPG.10247474.JJP49XX.PZ.jpg&w=384&q=75'
                                         }
                                     />
                                     <span>Shop Red</span>
@@ -63,7 +63,7 @@ function HomePage() {
                             href={'/mens/mens-clothing'}>
                             <img
                                 src={
-                                    'https://zygo-001.dx.commercecloud.salesforce.com/on/demandware.static/-/Library-Sites-RefArchSharedLibrary/default/dwa83755d9/images/homepage/homepage-3/large.jpg'
+                                    'http://localhost:3000/_next/image?url=https%3A%2F%2Fedge.disstg.commercecloud.salesforce.com%2Fdw%2Fimage%2Fv2%2FZYGO_001%2Fon%2Fdemandware.static%2F-%2FSites-apparel-m-catalog%2Fdefault%2Fdw73cfca1f%2Fimages%2Flarge%2FPG.10247474.JJP49XX.PZ.jpg&w=384&q=75'
                                 }
                             />
                             <span>Mens</span>
